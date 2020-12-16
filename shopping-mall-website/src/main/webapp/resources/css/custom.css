@@ -1,0 +1,35 @@
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+h1,h2,h3,h4, .navbar-brand{
+    font-family: 'Jeju Gothic';
+    color: #1565C0;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #ff6766;
+   color: white;
+/*    text-align: center;
+ */
+}
+.center_div{
+    margin: 0 auto;
+    width:80% /* value of your choice which suits your alignment */
+}
+
+.login_form{
+	margin-left:300px;
+}
+@media screen and (max-width: 990px) {
+  .login_form {
+	margin:auto;
+  }
+}
+
+@media screen and (max-width: 355px) {
+ html{
+	width:55.66%
+ }
+}
