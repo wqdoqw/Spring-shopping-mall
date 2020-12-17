@@ -23,8 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.myapp.domain.CategoryVO;
-import com.spring.myapp.domain.GoodsBrand;
-import com.spring.myapp.domain.GoodsClassification;
 import com.spring.myapp.domain.GoodsVO;
 import com.spring.myapp.domain.GoodsViewVO;
 import com.spring.myapp.domain.MemberVO;
@@ -65,7 +63,7 @@ public class AdminController {
 	
 	// 상품 등록
 	@RequestMapping(value = "/goods/register", method = RequestMethod.POST)
-	public String postGoodsRegister(GoodsVO vo, GoodsClassification voc, GoodsBrand vob, MultipartFile file) throws Exception {
+	public String postGoodsRegister(GoodsVO vo, MultipartFile file) throws Exception {
 		
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";  // 이미지를 업로드할 폴더를 설정 = /uploadPath/imgUpload 
 		String ymdPath = UploadFile.calcPath(imgUploadPath);  // 위의 폴더를 기준으로 연월일 폴더를 생성
