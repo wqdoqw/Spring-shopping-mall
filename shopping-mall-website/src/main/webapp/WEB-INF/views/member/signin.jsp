@@ -34,10 +34,8 @@
 <link href="/resources/css/style.css" rel="stylesheet">
 <link href="/resources/css/custom.css" rel="stylesheet">
 <!-- Google Font -->
-<link href='https://fonts.googleapis.com/css?family=Lato'
-	rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Raleway'
-	rel='stylesheet' type='text/css'>
+<link href="/resources/fonts/myfont.css" rel='stylesheet'
+	type='text/css'>
 </head>
 <body>
 
@@ -51,10 +49,7 @@
 
 		<section class="login_form" id="aa-myaccount">
 			<div class="container align-self-center">
-				<div class="row">
-					<div>
 						<div class="aa-myaccount-area">
-							<div class="row">
 								<div class="col-md-6">
 									<div class="aa-myaccount-login">
 										<h4>로그인</h4>
@@ -76,14 +71,9 @@
 										</form>
 										<c:if test="${msg == false}">
 										<script>
-										alert("이메일과 비밀번호를 확인해주세요");
+											alert("이메일과 비밀번호를 확인해주세요");
 										</script>
-											<!-- <p style="color: #f00;">로그인에 실패했습니다.</p> -->
 										</c:if>
-									</div>
-								</div>
-
-							</div>
 						</div>
 					</div>
 				</div>

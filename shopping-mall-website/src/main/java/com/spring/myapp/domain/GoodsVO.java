@@ -7,15 +7,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class GoodsVO {
-	private int goodsNumber;
+	private String goodsCode;
 	private String goodsName;
-	private String categoryCode;
+	private String firstClassification;
+	private String secondClassification;
+	private String brand;
 	private int goodsPrice;
 	private int goodsStock;
 	private String goodsDescription;
 	private String goodsImage;
-	private Date goodsDate;
-	private String goodsThumbImage;
+	private String goodsThumbnailImage;
+	private Date goodsAddedTime;
 }

@@ -38,4 +38,6 @@
 	<context:component-scan base-package="com.spring.myapp.domain"></context:component-scan>
 	<context:component-scan base-package="com.spring.myapp.persistence"></context:component-scan>
 	<context:component-scan base-package="com.spring.myapp.service"></context:component-scan>
+	<context:component-scan base-package="com.spring.myapp.utils"></context:component-scan>
+
 </beans>

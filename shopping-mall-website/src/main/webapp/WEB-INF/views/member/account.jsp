@@ -34,10 +34,8 @@
 <link href="/resources/css/style.css" rel="stylesheet">
 <link href="/resources/css/custom.css" rel="stylesheet">
 <!-- Google Font -->
-<link href='https://fonts.googleapis.com/css?family=Lato'
-	rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Raleway'
-	rel='stylesheet' type='text/css'>
+<link href="/resources/fonts/myfont.css" rel='stylesheet'
+	type='text/css'>
 </head>
 <body>
 	<header id="header">
@@ -48,11 +46,26 @@
 
 
 	<section>
-		<h1>hi</h1>
+		<h1><a href="/admin/index">관리자 화면으로 가기</a></h1>
+		<h2>유저네임</h2>
 		<p>${member.username}</p>
+		<h2>유저 이메일</h2>
 		<p>${member.email}</p>
+		<h2>유저 주소번호</h2>
 		<p>${member.zipcode}</p>
-
+			<h2>유저 주소1</h2>
+		<p>${member.address1}</p>
+		<h2>유저 주소2</h2>
+		<p>${member.address2}</p>
+		<h2>생성된 날짜</h2>
+			<p>${member.regedate}</p>
+		<h2>유저 권한</h2>
+		<c:if test="${member.verify == 9}">
+			<p>관리자 입니다</p>
+		</c:if>
+		<c:if test="${member.verify == 0}">
+			<p>일반 유저 입니다</p>
+		</c:if>
 	</section>
 
 	<footer class="footer">

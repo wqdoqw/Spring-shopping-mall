@@ -28,8 +28,7 @@
     <link href="/resources/css/style.css" rel="stylesheet">    
    <link href="/resources/css/custom.css" rel="stylesheet">
     <!-- Google Font -->
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href="/resources/fonts/myfont.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<header id="header">
@@ -46,9 +45,7 @@
 				본문 영역
 			</section>
 			
-			<aside id="aside">
-				<%@ include file="include/aside.jsp" %>
-			</aside>
+	
 			
 		</div>
 	</section>

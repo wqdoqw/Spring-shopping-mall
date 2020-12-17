@@ -13,6 +13,6 @@ public class MemberVO {
 	private String zipcode;
 	private String address1;
 	private String address2;
-	private Date regedite;
+	private Date regedate;
 	private int verify;
 }

@@ -2,9 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMapper">
    
-<!-- 카테고리 호출 -->
-<select id="category" resultType="com.spring.myapp.domain.CategoryVO">
- SELECT * FROM goods_category;
-</select>
+<!-- 상품 등록 -->
+<insert id="register">
+<![CDATA[
+	 INSERT INTO goods (goodsCode, 
+	 	goodsName, 
+	 	firstClassification, 
+	 	secondClassification, 
+	 	brand, 
+	 	goodsPrice,
+     	goodsStock,
+     	goodsDescription,
+     	goodsImage,
+     	goodsThumbnailImage)
+     values (#{goodsCode},
+     	#{goodsName},
+     	#{firstClassification},
+     	#{secondClassification},
+     	#{brand},
+     	#{goodsPrice},
+     	#{goodsStock},
+     	#{goodsDescription},
+     	#{goodsImage},
+     	#{goodsThumbnailImage})
+ ]]>
+</insert>
 
 </mapper>
