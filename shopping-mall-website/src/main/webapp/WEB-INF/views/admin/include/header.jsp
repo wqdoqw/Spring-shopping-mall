@@ -9,102 +9,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>가성비몰</title>
 
-
-
 </head>
 <body>
+	
+    <ul class="ul-top-nav">
+        <li class="left-head-nav"><a style="text-decoration: none;" class="left-div"><span class="fa fa-phone"></span>
+                070-3322-3212</a></li>
+
+        <div class="right-head-nav right-last-element">
+            <li><a class="right-div-visible">관리자 ${member.username}님</a></li>
+            <li><a class="right-div" href="/">일반화면</a></li>
+            <li><a class="right-div" href="/member/signout">로그아웃</a></li>
+        </div>
+    </ul>
+    <div class="logo-div">
+        <div class="logo-div-div"> <a href="/" style="text-decoration: none; ">
+                <p class="logo-div-p">가성비<strong class="logo-div-p-strong">몰</strong> <span
+                        class="logo-div-p-subtitle">최고의
+                        가성비를 보장합니다</span>
+                </p>
+            </a>
+        </div>
+   
+    </div>
 
 
-	<!-- Start header section -->
-	<header id="aa-header">
-		<!-- start header top  -->
-		<div class="aa-header-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="aa-header-top-area">
-							<!-- start header top left -->
-							<div class="aa-header-top-left">
-
-								<!-- start cellphone -->
-								<div class="cellphone hidden-xs">
-									<p>
-										<span class="fa fa-phone"></span>00-62-658-658
-									</p>
-								</div>
-								<!-- / cellphone -->
-							</div>
-							<!-- / header top left -->
-							<div class="aa-header-top-right">
-								<ul class="aa-head-top-nav-right">
-									<li><a>관리자 ${member.username}님</a></li>
-									<li><a href="/">일반화면</a></li>
-									<li><a href="/member/signout">로그아웃</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- / header top  -->
-
-		<!-- start header bottom  -->
-		<div class="aa-header-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="aa-header-bottom-area">
-							<!-- logo  -->
-							<div class="aa-logo">
-								<!-- Text based logo -->
-								<a href="/">
-									<p>
-										가성비<strong>몰</strong> <span>최고의 가성비를 보장합니다</span>
-									</p>
-								</a>
-								<!-- img based logo -->
-								<!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- / header bottom  -->
-	</header>
-	<!-- / header section -->
-	<!-- menu -->
-	<section id="menu">
-		<div class="container">
-			<div class="menu-area">
-				<!-- Navbar -->
-				<div class="navbar navbar-default" role="navigation">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="navbar-collapse collapse">
-						<!-- Left nav -->
-						<ul class="nav navbar-nav">
-							<li><a href="/admin/goods/register">상품 등록</a></li>
-							<li><a href="index.html">상품 목록</a></li>
-							<li><a href="index.html">상품 소감</a></li>
-							<li><a href="index.html">유저 목록</a></li>
-						</ul>
-					</div>
-					<!--/.nav-collapse -->
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- / menu -->
-
-
+    <div class="topnav" id="myTopnav">
+        <a href="/admin/goods/register">상품 등록</a>
+        <a href="/admin/goods/list">상품 목록</a>
+        <a href="#contact">상품 소감</a>
+        <a href="#about">유저 목록</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+	 <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
 </body>
 </html>

@@ -28,4 +28,21 @@
  ]]>
 </insert>
 
+<!-- 상품 목록 --> 
+<select id="goodslist" resultType="com.spring.myapp.domain.GoodsVO">
+<![CDATA[
+	SELECT goodsCode, 
+	 	goodsName, 
+	 	firstClassification, 
+	 	secondClassification, 
+	 	brand, 
+	 	goodsPrice,
+     	goodsStock,
+     	goodsDescription,
+     	goodsImage,
+     	goodsAddedTime
+	FROM goods
+        order by goodsCode DESC
+]]>
+</select>
 </mapper>

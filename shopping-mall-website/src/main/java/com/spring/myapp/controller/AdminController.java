@@ -36,13 +36,13 @@ import net.sf.json.JSONArray;
 public class AdminController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	
+
 	@Inject
 	AdminService adminService;
-	
-	@Resource(name="uploadPath")
+
+	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
+
 	// 관리자화면
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public void getIndex() throws Exception {
@@ -53,47 +53,54 @@ public class AdminController {
 	@RequestMapping(value = "/goods/register", method = RequestMethod.GET)
 	public void getGoodsRegister(Model model) throws Exception {
 		logger.info("get goods register");
-		
+
 //		List<CategoryVO> category = null;  // CatagoryVO 형태의 List형 변수 category 선언
 //		category = adminService.category();  // DB에 저장된 카테고리를 가져와서 category에 저장
 //		model.addAttribute("category", JSONArray.fromObject(category));  // 변수 category를 제이슨(json)타입으로 변환하여 category 세션에 부여
 	}
-	
 
-	
 	// 상품 등록
 	@RequestMapping(value = "/goods/register", method = RequestMethod.POST)
 	public String postGoodsRegister(GoodsVO vo, MultipartFile file) throws Exception {
-		
-		String imgUploadPath = uploadPath + File.separator + "imgUpload";  // 이미지를 업로드할 폴더를 설정 = /uploadPath/imgUpload 
-		String ymdPath = UploadFile.calcPath(imgUploadPath);  // 위의 폴더를 기준으로 연월일 폴더를 생성
-		String fileName = null;  // 기본 경로와 별개로 작성되는 경로 + 파일이름
-				
-		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+
+		String imgUploadPath = uploadPath + File.separator + "imgUpload"; // 이미지를 업로드할 폴더를 설정 = /uploadPath/imgUpload
+		String ymdPath = UploadFile.calcPath(imgUploadPath); // 위의 폴더를 기준으로 연월일 폴더를 생성
+		String fileName = null; // 기본 경로와 별개로 작성되는 경로 + 파일이름
+
+		if (file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 			// 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)
-			
-			fileName =  UploadFile.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-	
+
+			fileName = UploadFile.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+
 			// 상품 이미지를 원본 파일 경로 + 파일명 저장
 			vo.setGoodsImage(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 			// 상품 썸네일을 썸네일 파일 경로 + 썸네일 파일명 저장
-			vo.setGoodsThumbnailImage(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-			
-		} else {  // 첨부된 파일이 없으면
+			vo.setGoodsThumbnailImage(
+					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+
+		} else { // 첨부된 파일이 없으면
 			fileName = File.separator + "images" + File.separator + "none.png";
 			// 미리 준비된 none.png파일을 대신 출력함
-			
+
 			vo.setGoodsImage(fileName);
 			vo.setGoodsThumbnailImage(fileName);
 		}
-							
+
 		if (vo.getBrand() != null && vo.getBrand() != "") {
 		}
-		
+
 		adminService.register(vo);
-		
+
 		return "redirect:/admin/index";
 	}
 
-} 
- 
+	// 상품 목록
+	@RequestMapping(value = "/goods/list", method = RequestMethod.GET)
+	public void getGoodsList(Model model) throws Exception {
+		logger.info("get goods list");
+		List<GoodsVO> list = adminService.goodslist();
+
+		model.addAttribute("list", list);
+	}
+
+}

@@ -6,36 +6,17 @@
 <head>
 <title>가성비몰</title>
 
-<!-- Font awesome -->
-<link href="/resources/css/font-awesome.css" rel="stylesheet">
-<!-- Bootstrap -->
-<link href="/resources/css/bootstrap.css" rel="stylesheet">
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-<!-- SmartMenus jQuery Bootstrap Addon CSS -->
-<link href="/resources/css/jquery.smartmenus.bootstrap.css"
-	rel="stylesheet">
-<!-- Product view slider -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/jquery.simpleLens.css">
-<!-- slick slider -->
-<link rel="stylesheet" type="text/css" href="/resources/css/slick.css">
-<!-- price picker slider -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/nouislider.css">
-<!-- Theme color -->
-<link id="switcher" href="/resources/css/theme-color/default-theme.css"
-	rel="stylesheet">
-<!-- Top Slider CSS -->
-<link href="/resources/css/sequence-theme.modern-slide-in.css"
-	rel="stylesheet" media="all">
-
-<!-- Main style sheet -->
-<link href="/resources/css/style.css" rel="stylesheet">
-<link href="/resources/css/custom.css" rel="stylesheet">
-<!-- Google Font -->
-<link href="/resources/fonts/myfont.css" rel='stylesheet'
-	type='text/css'>
-	
+<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+<!-- 부트스트랩 CSS 추가하기 -->
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<!-- 커스텀 CSS 추가하기 -->
+<link rel="stylesheet" href="/resources/css/custom.css">
+<!-- Popper 자바스크립트 추가하기 -->
+<script src="/resources/js/popper.min.js"></script>
+<!-- 제이쿼리 자바스크립트 추가하기 -->
+<script src="/resources/js/jquery-3.5.1.min.js"></script>
+<!-- 부트스트랩 자바스크립트 추가하기 -->
+<script src="/resources/js/bootstrap.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <body>
@@ -98,26 +79,35 @@
 					<div class="col-md-6">
 						<div class="aa-myaccount-register">
 							<h4>회원가입</h4>
-								<form role="form" method="post" class="aa-login-form">
-									<label for="email">이메일<span>*</span></label> 
-									<input type="text" id="email" name="email" required="required" placeholder="Email"> 
-									<label for="password">패스워드<span>*</span></label>
-									<input type="password" id="password" name="password" required="required" placeholder="Password">
-									<label for="email">닉네임<span>*</span></label> 
-									<input type="text"	id="username" name="username" required="required" placeholder="username">
-									<label for="phone">연락처<span>*</span></label>
-									<input type="text" id="phone" name="phone" required="required" placeholder="phone number">
-									<div style="display: inline; margin-left:50px;">
-										<label for="zipcode" style="display: block;" >우편번호<span>*</span></label>
-										<input type="text" id="zipcode" style="width: 40%; margin-top:10px;" name="zipcode" required="required" placeholder="zipcode">
-									</div>
-									<button type="button" class="btn btn-default" style="display:inline;"onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>    
-									<label for="address1" style="display: block;">주소1<span>*</span></label>
-									<input type="text" id="address1" name="address1" required="required" placeholder="address1">
-									<label for="address2">주소2<span>*</span></label>
-									<input type="text" id="address2" name="address2" required="required" placeholder="address2">
-									<button type="submit" class="aa-browse-btn">회원가입</button>
-								</form>		
+							<form role="form" method="post" class="aa-login-form">
+								<label for="email">이메일<span>*</span></label> <input type="text"
+									id="email" name="email" required="required" placeholder="Email">
+								<label for="password">패스워드<span>*</span></label> <input
+									type="password" id="password" name="password"
+									required="required" placeholder="Password"> <label
+									for="email">닉네임<span>*</span></label> <input type="text"
+									id="username" name="username" required="required"
+									placeholder="username"> <label for="phone">연락처<span>*</span></label>
+								<input type="text" id="phone" name="phone" required="required"
+									placeholder="phone number">
+								<div style="display: inline; margin-left: 50px;">
+									<label for="zipcode" style="display: block;">우편번호<span>*</span></label>
+									<input type="text" id="zipcode"
+										style="width: 40%; margin-top: 10px;" name="zipcode"
+										required="required" placeholder="zipcode">
+								</div>
+								<button type="button" class="btn btn-default"
+									style="display: inline;" onclick="execPostCode();">
+									<i class="fa fa-search"></i> 우편번호 찾기
+								</button>
+								<label for="address1" style="display: block;">주소1<span>*</span></label>
+								<input type="text" id="address1" name="address1"
+									required="required" placeholder="address1"> <label
+									for="address2">주소2<span>*</span></label> <input type="text"
+									id="address2" name="address2" required="required"
+									placeholder="address2">
+								<button type="submit" class="aa-browse-btn">회원가입</button>
+							</form>
 							<c:if test="${msg == false}">
 								<script>
 									alert("이메일과 비밀번호를 확인해주세요");
@@ -137,29 +127,6 @@
 
 	</div>
 
-	<!-- jQuery library -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="/resources//js/bootstrap.js"></script>
-	<!-- SmartMenus jQuery plugin -->
-	<script type="text/javascript" src="/resources/js/jquery.smartmenus.js"></script>
-	<!-- SmartMenus jQuery Bootstrap Addon -->
-	<script type="text/javascript"
-		src="/resources/js/jquery.smartmenus.bootstrap.js"></script>
-	<!-- To Slider JS -->
-	<script src="/resources/js/sequence.js"></script>
-	<script src="/resources/js/sequence-theme.modern-slide-in.js"></script>
-	<!-- Product view slider -->
-	<script type="text/javascript"
-		src="/resources/js/jquery.simpleGallery.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery.simpleLens.js"></script>
-	<!-- slick slider -->
-	<script type="text/javascript" src="/resources/js/slick.js"></script>
-	<!-- Price picker slider -->
-	<script type="text/javascript" src="/resources/js/nouislider.js"></script>
-	<!-- Custom js -->
-	<script src="/resources/js/custom.js"></script>
 
 </body>
 </html>
