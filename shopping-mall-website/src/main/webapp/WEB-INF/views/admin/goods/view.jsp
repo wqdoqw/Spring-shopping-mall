@@ -31,7 +31,8 @@
 	<section class="register_form goods_view">
         <h2 style="font-weight: bold; margin-top: 40px;">상품조회</h2>
                     <form role="form" method="post" autocomplete="off">
-                    <!-- style="display:block; width:150px; -->
+                    <input type="hidden" name="n" value="${goods.goodsCode}"/>
+
                     <label for="text" style="display:block;">1차 세분화 상품 종류<span>*</span></label>
                     <span>${goods.firstClassification}</span>
                     <label for="secondClassification" style="display:block;">2차 세분화 상품 종류<span>*</span></label>
@@ -48,10 +49,28 @@
  						<span>${goods.goodsStock}</span>
                     <label for="goodsDescription" style="display:block;">상품소개<span>*</span></label>
  						<span>${goods.goodsDescription}</span>
-                <div style="margin-bottom:70px; margin-top:30px;">
- 					<button type="button" id="register_Btn" class="btn btn-warning">수정</button>
- 					<button type="button" id="register_Btn" class="btn btn-danger">삭제</button>
+                <div style="margin-bottom:130px; margin-top:30px;">
+ 					<button type="button" id="modify_btn" class="btn btn-warning">수정</button>
+ 					<button type="button" id="delete_btn" class="btn btn-danger">삭제</button>
 				</div> 
+				
+				<script>
+  					var formObj = $("form[role='form']");
+  
+ 					$("#modify_btn").click(function(){
+   					formObj.attr("action", "/admin/goods/modify");
+   					formObj.attr("method", "get")
+   					formObj.submit();
+  					});
+  
+  					$("#delete_btn").click(function(){  
+  						var con = confirm("정말로 삭제하시겠습니까?");
+  						if (con) {
+   							formObj.attr("action", "/admin/goods/delete");
+   							formObj.submit();
+						} 
+  					});
+ 				</script>
 			</form>		
     </section>
 

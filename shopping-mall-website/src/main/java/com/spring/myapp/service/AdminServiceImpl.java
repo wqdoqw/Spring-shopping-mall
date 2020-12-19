@@ -35,7 +35,7 @@ public class AdminServiceImpl implements AdminService {
 		return dao.goodslist();
 	}
 
-	// 상품조회  + 카테고리 조인
+	// 상품조회
 	@Override
 	public GoodsVO goodsView(String goodsCode) throws Exception {
 		return dao.goodsView(goodsCode);
@@ -49,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
 
 	// 상품 삭제
 	@Override
-	public void goodsDelete(int gdsNum) throws Exception {
-		dao.goodsDelete(gdsNum);
+	public void goodsDelete(String goodsCode) throws Exception {
+		dao.goodsDelete(goodsCode);
 	}
 }

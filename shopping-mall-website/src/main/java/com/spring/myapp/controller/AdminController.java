@@ -106,10 +106,48 @@ public class AdminController {
 	// 상품 조회
 	@RequestMapping(value = "/goods/view", method = RequestMethod.GET)
 	public void getGoodsView(@RequestParam("n") String goodsCode, Model model) throws Exception {
-	 logger.info("get goods view");
-	 
-	 GoodsVO goods = adminService.goodsView(goodsCode);
-	 System.out.println(goods);
-	 model.addAttribute("goods", goods);
+		logger.info("get goods view");
+
+		GoodsVO goods = adminService.goodsView(goodsCode);
+		System.out.println(goods);
+		model.addAttribute("goods", goods);
 	}
+
+	// 상품 수정
+	@RequestMapping(value = "/goods/modify", method = RequestMethod.GET)
+	public void getGoodsModify(@RequestParam("n") String goodsCode, Model model) throws Exception {
+		logger.info("get goods modify");
+
+		GoodsVO goods = adminService.goodsView(goodsCode);
+		System.out.println(goods);
+		model.addAttribute("goods", goods);
+	}
+
+	// 상품 수정
+	@RequestMapping(value = "/goods/modify", method = RequestMethod.POST)
+	public String postGoodsModify(@RequestParam("n") String goodsCode, GoodsVO vo, Model model) throws Exception {
+		logger.info("post goods modify");
+
+		System.out.println("code>>" + goodsCode);
+		vo.setGoodsCode(goodsCode);
+		GoodsVO goods = adminService.goodsView(goodsCode);
+
+		model.addAttribute("goods", goods);
+
+		adminService.goodsModify(vo);
+		System.out.println("modify VO 출력>>" + vo);
+
+		return "redirect:/admin/goods/list";
+	}
+
+	// 상품 삭제
+	@RequestMapping(value = "/goods/delete", method = RequestMethod.POST)
+	public String postGoodsDelete(@RequestParam("n") String goodsCode) throws Exception {
+		logger.info("post goods delete");
+		System.out.println(goodsCode);
+		adminService.goodsDelete(goodsCode);
+
+		return "redirect:/admin/index";
+	}
+
 }
