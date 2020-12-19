@@ -27,39 +27,28 @@
 		</header>
 
 
-		<section class="login_form" id="aa-myaccount">
-			<div class="container align-self-center">
-						<div class="aa-myaccount-area">
-								<div class="col-md-6">
-									<div class="aa-myaccount-login">
-										<h4>로그인</h4>
-										<form role="form" method="post" class="aa-login-form">
-											<label for="email">Email address<span>*</span></label> <input
-												type="text" id="email" name="email" required="required"
-												placeholder="Email"> <label for="password">Password<span>*</span></label>
-											<input type="password" id="password" name="password"
-												required="required" placeholder="Password">
-											<button type="submit" class="aa-browse-btn">Login</button>
-											<label class="rememberme" for="rememberme"><input
-												type="checkbox" id="rememberme"> Remember me </label>
-											<p class="aa-lost-password">
-												<a href="#">Lost your password?</a>
-											</p>
-											<p class="aa-lost-password">
-												<a href="/member/signup">회원가입</a>
-											</p>
-										</form>
-										<c:if test="${msg == false}">
-										<script>
-											alert("이메일과 비밀번호를 확인해주세요");
-										</script>
-										</c:if>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<footer class="footer">
+		   <section class="register_form" style="margin-top:50px;">
+        <h2 style="font-weight: bold;">로그인</h2>
+        <form role="form" method="post">
+            <label for="email" style="margin-top:20px;">Email address<span>*</span></label> 
+            <input type="text" id="email" name="email" required="required" placeholder="Email" class="form-control"> 
+            <label for="password">Password<span>*</span></label>
+            <input type="password" id="password" name="password" required="required" placeholder="Password" class="form-control">
+            <button type="submit" class="btn btn-secondary btn-md" style="background-color: #ff6766; margin-top:20px;">Login</button>
+            <p style="margin-top: 15px;">
+                <a href="#">Lost your password?</a>
+            </p>
+            <p style="margin-bottom: 300px;">
+                <a href="/member/signup">회원가입</a>
+            </p>
+        </form>
+        <c:if test="${msg == false}">
+            <script>
+                alert("이메일과 비밀번호를 확인해주세요");
+            </script>
+        </c:if>
+    </section>
+		<footer class="foot_design">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp"%>
 			</div>

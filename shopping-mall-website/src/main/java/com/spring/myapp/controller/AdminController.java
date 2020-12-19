@@ -103,4 +103,13 @@ public class AdminController {
 		model.addAttribute("list", list);
 	}
 
+	// 상품 조회
+	@RequestMapping(value = "/goods/view", method = RequestMethod.GET)
+	public void getGoodsView(@RequestParam("n") String goodsCode, Model model) throws Exception {
+	 logger.info("get goods view");
+	 
+	 GoodsVO goods = adminService.goodsView(goodsCode);
+	 System.out.println(goods);
+	 model.addAttribute("goods", goods);
+	}
 }

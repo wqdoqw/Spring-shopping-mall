@@ -31,7 +31,7 @@
 		</div>
 	</header>
 	
-	<div style="margin-left:200px; margin-right:200px;">
+	<div style="margin-left:300px; margin-right:300px; margin-top:50px;">
 	<table class="table table-striped">
 		<thead class="thead-dark">
 			<tr>
@@ -49,11 +49,13 @@
 			<c:forEach items="${list}" var="list">
 				<tr>
 					<td>${list.goodsCode}</td>
-					<td>${list.goodsName}</td>
+					<td>
+						<a href="/admin/goods/view?n=${list.goodsCode}">${list.goodsName}</a>
+					</td>
 					<td>${list.firstClassification}</td>
 					<td>${list.secondClassification}</td>
 					<td>${list.brand}</td>
-					<td>${list.goodsPrice}</td>
+					<td><span><fmt:formatNumber value ="${list.goodsPrice}" pattern="###,###,###"/></span></td>
 					<td>${list.goodsStock}</td>
 					<td><fmt:formatDate value ="${list.goodsAddedTime}" pattern="yyyy-MM-dd"/></td>
 				</tr>
@@ -61,10 +63,10 @@
 		</tbody>
 	</table>
 	</div>
-	<footer class="footer">
+	<footer class="foot_design">
 		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
-		</div>
+			<%@ include file="../include/footer.jsp" %>
+		</div>		
 	</footer>
 
 

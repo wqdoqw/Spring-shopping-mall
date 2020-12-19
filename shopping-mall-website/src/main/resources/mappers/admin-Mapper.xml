@@ -42,7 +42,24 @@
      	goodsImage,
      	goodsAddedTime
 	FROM goods
-        order by goodsCode DESC
+        ORDER by goodsCode DESC
+]]>
+</select>
+
+<!-- 상품 조회 -->
+<select id="goodsView" resultType="com.spring.myapp.domain.GoodsVO">
+ <![CDATA[
+	SELECT goodsCode, 
+	 	goodsName, 
+	 	firstClassification, 
+	 	secondClassification, 
+	 	brand, 
+	 	goodsPrice,
+     	goodsStock,
+     	goodsDescription,
+     	goodsImage,
+     	goodsAddedTime
+	FROM goods WHERE goodsCode = #{goodsCode}
 ]]>
 </select>
 </mapper>

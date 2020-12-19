@@ -32,11 +32,17 @@
 
 	<beans:bean id="AdminInterceptor"
 		class="com.spring.myapp.interceptor.AdminInterceptor"></beans:bean>
-
+	<beans:bean id="MemberInterceptor"
+		class="com.spring.myapp.interceptor.MemberInterceptor"></beans:bean>
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/**" />
 			<beans:ref bean="AdminInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/member/account" />
+			<beans:ref bean="MemberInterceptor" />
 		</interceptor>
 	</interceptors>
 	<!-- 업로드 패스 설정 -->

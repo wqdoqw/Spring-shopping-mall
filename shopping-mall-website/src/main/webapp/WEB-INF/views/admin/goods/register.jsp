@@ -28,56 +28,60 @@
 		</div>
 	</header>
 	
-	<section class="login_form" id="aa-myaccount">
-			<div class="container">
-				<div class="aa-myaccount-area">
-					<div class="col-md-6">
-						<div class="aa-myaccount-register">
-							<h4>상품등록</h4>
-								<form role="form" method="post" class="aa-login-form" enctype="multipart/form-data">
-								<label for="text">1차 세분화 상품 종류<span>*</span></label>
-								<select class="select" style="display:block; margin-bottom:15px;"id="firstClassification" name="firstClassification">
-   									 <option value="men">Men</option>
-   									 <option value="women">Women</option>
-   									 <option value="shoes">Shoes</option>
-  									 <option value="bag">Bag</option>
- 								 </select>
- 								 	<label for="secondClassification">2차 세분화 상품 종류<span>*</span></label>
-									<input type="text" id="secondClassification" name="secondClassification" required="required" placeholder="2차 세분화 상품 종류">
-									<label for="goodsCode">상품코드<span>*</span></label> 
-									<input type="text"	id="goodsCode" name="goodsCode" required="required" placeholder="상품코드">
-									<label for="goodsName">상품이름<span>*</span></label>
-									<input type="text" id="goodsName" name="goodsName" required="required" placeholder="상품이름">
-									<label for="brand">브랜드<span></span></label>
-									<input type="text" id="brand" name="brand" required="required" placeholder="브랜드">
-									<label for="goodsPrice">상품가격<span>*</span></label>
-									<input type="text" id="goodsPrice" name="goodsPrice" required="required" placeholder="상품가격">
-									<label for="goodsStock">상품재고<span>*</span></label>
-									<input type="text" id="goodsStock" name="goodsStock" required="required" placeholder="상품재고">
-									<label for="goodsDescription" style="display:block;">상품소개<span>*</span></label>
-									<textarea class="form-control" rows="5" cols="50" id="goodsDescription" name="goodsDescription"  style="display:block;"></textarea>
-								<div class="inputArea">
-								<label for="goodsImage">이미지</label> <input type="file" id="goodsImage" name="file" />
-									<div class="select_img" id ="image_preview">
-									<img src= "" />
-									</div>
-		
-									<%=request.getRealPath("/")%>
-								</div>
-									<button type="submit" class="aa-browse-btn">상품추가</button>
-								</form>		
-						
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+	<section class="register_form">
+        <h2 style="font-weight: bold; margin-top: 40px;">상품등록</h2>
+                    <form role="form" method="post" enctype="multipart/form-data">
+                        <label for="text">1차 세분화 상품 종류<span>*</span></label>
+                        <select class="select form-control" style="display:block; width:150px;"id="firstClassification" name="firstClassification">
+                            <option value="men">Men</option>
+                            <option value="women">Women</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="bag">Bag</option>
+                        </select>
+                    <label for="secondClassification">2차 세분화 상품 종류<span>*</span></label>
+                    <input type="text" id="secondClassification" class="form-control" name="secondClassification" required="required" placeholder="2차 세분화 상품 종류">
+                    <label for="goodsCode">상품코드<span>*</span></label> 
+                    <input type="text"	id="goodsCode" class="form-control" name="goodsCode" required="required" placeholder="상품코드">
+                    <label for="goodsName">상품이름<span>*</span></label>
+                    <input type="text" id="goodsName" class="form-control" name="goodsName" required="required" placeholder="상품이름">
+                    <label for="brand">브랜드<span></span></label>
+                    <input type="text" id="brand" class="form-control" name="brand" required="required" placeholder="브랜드">
+                    <label for="goodsPrice">상품가격<span>*</span></label>
+                    <input type="text" id="goodsPrice" class="form-control" name="goodsPrice" required="required" placeholder="상품가격">
+                    <label for="goodsStock">상품재고<span>*</span></label>
+                    <input type="text" id="goodsStock" class="form-control" name="goodsStock" required="required" placeholder="상품재고">
+                    <label for="goodsDescription" style="display:block;">상품소개<span>*</span></label>
+                    <textarea class="form-control" rows="5" cols="50" id="goodsDescription" name="goodsDescription"  ></textarea>
+                <div class="inputArea">
+                    <label for="goodsImage">이미지</label> 
+                    <div class="custom-file">
+                        <input type="file" id="goodsImage" name="file" class="custom-file-input" />
+                        <label class="custom-file-label custom_file" for="customFile">Choose file</label>
+                    </div>
+                    <div class="select_img" id ="image_preview" style="margin-top:50px; margin-bottom:20px;">
+                    	<img src= "" />
+                    </div>
+                    <label for="saveDirectory">저장위치:</label> 
+                    	<%=request.getRealPath("/")%>
+                </div>
+            <button type="submit" class="btn btn-secondary btn-md" style="margin-bottom: 100px;background-color: #ff6766; margin-top:20px;">상품추가</button>
+        </form>		
+    </section>
 
-	<footer class="footer">
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+		<footer class="foot_design">
 		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
-		</div>
+			<%@ include file="../include/footer.jsp" %>
+		</div>		
 	</footer>
+
 	
 		<script>
 				$("#goodsImage").change(

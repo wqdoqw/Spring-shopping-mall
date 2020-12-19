@@ -40,8 +40,8 @@ public class AdminDAOImpl implements AdminDAO {
 
 	// 상품조회 + 카테고리 조인
 	@Override
-	public GoodsViewVO goodsView(int gdsNum) throws Exception {
-		return sql.selectOne(namespace + ".goodsView", gdsNum);
+	public GoodsVO goodsView(String goodsCode) throws Exception {
+		return sql.selectOne(namespace + ".goodsView", goodsCode);
 	}
 
 	// 상품 수정

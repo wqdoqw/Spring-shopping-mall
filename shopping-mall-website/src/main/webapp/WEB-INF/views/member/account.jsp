@@ -49,7 +49,7 @@
 		</c:if>
 	</section>
 
-		<footer class="footer">
+		<footer class="foot_design">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp"%>
 			</div>

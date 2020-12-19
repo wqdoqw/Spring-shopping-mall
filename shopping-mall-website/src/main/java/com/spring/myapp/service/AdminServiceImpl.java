@@ -37,8 +37,8 @@ public class AdminServiceImpl implements AdminService {
 
 	// 상품조회  + 카테고리 조인
 	@Override
-	public GoodsViewVO goodsView(int gdsNum) throws Exception {
-		return dao.goodsView(gdsNum);
+	public GoodsVO goodsView(String goodsCode) throws Exception {
+		return dao.goodsView(goodsCode);
 	}
 
 	// 상품 수정

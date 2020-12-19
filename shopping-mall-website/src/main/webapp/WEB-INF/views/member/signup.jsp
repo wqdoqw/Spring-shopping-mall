@@ -73,52 +73,42 @@
 		</header>
 
 
-		<section class="login_form" id="aa-myaccount">
-			<div class="container">
-				<div class="aa-myaccount-area">
-					<div class="col-md-6">
-						<div class="aa-myaccount-register">
-							<h4>회원가입</h4>
-							<form role="form" method="post" class="aa-login-form">
-								<label for="email">이메일<span>*</span></label> <input type="text"
-									id="email" name="email" required="required" placeholder="Email">
-								<label for="password">패스워드<span>*</span></label> <input
-									type="password" id="password" name="password"
-									required="required" placeholder="Password"> <label
-									for="email">닉네임<span>*</span></label> <input type="text"
-									id="username" name="username" required="required"
-									placeholder="username"> <label for="phone">연락처<span>*</span></label>
-								<input type="text" id="phone" name="phone" required="required"
-									placeholder="phone number">
-								<div style="display: inline; margin-left: 50px;">
-									<label for="zipcode" style="display: block;">우편번호<span>*</span></label>
-									<input type="text" id="zipcode"
-										style="width: 40%; margin-top: 10px;" name="zipcode"
-										required="required" placeholder="zipcode">
-								</div>
-								<button type="button" class="btn btn-default"
-									style="display: inline;" onclick="execPostCode();">
-									<i class="fa fa-search"></i> 우편번호 찾기
-								</button>
-								<label for="address1" style="display: block;">주소1<span>*</span></label>
-								<input type="text" id="address1" name="address1"
-									required="required" placeholder="address1"> <label
-									for="address2">주소2<span>*</span></label> <input type="text"
-									id="address2" name="address2" required="required"
-									placeholder="address2">
-								<button type="submit" class="aa-browse-btn">회원가입</button>
-							</form>
-							<c:if test="${msg == false}">
-								<script>
-									alert("이메일과 비밀번호를 확인해주세요");
-								</script>
-							</c:if>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<footer class="footer">
+		<section class="register_form" style="margin-top:50px;">
+        <h2 style="font-weight: bold;">회원가입</h2>
+        <br>
+        <form role="form" method="post">
+            <label for="email">이메일<span>*</span></label>
+            <input type="text" id="email" name="email" required="required" placeholder="Email"
+                style="display: block; " class="form-control">
+            <label for="password">비밀번호<span>*</span></label>
+            <input type="password" id="password" name="password" required="required" placeholder="Password"
+                style="display: block;" class="form-control">
+            <label for="email">닉네임<span>*</span></label>
+            <input type="text" id="username" name="username" required="required" placeholder="Username"
+                style="display: block;" class="form-control">
+            <label for="phone">연락처<span>*</span></label>
+            <input type="text" id="phone" name="phone" required="required" placeholder="Phone number"
+                style="display: block;" class="form-control">
+            <div style="display: inline;">
+                <label for="zipcode" style="display: block;">우편번호<span>*</span></label>
+                <input type="text" id="zipcode" style="width: 150px; display: inline;" name="zipcode"
+                    required="required" placeholder="Zipcode" class="form-control">
+                <button type="button" class="btn btn-secondary btn-md postcode_button" style="display: inline; margin-left:3px;"
+                    onclick="execPostCode();">
+                    <i class="fa fa-search"></i> 우편번호 찾기
+                </button>
+            </div>
+            <label for="address1" style="display: block;">주소1<span>*</span></label>
+            <input type="text" id="address1" name="address1" required="required" placeholder="Address1"
+                style="display: block;" class="form-control">
+            <label for="address2">주소2<span>*</span></label>
+            <input type="text" id="address2" name="address2" required="required" placeholder="Address2"
+                style="display: block; margin-bottom: 10px;" class="form-control">
+            <button type="submit" class="btn btn-secondary btn-md" style="margin-bottom: 100px;background-color: #ff6766; margin-top:20px;">회원가입</button>
+        </form>
+    </section>
+		
+		<footer class="foot_design">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp"%>
 			</div>

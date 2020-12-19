@@ -35,6 +35,7 @@
 
 
     <div class="topnav" id="myTopnav">
+    	<a href="/admin/index">초기화면</a>
         <a href="/admin/goods/register">상품 등록</a>
         <a href="/admin/goods/list">상품 목록</a>
         <a href="#contact">상품 소감</a>
