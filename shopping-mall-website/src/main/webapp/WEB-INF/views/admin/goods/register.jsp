@@ -58,8 +58,8 @@
                         <input type="file" id="goodsImage" name="file" class="custom-file-input" />
                         <label class="custom-file-label custom_file" for="customFile">Choose file</label>
                     </div>
-                    <div class="select_img" id ="image_preview" style="margin-top:50px; margin-bottom:20px;">
-                    	<img src= "" />
+                    <div class="select_img img_upload" id ="image_preview" style="margin-top:50px; margin-bottom:20px;">
+                    	<img src= "" class="img_upload" />
                     </div>
                     <label for="saveDirectory">저장위치:</label> 
                     	<%=request.getRealPath("/")%>
@@ -84,18 +84,18 @@
 
 	
 		<script>
-				$("#goodsImage").change(
-						function() {
-							if (this.files && this.files[0]) {
-								var reader = new FileReader;
-								reader.onload = function(data) {
-									$(".select_img img").attr("src",
-											data.target.result).width(500);
-								}
-								reader.readAsDataURL(this.files[0]);
+			$("#goodsImage").change(
+				function() {
+					if (this.files && this.files[0]) {
+						var reader = new FileReader;
+						reader.onload = function(data) {
+							$(".select_img img").attr("src",
+								data.target.result).width(500);
 							}
-						});
-				</script>
+							reader.readAsDataURL(this.files[0]);
+							}
+			});
+		</script>
 
 
 </body>

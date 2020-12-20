@@ -71,7 +71,6 @@ public class MemberController {
 		// login null
 		System.out.println("login : " + login);
 
-		// 여기서 에러
 		boolean passMatch = passEncoder.matches(vo.getPassword(), login.getPassword()); // DB의 비밀번호와 입력된 비밀번호를 비교
 		System.out.println("passMatch : " + passMatch);
 
@@ -102,13 +101,24 @@ public class MemberController {
 	public void account() throws Exception {
 		logger.info("account");
 	}
+
 	// 나의 계정 보기 post
 	@RequestMapping(value = "/account", method = RequestMethod.POST)
-	public void postAccount(MemberVO vo) throws Exception {
+	public String postAccount(MemberVO vo, HttpServletRequest req) throws Exception {
 		logger.info("post signup");
+		HttpSession session = req.getSession(); 
+		
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		System.out.println("세션 어트리뷰트>>" + member);
+		vo.setEmail(member.getEmail());
 		
 		System.out.println(vo);
-
-
+		service.updateMember(vo);
+		
+		service.signout(session);
+		
+		
+		
+		return "redirect:/";
 	}
 }

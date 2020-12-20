@@ -79,7 +79,7 @@ public class AdminController {
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 
 		} else { // 첨부된 파일이 없으면
-			fileName = File.separator + "images" + File.separator + "none.png";
+			fileName = File.separator + "img" + File.separator + "none.png";
 			// 미리 준비된 none.png파일을 대신 출력함
 
 			vo.setGoodsImage(fileName);
@@ -125,21 +125,43 @@ public class AdminController {
 
 	// 상품 수정
 	@RequestMapping(value = "/goods/modify", method = RequestMethod.POST)
-	public String postGoodsModify(@RequestParam("n") String goodsCode, GoodsVO vo, Model model) throws Exception {
+	public String postGoodsModify(@RequestParam("n") String goodsCode, GoodsVO vo, Model model, MultipartFile file) throws Exception {
 		logger.info("post goods modify");
 
 		System.out.println("code>>" + goodsCode);
 		vo.setGoodsCode(goodsCode);
 		GoodsVO goods = adminService.goodsView(goodsCode);
-
+		
 		model.addAttribute("goods", goods);
 
+		
+		// 새로운 파일이 등록되었는지 확인
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			// 기존 파일을 삭제
+			new File(uploadPath + goods.getGoodsImage()).delete();
+			new File(uploadPath + goods.getGoodsThumbnailImage()).delete();
+			
+			// 새로 첨부한 파일을 등록
+			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String ymdPath = UploadFile.calcPath(imgUploadPath);
+			String fileName = UploadFile.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			
+			vo.setGoodsImage(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			vo.setGoodsThumbnailImage(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			
+		} else {  // 새로운 파일이 등록되지 않았다면
+			// 기존 이미지를 그대로 사용
+			vo.setGoodsImage(goods.getGoodsImage());
+			vo.setGoodsThumbnailImage(goods.getGoodsThumbnailImage());
+			
+		}
+		System.out.println("modify VO 전에 출력>>" + vo);
 		adminService.goodsModify(vo);
 		System.out.println("modify VO 출력>>" + vo);
 
 		return "redirect:/admin/goods/list";
 	}
-
+	
 	// 상품 삭제
 	@RequestMapping(value = "/goods/delete", method = RequestMethod.POST)
 	public String postGoodsDelete(@RequestParam("n") String goodsCode) throws Exception {

@@ -32,4 +32,18 @@
 	WHERE email = #{email}
 	]]>
 </select>
+
+	<!-- 회원 정보 수정 -->
+	<update id="memberModify">
+	<![CDATA[
+	UPDATE member 
+	 	SET username = #{username}, 
+	 		phone = #{phone}, 
+	 		zipcode = #{zipcode}, 
+	 		address1 = #{address1},
+	 		address2 = #{address2}
+	WHERE email = #{email}
+	]]>
+	</update>
+	
 </mapper>

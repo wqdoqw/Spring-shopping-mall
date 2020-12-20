@@ -41,6 +41,7 @@
      	goodsStock,
      	goodsDescription,
      	goodsImage,
+     	goodsThumbnailImage,
      	goodsAddedTime
 	FROM goods
         ORDER by goodsCode DESC
@@ -75,7 +76,9 @@
 	 		brand = #{brand},
 	 		goodsPrice = #{goodsPrice},
      		goodsStock = #{goodsStock},
-     		goodsDescription = #{goodsDescription}
+     		goodsDescription = #{goodsDescription},
+     		goodsImage = #{goodsImage},
+     		goodsThumbnailImage = #{goodsThumbnailImage}
 	WHERE goodsCode = #{goodsCode}
 	]]>
 	</update>

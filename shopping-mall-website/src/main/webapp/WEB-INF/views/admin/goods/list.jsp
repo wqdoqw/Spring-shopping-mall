@@ -35,6 +35,7 @@
 	<table class="table table-striped">
 		<thead class="thead-dark">
 			<tr>
+				<th scope="col">썸네일</th>
 				<th scope="col">상품번호</th>
 				<th scope="col">이름</th>
 				<th scope="col">1차 분류</th>
@@ -48,6 +49,7 @@
 		<tbody>
 			<c:forEach items="${list}" var="list">
 				<tr>
+					<td><img src="${list.goodsThumbnailImage}" style="max-width:50px; height=auto;" /></td>
 					<td>${list.goodsCode}</td>
 					<td>
 						<a href="/admin/goods/view?n=${list.goodsCode}">${list.goodsName}</a>

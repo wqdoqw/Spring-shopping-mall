@@ -26,4 +26,9 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO signin(MemberVO vo) throws Exception {
 		return sql.selectOne(namespace + ".signin", vo);
 	}
+
+	@Override
+	public void updateMember(MemberVO vo) throws Exception {
+		sql.update(namespace + ".memberModify", vo);
+	}
 }

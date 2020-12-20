@@ -49,7 +49,9 @@
  						<span>${goods.goodsStock}</span>
                     <label for="goodsDescription" style="display:block;">상품소개<span>*</span></label>
  						<span>${goods.goodsDescription}</span>
-                <div style="margin-bottom:130px; margin-top:30px;">
+ 					 <label for="goodsImage" style="display:block;">상품 이미지<span>*</span></label>
+ 						<span><img src="${goods.goodsImage}" class="img_upload"/></span>
+                <div style="margin-bottom:130px; margin-top:30px; margin-top:40px;">
  					<button type="button" id="modify_btn" class="btn btn-warning">수정</button>
  					<button type="button" id="delete_btn" class="btn btn-danger">삭제</button>
 				</div> 

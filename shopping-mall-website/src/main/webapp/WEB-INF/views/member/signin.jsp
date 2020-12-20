@@ -30,9 +30,9 @@
 		   <section class="register_form" style="margin-top:50px;">
         <h2 style="font-weight: bold;">로그인</h2>
         <form role="form" method="post">
-            <label for="email" style="margin-top:20px;">Email address<span>*</span></label> 
+            <label for="email" style="margin-top:20px;">이메일<span>*</span></label> 
             <input type="text" id="email" name="email" required="required" placeholder="Email" class="form-control"> 
-            <label for="password">Password<span>*</span></label>
+            <label for="password">비밀번호<span>*</span></label>
             <input type="password" id="password" name="password" required="required" placeholder="Password" class="form-control">
             <button type="submit" class="btn btn-secondary btn-md" style="background-color: #ff6766; margin-top:20px;">Login</button>
             <p style="margin-top: 15px;">
