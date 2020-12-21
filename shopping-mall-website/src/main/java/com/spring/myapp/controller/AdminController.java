@@ -169,7 +169,7 @@ public class AdminController {
 		System.out.println(goodsCode);
 		adminService.goodsDelete(goodsCode);
 
-		return "redirect:/admin/index";
+		return "redirect:/admin/goods/list";
 	}
 
 }

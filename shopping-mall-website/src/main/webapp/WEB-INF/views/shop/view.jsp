@@ -31,26 +31,26 @@
 	<section class="register_form goods_view">
         <h2 style="font-weight: bold; margin-top: 40px;">상품조회</h2>
                     <form role="form" method="post" autocomplete="off">
-                    <input type="hidden" name="n" value="${goods.goodsCode}"/>
+                    <input type="hidden" name="n" value="${view.goodsCode}"/>
 
                     <label for="text" style="display:block;">1차 세분화 상품 종류<span>*</span></label>
-                    <span>${goods.firstClassification}</span>
+                    <span>${view.firstClassification}</span>
                     <label for="secondClassification" style="display:block;">2차 세분화 상품 종류<span>*</span></label>
-                     <span>${goods.secondClassification}</span>
+                     <span>${view.secondClassification}</span>
                     <label for="goodsCode" style="display:block;">상품코드<span>*</span></label> 
- 					<span>${goods.goodsCode}</span>
+ 					<span>${view.goodsCode}</span>
                     <label for="goodsName" style="display:block;">상품이름<span>*</span></label>
- 						<span>${goods.goodsName}</span>
+ 						<span>${view.goodsName}</span>
                     <label for="brand" style="display:block;">브랜드<span></span></label>
- 						<span><c:if test="${goods.brand eq ''}">없음</c:if>${goods.brand}</span>
+ 						<span><c:if test="${view.brand eq ''}">없음</c:if>${goods.brand}</span>
                     <label for="goodsPrice" style="display:block;">상품가격<span>*</span></label>
- 						<span>${goods.goodsPrice}</span>
+ 						<span>${view.goodsPrice}</span>
                     <label for="goodsStock" style="display:block;">상품재고<span>*</span></label>
- 						<span>${goods.goodsStock}</span>
+ 						<span>${view.goodsStock}</span>
                     <label for="goodsDescription" style="display:block;">상품소개<span>*</span></label>
- 						<span>${goods.goodsDescription}</span>
+ 						<span>${view.goodsDescription}</span>
  					 <label for="goodsImage" style="display:block;">상품 이미지<span>*</span></label>
- 						<span><img src="${goods.goodsImage}" class="img_upload"/></span>
+ 						<span><img src="${view.goodsImage}" class="img_upload"/></span>
                 <div style="margin-bottom:130px; margin-top:30px; margin-top:40px;">
  					<button type="button" id="modify_btn" class="btn btn-warning">수정</button>
  					<button type="button" id="delete_btn" class="btn btn-danger">삭제</button>

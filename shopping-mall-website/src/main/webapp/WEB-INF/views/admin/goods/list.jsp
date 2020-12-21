@@ -31,7 +31,7 @@
 		</div>
 	</header>
 	
-	<div style="margin-left:300px; margin-right:300px; margin-top:50px;">
+	<div style="margin-left:300px; margin-right:300px; margin-top:50px; margin-bottom:150px;">
 	<table class="table table-striped">
 		<thead class="thead-dark">
 			<tr>

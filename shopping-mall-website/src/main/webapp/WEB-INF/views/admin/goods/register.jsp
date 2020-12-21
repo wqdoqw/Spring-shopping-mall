@@ -45,7 +45,7 @@
                     <label for="goodsName">상품이름<span>*</span></label>
                     <input type="text" id="goodsName" class="form-control" name="goodsName" required="required" placeholder="상품이름">
                     <label for="brand">브랜드<span></span></label>
-                    <input type="text" id="brand" class="form-control" name="brand" required="required" placeholder="브랜드">
+                    <input type="text" id="brand" class="form-control" name="brand" placeholder="브랜드">
                     <label for="goodsPrice">상품가격<span>*</span></label>
                     <input type="text" id="goodsPrice" class="form-control" name="goodsPrice" required="required" placeholder="상품가격">
                     <label for="goodsStock">상품재고<span>*</span></label>

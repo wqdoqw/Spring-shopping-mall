@@ -49,7 +49,7 @@
                     <label for="goodsStock">상품재고<span>*</span></label>
                     <input type="text" id="goodsStock" class="form-control" name="goodsStock" placeholder="상품재고" value="${goods.goodsStock}" required="required">
                     <label for="goodsDescription" style="display:block;">상품소개<span>*</span></label>
-                    <textarea class="form-control" rows="5" cols="50" id="goodsDescription" name="goodsDescription" required="required">${goods.secondClassification}</textarea>
+                    <textarea class="form-control" rows="5" cols="50" id="goodsDescription" name="goodsDescription" required="required">${goods.goodsDescription}</textarea>
                  <div class="inputArea">
                     <label for="goodsImage">이미지</label> 
                     <div class="custom-file">

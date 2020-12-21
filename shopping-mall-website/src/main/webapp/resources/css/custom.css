@@ -21,6 +21,13 @@ li {
     padding-left: 250px;
 }
 
+
+@media screen and (max-width: 1300px) {
+	.left-head-nav {
+    padding-left: 10%;
+}
+}
+
 .right-head-nav {
     float: right;
     /* padding-right: 300px; */

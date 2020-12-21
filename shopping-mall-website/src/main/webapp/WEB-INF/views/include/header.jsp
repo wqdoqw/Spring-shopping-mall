@@ -18,9 +18,9 @@
 
         <div class="right-head-nav right-last-element">
             	<li><a class="right-div-visible" href="/member/account">나의계정</a></li>
-        	<c:if test="${member.verify != 9}">
+        	<%-- <c:if test="${member.verify != 9}"> --%>
             	<li><a class="right-div-visible" href="#about">장바구니</a></li>
-            </c:if>
+           <%--  </c:if> --%>
             <c:if test="${member == null}">
            		<li><a class="right-div-visible" href="/member/signin">로그인</a></li>
            		<li><a class="right-div-visible" href="/member/signup">회원가입</a></li>
@@ -52,8 +52,8 @@
 
 
     <div class="topnav" id="myTopnav">
-        <a href="#home">Men</a>
-        <a href="#news">Women</a>
+        <a href="/shop/list?c=men">Men</a>
+        <a href="/shop/list?c=women">Women</a>
         <a href="#contact">Shoes</a>
         <a href="#about">Bag</a>
         <a href="#home">Contact</a>
