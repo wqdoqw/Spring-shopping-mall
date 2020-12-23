@@ -52,6 +52,7 @@
 
 
     <div class="topnav" id="myTopnav">
+     <a href="/">Home</a>
         <a href="/shop/list?c=men">Men</a>
         <a href="/shop/list?c=women">Women</a>
         <a href="#contact">Shoes</a>

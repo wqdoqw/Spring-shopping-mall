@@ -4,99 +4,150 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>가성비몰</title>
-
-    <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
-    <!-- 부트스트랩 CSS 추가하기 -->
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <!-- 커스텀 CSS 추가하기 -->
-    <link rel="stylesheet" href="/resources/css/custom.css">
-    <!-- Popper 자바스크립트 추가하기 -->
-    <script src="/resources/js/popper.min.js"></script>
-    <!-- 제이쿼리 자바스크립트 추가하기 -->
-    <script src="/resources/js/jquery-3.5.1.min.js"></script>
-    <!-- 부트스트랩 자바스크립트 추가하기 -->
-    <script src="/resources/js/bootstrap.min.js"></script>
-
-
+<meta charset="utf-8">
+<title>쇼핑상세보기</title>
+<link rel="stylesheet" href=/resources/css/goods-view.css>
+<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+<!-- 부트스트랩 CSS 추가하기 -->
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<!-- 커스텀 CSS 추가하기 -->
+<link rel="stylesheet" href="/resources/css/custom.css">
+<!-- Popper 자바스크립트 추가하기 -->
+<script src="/resources/js/popper.min.js"></script>
+<!-- 제이쿼리 자바스크립트 추가하기 -->
+<script src="/resources/js/jquery-3.5.1.min.js"></script>
+<!-- 부트스트랩 자바스크립트 추가하기 -->
+<script src="/resources/js/bootstrap.min.js"></script>
 </head>
+<style>
+.product_view {
+	margin-left: 300px;
+	margin-top: 150px;
+	margin-bottom: 150px;
+}
 
+.responsive_view {
+	display: none;
+}
+
+@media screen and (max-width: 600px) {
+	.product_view {
+		display: none;
+	}
+	.responsive_view {
+		display: block;
+		margin-left:70px;
+		margin-top:30px;
+	}
+}
+</style>
 <body>
+
+
 	<header id="header">
 		<div id="header_box">
 			<%@ include file="../include/header.jsp"%>
 		</div>
 	</header>
-	
-	<section class="register_form goods_view">
-        <h2 style="font-weight: bold; margin-top: 40px;">상품조회</h2>
-                    <form role="form" method="post" autocomplete="off">
-                    <input type="hidden" name="n" value="${view.goodsCode}"/>
+	<div class="responsive_view">
+		<h2 style="font-weight:bold; margin-bottom:20px;">${view.goodsName}</h2>
+		<img src="${view.goodsImage}" alt="" style="width:300px; height:auto;"> 
+		<label style="display:block; font-weight:bold; font-size:26px; margin-top:10px;">판매가</label> 
+		<label class="price" style="font-size:20px;color:red;">${view.goodsPrice} <span>원</span></label> 
+		<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">상품코드</label>
+		<label>${view.goodsCode}</label> 
+		<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">제조사/공급사</label> 
+		<label>${view.brand}</label>
+		<div class="length">
+			<input type="number" min="1" value="1"> <a href="#a">증가</a> <a
+				href="#a">감소</a>
+		</div>
+		<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">사용가능쿠폰</label> 
+		<label>0개</label> 
+		<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">옵션선택</label> <label><select>
+				<option>기본(+0)</option>
+		</select></label> <label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">배송비</label> <label>무료배송</label>
+			<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">결제금액</label>
+		<label style="font-size:20px;color:red;"><b>${view.goodsPrice}</b>원</label>
+		<div class="btns" style="margin-bottom:200px;margin-top:40px;">
+			<button type="submit" id="update_Btn" class="btn btn-default" style="background-color:grey; color:white;">장바구니</button>
+ 			<button type="button" id="back_Btn" class="btn btn-default" style="background-color:blue; color:white;" >구매하기</button> 
+		</div>
+	</div>
 
-                    <label for="text" style="display:block;">1차 세분화 상품 종류<span>*</span></label>
-                    <span>${view.firstClassification}</span>
-                    <label for="secondClassification" style="display:block;">2차 세분화 상품 종류<span>*</span></label>
-                     <span>${view.secondClassification}</span>
-                    <label for="goodsCode" style="display:block;">상품코드<span>*</span></label> 
- 					<span>${view.goodsCode}</span>
-                    <label for="goodsName" style="display:block;">상품이름<span>*</span></label>
- 						<span>${view.goodsName}</span>
-                    <label for="brand" style="display:block;">브랜드<span></span></label>
- 						<span><c:if test="${view.brand eq ''}">없음</c:if>${goods.brand}</span>
-                    <label for="goodsPrice" style="display:block;">상품가격<span>*</span></label>
- 						<span>${view.goodsPrice}</span>
-                    <label for="goodsStock" style="display:block;">상품재고<span>*</span></label>
- 						<span>${view.goodsStock}</span>
-                    <label for="goodsDescription" style="display:block;">상품소개<span>*</span></label>
- 						<span>${view.goodsDescription}</span>
- 					 <label for="goodsImage" style="display:block;">상품 이미지<span>*</span></label>
- 						<span><img src="${view.goodsImage}" class="img_upload"/></span>
-                <div style="margin-bottom:130px; margin-top:30px; margin-top:40px;">
- 					<button type="button" id="modify_btn" class="btn btn-warning">수정</button>
- 					<button type="button" id="delete_btn" class="btn btn-danger">삭제</button>
-				</div> 
-				
-				<script>
-  					var formObj = $("form[role='form']");
-  
- 					$("#modify_btn").click(function(){
-   					formObj.attr("action", "/admin/goods/modify");
-   					formObj.attr("method", "get")
-   					formObj.submit();
-  					});
-  
-  					$("#delete_btn").click(function(){  
-  						var con = confirm("정말로 삭제하시겠습니까?");
-  						if (con) {
-   							formObj.attr("action", "/admin/goods/delete");
-   							formObj.submit();
-						} 
-  					});
- 				</script>
-			</form>		
-    </section>
-
-		<footer class="foot_design">
+	<div class="product_view">
+		<h2>${view.goodsName}</h2>
+		<table>
+			<caption>
+				<details class="hide">
+					<summary>상품정보</summary>
+					판매가, 상품코드, 옵션 및 결제금액 안내
+				</details>
+			</caption>
+			<colgroup>
+				<col style="width: 173px;">
+				<col>
+			</colgroup>
+			<tbody>
+				<tr>
+					<th>판매가</th>
+					<td class="price">${view.goodsPrice}</td>
+				</tr>
+				<tr>
+					<th>상품코드</th>
+					<td>${view.goodsCode}</td>
+				</tr>
+				<tr>
+					<th>제조사/공급사</th>
+					<td>${view.brand}</td>
+				</tr>
+				<tr>
+					<th>구매수량</th>
+					<td>
+						<div class="length">
+							<input type="number" min="1" value="1"> <a href="#a">증가</a>
+							<a href="#a">감소</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>사용가능쿠폰</th>
+					<td>0개</td>
+				</tr>
+				<tr>
+					<th>옵션선택</th>
+					<td><select>
+							<option>기본(+0)</option>
+					</select></td>
+				</tr>
+				<tr>
+					<th>배송비</th>
+					<td>무료배송</td>
+				</tr>
+				<tr>
+					<th>결제금액</th>
+					<td class="total"><b>${view.goodsPrice}</b>원</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="img">
+			<img src="${view.goodsImage}" alt="">
+			<ul>
+				<li class="on"><a href="#a"><img src="${view.goodsImage}"
+						alt=""></a></li>
+				<li><a href="#a"><img src="images/@thoumb.png" alt=""></a></li>
+			</ul>
+		</div>
+		<div class="btns">
+			<a href="#a" class="btn1">장바구니</a> <a href="#a" class="btn2">구매하기</a>
+		</div>
+	</div>
+	<footer class="foot_design">
 		<div id="footer_box">
-			<%@ include file="../include/footer.jsp" %>
-		</div>		
+			<%@ include file="../include/footer.jsp"%>
+		</div>
 	</footer>
-
-	
-		<script>
-				$("#goodsImage").change(
-						function() {
-							if (this.files && this.files[0]) {
-								var reader = new FileReader;
-								reader.onload = function(data) {
-									$(".select_img img").attr("src",
-											data.target.result).width(500);
-								}
-								reader.readAsDataURL(this.files[0]);
-							}
-						});
-				</script>
-
 
 </body>
 </html>
+
