@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +38,8 @@
 	}
 	.responsive_view {
 		display: block;
-		margin-left:70px;
-		margin-top:30px;
+		margin-left: 70px;
+		margin-top: 30px;
 	}
 }
 </style>
@@ -50,28 +52,37 @@
 		</div>
 	</header>
 	<div class="responsive_view">
-		<h2 style="font-weight:bold; margin-bottom:20px;">${view.goodsName}</h2>
-		<img src="${view.goodsImage}" alt="" style="width:300px; height:auto;"> 
-		<label style="display:block; font-weight:bold; font-size:26px; margin-top:10px;">판매가</label> 
-		<label class="price" style="font-size:20px;color:red;">${view.goodsPrice} <span>원</span></label> 
-		<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">상품코드</label>
-		<label>${view.goodsCode}</label> 
-		<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">제조사/공급사</label> 
+		<h2 style="font-weight: bold; margin-bottom: 20px;">${view.goodsName}</h2>
+		<img src="${view.goodsImage}" alt=""
+			style="width: 300px; height: auto;"> <label
+			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">판매가</label>
+		<label class="price" style="font-size: 20px; color: red;">${view.goodsPrice}
+			<span>원</span>
+		</label> <label
+			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">상품코드</label>
+		<label>${view.goodsCode}</label> <label
+			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">제조사/공급사</label>
 		<label>${view.brand}</label>
 		<div class="length">
-			<input type="number" min="1" value="1"> <a href="#a">증가</a> <a
-				href="#a">감소</a>
+			<input type="number" min="1" value="1"> <a href="#a"></a> <a
+				href="#a"></a>
 		</div>
-		<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">사용가능쿠폰</label> 
-		<label>0개</label> 
-		<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">옵션선택</label> <label><select>
+		<label
+			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">사용가능쿠폰</label>
+		<label>0개</label> <label
+			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">옵션선택</label>
+		<label><select>
 				<option>기본(+0)</option>
-		</select></label> <label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">배송비</label> <label>무료배송</label>
-			<label style="display:block; font-weight:bold; font-size:26px;margin-top:10px;">결제금액</label>
-		<label style="font-size:20px;color:red;"><b>${view.goodsPrice}</b>원</label>
-		<div class="btns" style="margin-bottom:200px;margin-top:40px;">
-			<button type="submit" id="update_Btn" class="btn btn-default" style="background-color:grey; color:white;">장바구니</button>
- 			<button type="button" id="back_Btn" class="btn btn-default" style="background-color:blue; color:white;" >구매하기</button> 
+		</select></label> <label
+			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">배송비</label>
+		<label>무료배송</label> <label
+			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">결제금액</label>
+		<label style="font-size: 20px; color: red;"><b>${view.goodsPrice}</b>원</label>
+		<div class="btns" style="margin-bottom: 200px; margin-top: 40px;">
+			<button type="submit" id="update_Btn" class="btn btn-default"
+				style="background-color: grey; color: white;">장바구니</button>
+			<button type="button" id="back_Btn" class="btn btn-default"
+				style="background-color: blue; color: white;">구매하기</button>
 		</div>
 	</div>
 
@@ -105,8 +116,32 @@
 					<th>구매수량</th>
 					<td>
 						<div class="length">
-							<input type="number" min="1" value="1"> <a href="#a">증가</a>
-							<a href="#a">감소</a>
+							<input type="number" class="numBox" min="1"
+								max="${view.goodsStock}" value="1" readonly="readonly" /> <a
+								href="#a" class="plus">증가</a> <a href="#a" class="minus">감소</a>
+							<script>
+  $(".plus").click(function(){
+   var num = $(".numBox").val();
+   var plusNum = Number(num) + 1;
+   
+   if(plusNum >= ${view.goodsStock}) {
+    $(".numBox").val(num);
+   } else {
+    $(".numBox").val(plusNum);          
+   }
+  });
+  
+  $(".minus").click(function(){
+   var num = $(".numBox").val();
+   var minusNum = Number(num) - 1;
+   
+   if(minusNum <= 0) {
+    $(".numBox").val(num);
+   } else {
+    $(".numBox").val(minusNum);          
+   }
+  });
+ </script>
 						</div>
 					</td>
 				</tr>
@@ -142,11 +177,51 @@
 			<a href="#a" class="btn1">장바구니</a> <a href="#a" class="btn2">구매하기</a>
 		</div>
 	</div>
-	<footer class="foot_design">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
-		</div>
-	</footer>
+
+	<div id="reply"
+		style="margin-bottom: 350px; margin-left: auto; margin-right: auto; padding-left: auto; padding-right: auto;">
+
+		<c:if test="${member == null }">
+			<p>
+				소감을 남기시려면 <a href="/member/signin">로그인</a>해주세요
+			</p>
+		</c:if>
+
+		<c:if test="${member != null}">
+			<section class="replyForm">
+				<form role="form" method="post" autocomplete="off">
+					<input type="hidden" name="goodsCode" value="${view.goodsCode}">
+					<input type="hidden" name="goodsName" value="${view.goodsName}">
+					<div class="input_area"
+						style="margin-left: 300px; margin-right: 300px;">
+						<textarea name="replyData" id="replyData" rows="4" cols="50"></textarea>
+					</div>
+
+					<div class="input_area">
+						<button type="submit" id="reply_btn"
+							style="padding-left: auto; padding-right: auto;">소감 남기기</button>
+					</div>
+
+				</form>
+			</section>
+		</c:if>
+
+		<section class="replyList">
+			<ol>
+				<c:forEach items="${reply}" var="reply">
+
+					<li>   
+						<div class="userInfo">
+							    <span class="username">${reply.username}</span>     <span
+								class="date"><fmt:formatDate value="${reply.replyDate}"
+									pattern="yyyy-MM-dd" /></span>    
+						</div>    
+						<div class="replyData">${reply.replyData}</div>  
+					</li>
+   			</c:forEach>
+			</ol>
+		</section>
+	</div>
 
 </body>
 </html>

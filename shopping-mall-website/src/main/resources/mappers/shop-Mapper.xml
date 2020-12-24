@@ -3,7 +3,8 @@
 <mapper namespace="shopMapper">
 
 	<!-- 상품 목록 -->
-	<select id="goodsViewList"  resultType="com.spring.myapp.domain.GoodsVO">
+	<select id="goodsViewList"
+		resultType="com.spring.myapp.domain.GoodsVO">
 <![CDATA[
 	SELECT goodsCode, 
 	 	goodsName, 
@@ -20,7 +21,8 @@
 ]]>
 	</select>
 
-	<select id="goodsViewOne" resultType="com.spring.myapp.domain.GoodsVO">
+	<select id="goodsViewOne"
+		resultType="com.spring.myapp.domain.GoodsVO">
 <![CDATA[
 	SELECT goodsCode,
 	 	firstClassification, 
@@ -37,5 +39,31 @@
 ]]>
 	</select>
 
-
+	<!-- 상품 소감(댓글) 작성 -->
+	<insert id="registerReply">
+	<![CDATA[
+		INSERT INTO goods_reply (goodsCode,
+		goodsName,
+		replyNumber,
+		userid,
+		replyData)
+			VALUES (#{goodsCode},
+		#{goodsName},
+		#{replyNumber},
+		#{userid},
+		#{replyData})
+	]]>
+	</insert>
+	<!-- 상품 소감(댓글) 리스트 -->
+	<select id="replyList"
+		resultType="com.spring.myapp.domain.GoodsReplyListVO">
+		<![CDATA[
+		SELECT r.goodsCode,
+		r.goodsName,r.replyNumber,r.userid,r.replyData,
+		r.replyDate, m.username
+		FROM goods_reply r INNER JOIN member m
+		ON m.email = r.userid
+		WHERE goodsName = #{goodsName}
+		]]>
+	</select>
 </mapper>

@@ -2,6 +2,8 @@ package com.spring.myapp.service;
 
 import java.util.List;
 
+import com.spring.myapp.domain.GoodsReplyListVO;
+import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
 
 public interface ShopService {
@@ -11,4 +13,11 @@ public interface ShopService {
 
 	// 상품 상세조회
 	public GoodsVO goodsView(String goodsName) throws Exception;
+	
+	// 상품소감
+	public void registerReply(GoodsReplyVO reply) throws Exception;
+	
+	// 상품소감 리스트
+	public List<GoodsReplyListVO> replyList(String goodsName) throws Exception;
+	
 }

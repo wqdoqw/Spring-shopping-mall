@@ -107,12 +107,12 @@ margin-right:100px; */
 				<div class="col-md-4 col-xs-12">
 					<a href="/shop/list?c=women"><img class="d-block w-100"
 						src="/resources/img/index/women.jpg" alt="Third slide"></a>
-					<div class="logo-div-div">
+					<!-- <div class="logo-div-div">
 						<p class="logo-div-p">
 							가성비<strong class="logo-div-p-strong">몰</strong> <span
 								class="logo-div-p-subtitle">최고의 가성비를 보장합니다</span>
 						</p>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="row" style="padding-top: 50px; padding-left: 370px; margin:0 auto;">
