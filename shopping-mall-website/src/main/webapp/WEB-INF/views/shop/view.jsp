@@ -32,7 +32,7 @@
 	display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
 	.product_view {
 		display: none;
 	}
@@ -40,6 +40,98 @@
 		display: block;
 		margin-left: 70px;
 		margin-top: 30px;
+	}
+}
+
+.review-header {
+	margin-left: 300px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	margin-top: 80px;
+	display: block;
+	/* color:lightblue; */
+}
+
+.review-button {
+	margin-left: 300px;
+	margin-top: 80px;
+	display:block;
+}
+
+.review-textarea {
+	margin-left: 300px;
+	margin-right: 300px;
+}
+
+.table-view {
+	margin-left: 300px;
+	margin-right: 300px;
+	margin-top: 50px;
+	text-align: center;
+}
+
+.reply-p {
+	margin-left: 300px;
+	font-size: 18px;
+}
+
+
+/* Rating Star Widgets Style */
+.rating-stars{
+	margin-left:300px;
+	display:block;
+}
+
+.rating-stars ul {
+	list-style-type: none;
+	padding: 0;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.rating-stars ul>li.star {
+	display: inline-block;
+}
+
+/* Idle State of the stars */
+.rating-stars ul>li.star>i.fa {
+	font-size: 2.5em; /* Change the size of the stars */
+	color: #ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul>li.star.hover>i.fa {
+	color: #FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul>li.star.selected>i.fa {
+	color: #FF912C;
+}
+
+@media screen and (max-width: 1100px) {
+	.review-header {
+		margin-left: 10%;
+	}
+	.product_view {
+		margin-left: 10%;
+	}
+	.review-textarea {
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	.review-button {
+		margin-left: 10%;
+	}
+	.table-view {
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+	.reply-p {
+		margin-left: 10%;
+	}
+	.rating-stars{
+		margin-left: 10%;
 	}
 }
 </style>
@@ -119,29 +211,7 @@
 							<input type="number" class="numBox" min="1"
 								max="${view.goodsStock}" value="1" readonly="readonly" /> <a
 								href="#a" class="plus">증가</a> <a href="#a" class="minus">감소</a>
-							<script>
-  $(".plus").click(function(){
-   var num = $(".numBox").val();
-   var plusNum = Number(num) + 1;
-   
-   if(plusNum >= ${view.goodsStock}) {
-    $(".numBox").val(num);
-   } else {
-    $(".numBox").val(plusNum);          
-   }
-  });
-  
-  $(".minus").click(function(){
-   var num = $(".numBox").val();
-   var minusNum = Number(num) - 1;
-   
-   if(minusNum <= 0) {
-    $(".numBox").val(num);
-   } else {
-    $(".numBox").val(minusNum);          
-   }
-  });
- </script>
+
 						</div>
 					</td>
 				</tr>
@@ -170,7 +240,6 @@
 			<ul>
 				<li class="on"><a href="#a"><img src="${view.goodsImage}"
 						alt=""></a></li>
-				<li><a href="#a"><img src="images/@thoumb.png" alt=""></a></li>
 			</ul>
 		</div>
 		<div class="btns">
@@ -178,11 +247,10 @@
 		</div>
 	</div>
 
-	<div id="reply"
-		style="margin-bottom: 350px; margin-left: auto; margin-right: auto; padding-left: auto; padding-right: auto;">
+	<div id="reply" style="margin-bottom: 350px;">
 
-		<c:if test="${member == null }">
-			<p>
+		<c:if test="${member == null}">
+			<p class="reply-p">
 				소감을 남기시려면 <a href="/member/signin">로그인</a>해주세요
 			</p>
 		</c:if>
@@ -192,37 +260,137 @@
 				<form role="form" method="post" autocomplete="off">
 					<input type="hidden" name="goodsCode" value="${view.goodsCode}">
 					<input type="hidden" name="goodsName" value="${view.goodsName}">
-					<div class="input_area"
-						style="margin-left: 300px; margin-right: 300px;">
-						<textarea name="replyData" id="replyData" rows="4" cols="50"></textarea>
+					<h2 class="review-header">리뷰 남기기</h2>
+					<div class="review-textarea">
+						<textarea name="replyData" id="replyData" class="form-control"
+							rows="4" cols="50"></textarea>
 					</div>
-
+					<div class='rating-stars text-center' >
+						<ul id='stars'>
+							<li class='star selected'  data-value='1'><i
+								class='fa fa-star fa-fw'></i></li>
+							<li class='star'  data-value='2'><i
+								class='fa fa-star fa-fw'></i></li>
+							<li class='star' data-value='3'><i
+								class='fa fa-star fa-fw'></i></li>
+							<li class='star' data-value='4'><i
+								class='fa fa-star fa-fw'></i></li>
+							<li class='star' data-value='5'><i
+								class='fa fa-star fa-fw'></i></li>
+						</ul>
+					</div>
+					<input type="hidden" name="replyRating" id="replyRating" value="">
 					<div class="input_area">
 						<button type="submit" id="reply_btn"
-							style="padding-left: auto; padding-right: auto;">소감 남기기</button>
+							class="btn btn-default review-button"
+							style="padding-left: auto; padding-right: auto; background-color: #ff6766; color: white;">소감
+							남기기</button>
 					</div>
 
 				</form>
 			</section>
 		</c:if>
 
-		<section class="replyList">
-			<ol>
-				<c:forEach items="${reply}" var="reply">
+		<section class="table-view">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th style="width: 13%;">닉네임</th>
+						<th style="width: 13%;">날짜</th>
+						<th style="width: 13%;">평가</th>
+						<th style="width: 60%;">내용</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${reply}" var="reply">
+						<tr>
+							<td>${reply.username}</td>
+							<td><fmt:formatDate value="${reply.replyDate}"
+									pattern="yyyy-MM-dd" /></td>
+									<!--  이 루프 만큼 별 출력-->
+							<td>${reply.replyRating}<c:forEach var="i" begin="0" end="4">
+    							<p><c:out value="${i}" /></p>
+									</c:forEach>
+									</td>
+							<td>${reply.replyData}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 
-					<li>   
-						<div class="userInfo">
-							    <span class="username">${reply.username}</span>     <span
-								class="date"><fmt:formatDate value="${reply.replyDate}"
-									pattern="yyyy-MM-dd" /></span>    
-						</div>    
-						<div class="replyData">${reply.replyData}</div>  
-					</li>
-   			</c:forEach>
-			</ol>
 		</section>
 	</div>
+	<script>
+								
+								$(".plus").click(function(){
+   								var num = $(".numBox").val();
+  								var plusNum = Number(num) + 1;
+   
+   								if(plusNum >= ${view.goodsStock}) {
+   								 $(".numBox").val(num);
+  								 } else {
+   								 $(".numBox").val(plusNum);          
+   									}
+ 									 });
+  
+ 								 $(".minus").click(function(){
+   								 var num = $(".numBox").val();
+   								 var minusNum = Number(num) - 1;
+   
+   								 if(minusNum <= 0) {
+    							$(".numBox").val(num);
+   								} else {
+   								 $(".numBox").val(minusNum);          
+   								}
+ 								 });
+ 								 
+ 								  $(document).ready(function(){
+ 									  
+ 									  /* 1. Visualizing things on Hover - See next part for action on click */
+ 									  $('#stars li').on('mouseover', function(){
+ 									    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+ 									   
+ 									    // Now highlight all the stars that's not after the current hovered star
+ 									    $(this).parent().children('li.star').each(function(e){
+ 									      if (e < onStar) {
+ 									        $(this).addClass('hover');
+ 									      }
+ 									      else {
+ 									        $(this).removeClass('hover');
+ 									      }
+ 									    });
+ 									    
+ 									  }).on('mouseout', function(){
+ 									    $(this).parent().children('li.star').each(function(e){
+ 									      $(this).removeClass('hover');
+ 									    });
+ 									  });
+ 									  
+ 									  
+ 									  /* 2. Action to perform on click */
+ 									  $('#stars li').on('click', function(){
+ 									    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+ 									    var stars = $(this).parent().children('li.star');
+ 									    
+ 									    for (i = 0; i < stars.length; i++) {
+ 									      $(stars[i]).removeClass('selected');
+ 									    }
+ 									    
+ 									    for (i = 0; i < onStar; i++) {
+ 									      $(stars[i]).addClass('selected');
+ 									    }
+ 									    
+ 									    // JUST RESPONSE
+ 									    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+ 									    var msg = "";
+ 									    console.log(ratingValue)
+ 									   $('input[name=replyRating]').attr('value',ratingValue);
+ 									    
+ 									  });
+ 									  
+ 									});
 
+ 	</script>
 </body>
 </html>
 

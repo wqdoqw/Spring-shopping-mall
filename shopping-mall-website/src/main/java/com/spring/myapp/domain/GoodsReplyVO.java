@@ -11,5 +11,6 @@ public class GoodsReplyVO {
 	private String replyNumber;
 	private String userid;
 	private String replyData;
+	private int replyRating;
 	private Date replyDate;
 }

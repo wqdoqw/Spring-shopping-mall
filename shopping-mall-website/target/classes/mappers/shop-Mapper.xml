@@ -46,12 +46,14 @@
 		goodsName,
 		replyNumber,
 		userid,
-		replyData)
+		replyData,
+		replyRating)
 			VALUES (#{goodsCode},
 		#{goodsName},
 		#{replyNumber},
 		#{userid},
-		#{replyData})
+		#{replyData},
+		#{replyRating})
 	]]>
 	</insert>
 	<!-- 상품 소감(댓글) 리스트 -->
@@ -60,7 +62,7 @@
 		<![CDATA[
 		SELECT r.goodsCode,
 		r.goodsName,r.replyNumber,r.userid,r.replyData,
-		r.replyDate, m.username
+		r.replyDate, r.replyRating, m.username
 		FROM goods_reply r INNER JOIN member m
 		ON m.email = r.userid
 		WHERE goodsName = #{goodsName}
