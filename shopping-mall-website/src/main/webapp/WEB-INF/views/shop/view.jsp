@@ -55,7 +55,7 @@
 .review-button {
 	margin-left: 300px;
 	margin-top: 80px;
-	display:block;
+	display: block;
 }
 
 .review-textarea {
@@ -75,11 +75,10 @@
 	font-size: 18px;
 }
 
-
 /* Rating Star Widgets Style */
-.rating-stars{
-	margin-left:300px;
-	display:block;
+.rating-stars {
+	margin-left: 300px;
+	display: block;
 }
 
 .rating-stars ul {
@@ -109,6 +108,54 @@
 	color: #FF912C;
 }
 
+/* Rating Star Widgets Style */
+.stars-idle-yellow ul {
+	list-style-type: none;
+	padding: 0;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.stars-idle-yellow ul>li.star {
+	display: inline-block;
+}
+
+/* Idle State of the stars */
+.stars-idle-yellow ul>li.star>i.fa {
+	font-size: 2.5em; /* Change the size of the stars */
+	color: #FF912C; /* Color on idle state */
+}
+
+/* Rating Star Widgets Style */
+.stars-idle-grey ul {
+	list-style-type: none;
+	padding: 0;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.stars-idle-grey ul>li.star {
+	display: inline-block;
+}
+
+/* Idle State of the stars */
+.stars-idle-grey ul>li.star>i.fa {
+	font-size: 2.5em; /* Change the size of the stars */
+	color: #ccc; /* Color on idle state */
+}
+
+.table td {
+	padding: 0;
+	vertical-align: middle;
+	border: none;
+}
+
+.table th {
+	padding: 0;
+	vertical-align: middle;
+	border: none;
+}
+
 @media screen and (max-width: 1100px) {
 	.review-header {
 		margin-left: 10%;
@@ -130,7 +177,7 @@
 	.reply-p {
 		margin-left: 10%;
 	}
-	.rating-stars{
+	.rating-stars {
 		margin-left: 10%;
 	}
 }
@@ -265,21 +312,17 @@
 						<textarea name="replyData" id="replyData" class="form-control"
 							rows="4" cols="50"></textarea>
 					</div>
-					<div class='rating-stars text-center' >
+					<div class='rating-stars text-center'>
 						<ul id='stars'>
-							<li class='star selected'  data-value='1'><i
+							<li class='star selected' data-value='1'><i
 								class='fa fa-star fa-fw'></i></li>
-							<li class='star'  data-value='2'><i
-								class='fa fa-star fa-fw'></i></li>
-							<li class='star' data-value='3'><i
-								class='fa fa-star fa-fw'></i></li>
-							<li class='star' data-value='4'><i
-								class='fa fa-star fa-fw'></i></li>
-							<li class='star' data-value='5'><i
-								class='fa fa-star fa-fw'></i></li>
+							<li class='star' data-value='2'><i class='fa fa-star fa-fw'></i></li>
+							<li class='star' data-value='3'><i class='fa fa-star fa-fw'></i></li>
+							<li class='star' data-value='4'><i class='fa fa-star fa-fw'></i></li>
+							<li class='star' data-value='5'><i class='fa fa-star fa-fw'></i></li>
 						</ul>
 					</div>
-					<input type="hidden" name="replyRating" id="replyRating" value="">
+					<input type="hidden" name="replyRating" id="replyRating" value="1">
 					<div class="input_area">
 						<button type="submit" id="reply_btn"
 							class="btn btn-default review-button"
@@ -292,13 +335,13 @@
 		</c:if>
 
 		<section class="table-view">
-			<table class="table table-striped table-hover">
+			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th style="width: 13%;">닉네임</th>
-						<th style="width: 13%;">날짜</th>
-						<th style="width: 13%;">평가</th>
-						<th style="width: 60%;">내용</th>
+						<th style="width: 10%;">닉네임</th>
+						<th style="width: 10%;">날짜</th>
+						<th style="width: 30%;">평가</th>
+						<th style="width: 50%;">내용</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -307,11 +350,25 @@
 							<td>${reply.username}</td>
 							<td><fmt:formatDate value="${reply.replyDate}"
 									pattern="yyyy-MM-dd" /></td>
-									<!--  이 루프 만큼 별 출력-->
-							<td>${reply.replyRating}<c:forEach var="i" begin="0" end="4">
-    							<p><c:out value="${i}" /></p>
-									</c:forEach>
-									</td>
+							<c:set var="num" value="${5-reply.replyRating}" />
+
+							<!--  이 루프 만큼 별 출력-->
+							<td style="padding-bottom: 20px;">
+								<div class='stars-idle-yellow text-center'>
+									<ul id='stars'>
+										<c:forEach var="i" begin="1" end="${reply.replyRating}">
+											<li class='star'><i class='fa fa-star fa-fw'></i></li>
+										</c:forEach>
+									</ul>
+								</div>
+								<div class='stars-idle-grey text-center'>
+									<ul id='stars'>
+										<c:forEach var="i" begin="1" end="${num}">
+											<li class='star'><i class='fa fa-star fa-fw'></i></li>
+										</c:forEach>
+									</ul>
+								</div>
+							</td>
 							<td>${reply.replyData}</td>
 						</tr>
 					</c:forEach>
