@@ -21,6 +21,7 @@ import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
 import com.spring.myapp.domain.MemberVO;
 import com.spring.myapp.service.ShopService;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 @Controller
 @RequestMapping("/shop/*")
@@ -33,7 +34,7 @@ public class ShopController {
 
 	// 카테고리별 상품 리스트
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void getList(@RequestParam("c") String firstClassification, GoodsVO vo, Model model) throws Exception {
+	public void getList(@RequestParam("c") String firstClassification, Model model) throws Exception {
 		logger.info("get list");
 
 		System.out.println("classification>>" + firstClassification);
@@ -56,7 +57,7 @@ public class ShopController {
 		GoodsVO view = service.goodsView(goodsName);
 		view.setGoodsName(goodsName);
 		model.addAttribute("view", view);
-		
+
 		List<GoodsReplyListVO> reply = service.replyList(goodsName);
 		model.addAttribute("reply", reply);
 	}
@@ -68,19 +69,18 @@ public class ShopController {
 
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		reply.setUserid(member.getEmail());
-		
-		
-		//reply number 생성
-		Random rnd =new Random();
-		StringBuffer buf =new StringBuffer();
-		for(int i=0;i<8;i++){
-		    if(rnd.nextBoolean()){
-		        buf.append((char)((int)(rnd.nextInt(26))+97));
-		    }else{
-		        buf.append((rnd.nextInt(10)));
-		    }
+
+		// reply number 생성
+		Random rnd = new Random();
+		StringBuffer buf = new StringBuffer();
+		for (int i = 0; i < 8; i++) {
+			if (rnd.nextBoolean()) {
+				buf.append((char) ((int) (rnd.nextInt(26)) + 97));
+			} else {
+				buf.append((rnd.nextInt(10)));
+			}
 		}
-		
+
 		reply.setReplyNumber(buf.toString());
 		System.out.println(reply);
 		service.registerReply(reply);
@@ -88,4 +88,44 @@ public class ShopController {
 		return "redirect:/shop/view?n=" + reply.getGoodsName();
 	}
 
+	// 댓글 삭제
+	@RequestMapping(value = "/view/delete", method = RequestMethod.POST)
+	public String postReplyDelete(@RequestParam("s") String replyNumber, HttpSession session) throws Exception {
+		logger.info("post view delete");
+//		MemberVO member = (MemberVO) session.getAttribute("member");
+//		System.out.println("member>>" + member);
+		GoodsReplyVO reply = service.selectReplyByNumber(replyNumber);
+
+		System.out.println("요기>>" + reply);
+//		if (member.getEmail() == null) {
+//			System.out.println("qwdwq");
+//		}
+		service.deleteReply(reply.getReplyNumber());
+//		adminService.goodsDelete(goodsCode);
+
+		return "redirect:/shop/view?n=" + reply.getGoodsName();
+	}
+
+	// 댓글 삭제 리다이렉트
+	@RequestMapping(value = "/view/goback", method = RequestMethod.POST)
+	public String postGoBack(@RequestParam("n") String goodsName, Model model) throws Exception {
+		logger.info("post go back");
+
+		
+		return "redirect:/shop/view?n=" + goodsName;
+	}
+	
+	// 댓글 수정
+	@RequestMapping(value = "/view/modify", method = RequestMethod.POST)
+	public String postUpdateReply(@RequestParam("n") String replyNumber, Model model,GoodsReplyVO replyVO) throws Exception {
+		logger.info("post update reply");
+		
+		GoodsReplyVO reply = service.selectReplyByNumber(replyNumber);
+
+		System.out.println("modify 요기>>" + reply);
+		System.out.println("reply data VO>>" + replyVO);
+//		service.replyModify(replyNumber);
+		
+		return "redirect:/shop/view?n=" + reply.getGoodsName();
+	}
 }

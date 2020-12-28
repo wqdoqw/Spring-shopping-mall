@@ -181,6 +181,36 @@
 		margin-left: 10%;
 	}
 }
+
+
+/* rating star modal */
+.rating-stars-modal ul {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-stars-modal ul > li.star {
+  display:inline-block;
+  
+}
+
+/* Idle State of the stars */
+.rating-stars-modal ul > li.star > i.fa {
+  font-size:2.5em; /* Change the size of the stars */
+  color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars-modal ul > li.star.hover > i.fa {
+  color:#FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars-modal ul > li.star.selected > i.fa {
+  color:#FF912C;
+}
 </style>
 <body>
 
@@ -310,7 +340,7 @@
 					<h2 class="review-header">리뷰 남기기</h2>
 					<div class="review-textarea">
 						<textarea name="replyData" id="replyData" class="form-control"
-							rows="4" cols="50"></textarea>
+							rows="4" cols="50" maxlength="100"></textarea>
 					</div>
 					<div class='rating-stars text-center'>
 						<ul id='stars'>
@@ -341,7 +371,8 @@
 						<th style="width: 10%;">닉네임</th>
 						<th style="width: 10%;">날짜</th>
 						<th style="width: 30%;">평가</th>
-						<th style="width: 50%;">내용</th>
+						<th style="width: 40%;">내용</th>
+						<th style="width: 10%;"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -369,8 +400,63 @@
 									</ul>
 								</div>
 							</td>
-							<td>${reply.replyData}</td>
+							<td>${reply.replyData}
+							</td>
+							<td>
+								<div style="float: right; display:block;">
+									<c:if test="${member != null}">
+										<form role="form" method="post">
+											<button class="btn btn-warning" id="${reply.replyNumber}del">삭제</button>
+										</form>
+											<button class="btn btn-danger"  id="${reply.replyNumber}modify" data-toggle="modal" data-target="#exampleModalCenter" >수정</button>
+									</c:if>
+							</div>
+							</td>
 						</tr>
+
+						<script>
+						
+							var formObj = $("form[role='form']");
+							var member = "${member == null}";
+
+								
+							$("#" + "${reply.replyNumber}del").click(function(){  
+		  						var con = confirm("정말로 삭제하시겠습니까?");
+		  						if (con) {
+		  							if("${member.email}" != "${reply.userid}"){
+		  								alert("작성자 본인만 삭제 할 수 있습니다.");
+			   							formObj.attr("action", "/shop/view/goback?n=${view.goodsName}");
+			   							formObj.submit();
+		  							}else{
+		   							formObj.attr("action", "/shop/view/delete?s=${reply.replyNumber}");
+		   							formObj.submit();
+								} 
+		  						}
+		  					});
+							
+							$("#" + "${reply.replyNumber}modify").click(function(){  
+		  						var con = confirm("정말로 수정하시겠습니까?");
+		  						if (con) {
+		  							if("${member.email}" != "${reply.userid}"){
+		  								alert("작성자 본인만 수정 할 수 있습니다.");
+			   							formObj.attr("action", "/shop/view/goback?n=${view.goodsName}");
+			   							formObj.submit();
+		  							}else{
+		   						/* 	formObj.attr("action", "/shop/view/delete?s=${reply.replyNumber}");
+		   							formObj.submit(); */
+		  							 	$(function() {
+		  								 /*  $("#exampleModalCenter").css("background","gold"); */
+		  							 		$("#exampleModalCenter").css("display","none");
+		  								});	 
+								} 
+		  					}
+		  					});
+							$("#" + "${reply.replyNumber}modify-confirm").click(function(){  
+			   							formObj.attr("action", "/shop/view/modify?n=${reply.replyNumber}");
+			   							formObj.submit();
+		  					});
+							
+							</script>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -378,7 +464,6 @@
 		</section>
 	</div>
 	<script>
-								
 								$(".plus").click(function(){
    								var num = $(".numBox").val();
   								var plusNum = Number(num) + 1;
@@ -400,7 +485,8 @@
    								 $(".numBox").val(minusNum);          
    								}
  								 });
- 								 
+ 								 //stars-modal
+ 								
  								  $(document).ready(function(){
  									  
  									  /* 1. Visualizing things on Hover - See next part for action on click */
@@ -448,6 +534,44 @@
  									});
 
  	</script>
+ 	
+<%--  					<!-- 		https://getbootstrap.com/docs/4.0/components/modal/ -->
+					<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <form role="form" method="post" autocomplete="off">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">리뷰 수정${reply.replyNumber}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+				<input type="hidden" name="goodsCode" value="${view.goodsCode}">
+				<input type="hidden" name="goodsName" value="${view.goodsName}">
+        <div>
+			<textarea name="replyData" id="${reply.replyNumber}replyData" class="form-control"
+							rows="4" cols="50" maxlength="100">${reply.replyData}</textarea>
+		</div>
+			<div class='rating-stars-modal' style="margin-left:100px;">
+				<ul id='stars-modal'>
+					<li class='star selected' data-value='1'><i class='fa fa-star fa-fw'></i></li>
+					<li class='star' data-value='2'><i class='fa fa-star fa-fw'></i></li>
+					<li class='star' data-value='3'><i class='fa fa-star fa-fw'></i></li>
+					<li class='star' data-value='4'><i class='fa fa-star fa-fw'></i></li>
+			 		<li class='star' data-value='5'><i class='fa fa-star fa-fw'></i></li>
+				</ul>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="${reply.replyNumber}modify-confirm">수정하기</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+      </form>
+</div> --%>
 </body>
 </html>
 

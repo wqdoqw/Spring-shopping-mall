@@ -58,8 +58,8 @@
 				
 				<script>
   					var formObj = $("form[role='form']");
-  
- 					$("#modify_btn").click(function(){
+
+  					$("#modify_btn").click(function(){
    					formObj.attr("action", "/admin/goods/modify");
    					formObj.attr("method", "get")
    					formObj.submit();
