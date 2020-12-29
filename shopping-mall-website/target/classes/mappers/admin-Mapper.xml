@@ -12,6 +12,7 @@
 	 	brand, 
 	 	goodsPrice,
      	goodsStock,
+     	goodsDiscountRate,
      	goodsDescription,
      	goodsImage,
      	goodsThumbnailImage)
@@ -22,6 +23,7 @@
      	#{brand},
      	#{goodsPrice},
      	#{goodsStock},
+     	#{goodsDiscountRate},
      	#{goodsDescription},
      	#{goodsImage},
      	#{goodsThumbnailImage})
@@ -39,6 +41,7 @@
 	 	brand, 
 	 	goodsPrice,
      	goodsStock,
+     	goodsDiscountRate,
      	goodsDescription,
      	goodsImage,
      	goodsThumbnailImage,
@@ -59,8 +62,10 @@
 	 	brand, 
 	 	goodsPrice,
      	goodsStock,
+     	goodsDiscountRate,
      	goodsDescription,
      	goodsImage,
+     	goodsThumbnailImage,
      	goodsAddedTime
 	FROM goods WHERE goodsCode = #{goodsCode}
 ]]>
@@ -76,6 +81,7 @@
 	 		brand = #{brand},
 	 		goodsPrice = #{goodsPrice},
      		goodsStock = #{goodsStock},
+     		goodsDiscountRate = #{goodsDiscountRate},
      		goodsDescription = #{goodsDescription},
      		goodsImage = #{goodsImage},
      		goodsThumbnailImage = #{goodsThumbnailImage}

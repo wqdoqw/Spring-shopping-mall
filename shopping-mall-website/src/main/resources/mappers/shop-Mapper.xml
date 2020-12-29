@@ -115,7 +115,50 @@
 	<!-- 카트 담기 -->
 	<insert id="addCart">
 	<![CDATA[
-		INSERT INTO cart (userid, goodsCode, cartStock) VALUES (#{userid}, #{goodsCode}, #{cartStock})
+		INSERT INTO cart (userid, goodsCode, goodsName, cartStock) VALUES (#{userid}, #{goodsCode}, #{goodsName}, #{cartStock})
 	]]>
 	</insert>
+	
+	<!-- 특정 상품의 댓글 갯수랑 좋아요 평균 찾기 -->
+	<select id="replyCount"
+		resultType="com.spring.myapp.domain.GoodsReplyRatingVO">
+	<![CDATA[
+		SELECT g.goodsCode, 
+	 	g.goodsName, 
+	 	g.secondClassification, 
+	 	g.brand, 
+	 	g.goodsPrice,
+     	g.goodsStock,
+     	g.goodsDiscountRate,
+     	g.goodsDescription,
+     	g.goodsImage,
+     	g.goodsThumbnailImage,
+     	g.goodsAddedTime,
+		AVG(r.replyRating) AS avgReplyRating,
+		COUNT(r.replyNumber) AS countReply
+FROM goods g LEFT JOIN goods_reply r
+ON g.goodsName = r.goodsName
+WHERE firstClassification = #{firstClassification}
+GROUP BY goodsCode
+UNION
+SELECT  g.goodsCode, 
+	 	g.goodsName, 
+	 	g.secondClassification, 
+	 	g.brand, 
+	 	g.goodsPrice,
+     	g.goodsStock,
+     	g.goodsDiscountRate,
+     	g.goodsDescription,
+     	g.goodsImage,
+     	g.goodsThumbnailImage,
+     	g.goodsAddedTime,
+		AVG(r.replyRating) AS avgReplyRating,
+		COUNT(r.replyNumber) AS countReply
+FROM goods g RIGHT JOIN goods_reply r
+ON g.goodsName = r.goodsName
+WHERE firstClassification = #{firstClassification}
+GROUP BY goodsCode
+	]]>
+	</select>
+	
 </mapper>

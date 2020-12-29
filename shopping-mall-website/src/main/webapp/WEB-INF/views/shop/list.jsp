@@ -112,8 +112,8 @@ li {
 	.category {
 		display: none;
 	}
-	#content_box h3{
-		margin-left:120px;
+	#content_box h3 {
+		margin-left: 120px;
 	}
 }
 </style>
@@ -128,7 +128,7 @@ li {
 
 	<section id="content_box">
 		<div class="box">
-			<h3 class ="goods-title">전체 상품</h3>
+			<h3 class="goods-title">전체 상품</h3>
 			<p class="category">판매자추천순 | 인기도순 | 평점높은순 | 최신등록순</p>
 			<div class="clear"></div>
 
@@ -136,7 +136,7 @@ li {
 				<ul class="items">
 					<li><img src="${list.goodsThumbnailImage}"></li>
 					<li class="a"><a href="/shop/view?n=${list.goodsName}">${list.goodsName}</a></li>
-					<li class="b">${list.goodsPrice} <span>24%</span></li>
+					<li class="b">${list.goodsPrice}<span> ${list.goodsDiscountRate}%</span></li>
 					<c:set var="string1" value="${list.goodsDescription}" />
 					<c:set var="string2" value="..." />
 					<li class="c">&quot; <c:choose>
@@ -150,7 +150,17 @@ li {
 							</c:otherwise>
 						</c:choose>&quot;
 					</li>
-					<li class="d">리뷰 <span>2</span> 평점 · <span>4.5/5</span></li>
+					<li class="d">리뷰 <span>${list.countReply}</span> 평점 · <span>
+						<c:choose>
+							<c:when test="${list.avgReplyRating == 0.0}">
+        					평점 없음
+    					</c:when>
+							<c:otherwise>
+							${list.avgReplyRating}/5
+    						</c:otherwise>
+						</c:choose>
+					</span>
+					</li>
 				</ul>
 			</c:forEach>
 		</div>

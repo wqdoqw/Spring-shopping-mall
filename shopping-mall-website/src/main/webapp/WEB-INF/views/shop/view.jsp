@@ -340,6 +340,7 @@
 			</ul>
 		</div>
 			<input type="hidden" class="goodsCode" name="goodsCode" value="${view.goodsCode}">
+			<input type="hidden" class="goodsName" name="goodsName" value="${view.goodsName}">
 		<div class="btns">
 			<a href="#a" class="addCart_btn btn1">장바구니</a> <a href="#a" class="btn2">구매하기</a>
 		</div>
@@ -347,10 +348,12 @@
 	<script>
 	  $(".addCart_btn").click(function(){
 	   var goodsCode = $(".goodsCode").val();
+	   var goodsName = $(".goodsName").val();
 	   var cartStock = $(".numBox").val();
 	      
 	   var data = {
 	     goodsCode : goodsCode,
+	     goodsName : goodsName,
 	     cartStock : cartStock
 	     };
 	   
@@ -461,6 +464,10 @@
 
 						<script>
 					      function popup${reply.replyNumber}(){
+					    		if("${member.email}" != "${reply.userid}"){
+	  								alert("작성자 본인만 수정 할 수 있습니다.");
+					    			return;
+					    		}
 					            var url = "/shop/modify?n=${reply.replyNumber}";
 					            var name = "popup test";
 					            var option = "width = 470, height = 400, top = 200, left = 200, toolbar=no, location=no, status=no, memubar=no, scrollbars=no, resizable=no"
@@ -562,7 +569,6 @@
  									  });
  									  
  									});
- 								  }
 
  	</script>
 

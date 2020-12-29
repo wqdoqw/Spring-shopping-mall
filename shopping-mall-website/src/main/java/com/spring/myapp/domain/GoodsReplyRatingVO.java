@@ -2,12 +2,10 @@ package com.spring.myapp.domain;
 
 import java.util.Date;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class GoodsVO {
+public class GoodsReplyRatingVO {
 	private String goodsCode;
 	private String goodsName;
 	private String firstClassification;
@@ -20,4 +18,8 @@ public class GoodsVO {
 	private String goodsImage;
 	private String goodsThumbnailImage;
 	private Date goodsAddedTime;
+	
+	// 새로 추가
+	private double avgReplyRating;
+	private int countReply;
 }

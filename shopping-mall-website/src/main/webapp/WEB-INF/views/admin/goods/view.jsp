@@ -47,6 +47,8 @@
  						<span>${goods.goodsPrice}</span>
                     <label for="goodsStock" style="display:block;">상품재고<span>*</span></label>
  						<span>${goods.goodsStock}</span>
+                    <label for="goodsStock" style="display:block;">상품 할인율<span>*</span></label>
+ 						<span>${goods.goodsDiscountRate}%</span>
                     <label for="goodsDescription" style="display:block;">상품소개<span>*</span></label>
  						<span>${goods.goodsDescription}</span>
  					 <label for="goodsImage" style="display:block;">상품 이미지<span>*</span></label>

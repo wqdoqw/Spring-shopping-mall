@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.myapp.domain.CartVO;
 import com.spring.myapp.domain.GoodsReplyListVO;
+import com.spring.myapp.domain.GoodsReplyRatingVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
 import com.spring.myapp.domain.MemberVO;
@@ -41,13 +42,10 @@ public class ShopController {
 		logger.info("get list");
 
 		System.out.println("classification>>" + firstClassification);
-//		System.out.println("vo>>" + vo);
-		List<GoodsVO> list = null;
-		list = service.goodsList(firstClassification);
-
-//		list = list.stream().filter(s -> s.getFirstClassification().equals(firstClassification)).collect(Collectors.toList());
-		System.out.println(list.get(0));
-
+		
+		List<GoodsReplyRatingVO> list = service.goodsReplyList(firstClassification);
+		System.out.println("list>>" + list.get(0));
+		
 		model.addAttribute("list", list);
 
 	}
@@ -95,16 +93,11 @@ public class ShopController {
 	@RequestMapping(value = "/view/delete", method = RequestMethod.POST)
 	public String postReplyDelete(@RequestParam("s") String replyNumber, HttpSession session) throws Exception {
 		logger.info("post view delete");
-//		MemberVO member = (MemberVO) session.getAttribute("member");
-//		System.out.println("member>>" + member);
 		GoodsReplyVO reply = service.selectReplyByNumber(replyNumber);
 
-		System.out.println("요기>>" + reply);
-//		if (member.getEmail() == null) {
-//			System.out.println("qwdwq");
-//		}
+		System.out.println("reply>>" + reply);
+		
 		service.deleteReply(reply.getReplyNumber());
-//		adminService.goodsDelete(goodsCode);
 
 		return "redirect:/shop/view?n=" + reply.getGoodsName();
 	}

@@ -22,14 +22,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.myapp.domain.CategoryVO;
 import com.spring.myapp.domain.GoodsVO;
 import com.spring.myapp.domain.GoodsViewVO;
 import com.spring.myapp.domain.MemberVO;
 import com.spring.myapp.service.AdminService;
 import com.spring.myapp.utils.UploadFile;
 
-import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/admin/*")

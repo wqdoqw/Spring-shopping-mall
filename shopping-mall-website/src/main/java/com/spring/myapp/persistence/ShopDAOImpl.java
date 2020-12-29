@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.myapp.domain.CartVO;
 import com.spring.myapp.domain.GoodsReplyListVO;
+import com.spring.myapp.domain.GoodsReplyRatingVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
 
@@ -64,5 +65,20 @@ public class ShopDAOImpl implements ShopDAO {
 	@Override
 	public void addCart(CartVO cart) throws Exception {
 		sql.insert(namespace + ".addCart", cart);
+	}
+
+//	@Override
+//	public double getAvgRating(String goodsName) throws Exception {
+//		return sql.selectOne(namespace + ".replyCount", goodsName);
+//	}
+//
+//	@Override
+//	public int getCountReply(String goodsName) throws Exception {
+//		return sql.selectOne(namespace + ".replyAvg", goodsName);
+//	}
+	
+	@Override
+	public List<GoodsReplyRatingVO> goodsReplyList(String firstClassification) throws Exception {
+		return sql.selectList(namespace + ".replyCount", firstClassification);
 	}
 }

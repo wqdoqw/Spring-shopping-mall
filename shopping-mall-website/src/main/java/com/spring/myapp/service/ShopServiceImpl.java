@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.myapp.domain.CartVO;
 import com.spring.myapp.domain.GoodsReplyListVO;
+import com.spring.myapp.domain.GoodsReplyRatingVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
 import com.spring.myapp.persistence.ShopDAO;
@@ -61,5 +62,20 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public void addCart(CartVO cart) throws Exception {
 		dao.addCart(cart);
+	}
+
+//	@Override
+//	public double getAvgRating(String goodsName) throws Exception {
+//		return dao.getAvgRating(goodsName);
+//	}
+//	
+//	@Override
+//	public int getCountReply(String goodsName) throws Exception {
+//		return dao.getCountReply(goodsName);
+//	}
+
+	@Override
+	public List<GoodsReplyRatingVO> goodsReplyList(String firstClassification) throws Exception {
+		return dao.goodsReplyList(firstClassification);
 	}
 }
