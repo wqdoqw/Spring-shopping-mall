@@ -71,29 +71,37 @@
 
 	<!-- 상품 소감(댓글) 삭제 -->
 	<delete id="deleteReply">
-		DELETE FROM goods_reply 
+	<![CDATA[
+		DELETE FROM goods_reply
 		WHERE replyNumber = #{replyNumber}
+	]]>
 	</delete>
 
 	<!-- 아이디 체크 -->
 	<select id="replyUserIdCheck" resultType="String">
+	<![CDATA[
 		SELECT userid
-		from goods_reply
+		from
+		goods_reply
 		    where replyNumber = #{replyNumber}
+	]]>
 	</select>
-	
-		<!-- 댓글 아이디로 찾기 -->
-	<select id="replySelect" resultType="com.spring.myapp.domain.GoodsReplyVO">
+
+	<!-- 댓글 아이디로 찾기 -->
+	<select id="replySelect"
+		resultType="com.spring.myapp.domain.GoodsReplyVO">
+	<![CDATA[
 		SELECT goodsCode,
-				goodsName,
-				replyNumber,
-				userid,
-				replyData,
-				replyRating,
-				replyDate
+		goodsName,
+		replyNumber,
+		userid,
+		replyData,
+		replyRating,
+		replyDate
 		FROM goods_reply WHERE replyNumber = #{replyNumber}
+	]]>
 	</select>
-	
+
 	<!-- 댓글 수정 -->
 	<update id="replyModify">
 	<![CDATA[
@@ -103,4 +111,11 @@
 	WHERE replyNumber = #{replyNumber}
 	]]>
 	</update>
+
+	<!-- 카트 담기 -->
+	<insert id="addCart">
+	<![CDATA[
+		INSERT INTO cart (userid, goodsCode, cartStock) VALUES (#{userid}, #{goodsCode}, #{cartStock})
+	]]>
+	</insert>
 </mapper>

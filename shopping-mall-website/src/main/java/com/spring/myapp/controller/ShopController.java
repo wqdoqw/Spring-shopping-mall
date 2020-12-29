@@ -1,10 +1,12 @@
 package com.spring.myapp.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.myapp.domain.CartVO;
 import com.spring.myapp.domain.GoodsReplyListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
@@ -111,21 +114,64 @@ public class ShopController {
 	public String postGoBack(@RequestParam("n") String goodsName, Model model) throws Exception {
 		logger.info("post go back");
 
-		
 		return "redirect:/shop/view?n=" + goodsName;
 	}
-	
+
 	// 댓글 수정
 	@RequestMapping(value = "/view/modify", method = RequestMethod.POST)
-	public String postUpdateReply(@RequestParam("n") String replyNumber, Model model,GoodsReplyVO replyVO) throws Exception {
+	public String postUpdateReply(@RequestParam("n") String replyNumber, Model model, GoodsReplyVO replyVO)
+			throws Exception {
 		logger.info("post update reply");
-		
+
 		GoodsReplyVO reply = service.selectReplyByNumber(replyNumber);
 
 		System.out.println("modify 요기>>" + reply);
 		System.out.println("reply data VO>>" + replyVO);
 //		service.replyModify(replyNumber);
-		
+
 		return "redirect:/shop/view?n=" + reply.getGoodsName();
+	}
+
+	// 댓글 수정
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void getUpdateReply(@RequestParam("n") String replyNumber) throws Exception {
+		logger.info("get update reply");
+
+	}
+
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String updateReply(@RequestParam("n") String replyNumber, GoodsReplyVO reply, HttpServletResponse response) throws Exception {
+		logger.info("post update reply");
+		
+		System.out.println("modify replyvo>>>" + reply);
+		reply.setReplyNumber(replyNumber);
+		
+		service.replyModify(reply);
+		
+		PrintWriter out = response.getWriter();
+        out.println("<script>parent.close()window.close()self.close()</script> ");
+
+
+		return "redirect:/shop/reload";
+	}
+	
+	// 수정용 페이지 리로드
+	@RequestMapping(value = "/reload", method = RequestMethod.GET)
+	public void getReload() throws Exception {
+		logger.info("get reload");
+	}
+	
+	// 카트 추가
+	@ResponseBody
+	@RequestMapping(value = "/view/addCart", method = RequestMethod.POST)
+	public void addCart(CartVO cart, HttpSession session) throws Exception {
+		logger.info("post cart");
+		
+		System.out.println("cartVO>>" + cart);
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		System.out.println("memberVO>>" + member);
+		cart.setUserid(member.getEmail());
+		System.out.println("after cartVO>>" + cart);
+		service.addCart(cart);
 	}
 }

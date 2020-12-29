@@ -182,34 +182,32 @@
 	}
 }
 
-
 /* rating star modal */
 .rating-stars-modal ul {
-  list-style-type:none;
-  padding:0;
-  
-  -moz-user-select:none;
-  -webkit-user-select:none;
+	list-style-type: none;
+	padding: 0;
+	-moz-user-select: none;
+	-webkit-user-select: none;
 }
-.rating-stars-modal ul > li.star {
-  display:inline-block;
-  
+
+.rating-stars-modal ul>li.star {
+	display: inline-block;
 }
 
 /* Idle State of the stars */
-.rating-stars-modal ul > li.star > i.fa {
-  font-size:2.5em; /* Change the size of the stars */
-  color:#ccc; /* Color on idle state */
+.rating-stars-modal ul>li.star>i.fa {
+	font-size: 2.5em; /* Change the size of the stars */
+	color: #ccc; /* Color on idle state */
 }
 
 /* Hover state of the stars */
-.rating-stars-modal ul > li.star.hover > i.fa {
-  color:#FFCC36;
+.rating-stars-modal ul>li.star.hover>i.fa {
+	color: #FFCC36;
 }
 
 /* Selected state of the stars */
-.rating-stars-modal ul > li.star.selected > i.fa {
-  color:#FF912C;
+.rating-stars-modal ul>li.star.selected>i.fa {
+	color: #FF912C;
 }
 </style>
 <body>
@@ -288,7 +286,29 @@
 							<input type="number" class="numBox" min="1"
 								max="${view.goodsStock}" value="1" readonly="readonly" /> <a
 								href="#a" class="plus">증가</a> <a href="#a" class="minus">감소</a>
-
+							<script>
+							$(".plus").click(function(){
+   								var num = $(".numBox").val();
+  								var plusNum = Number(num) + 1;
+   
+   								if(plusNum >= ${view.goodsStock}) {
+   								 $(".numBox").val(num);
+  								 } else {
+   								 $(".numBox").val(plusNum);          
+   									}
+ 									 });
+  
+ 								 $(".minus").click(function(){
+   								 var num = $(".numBox").val();
+   								 var minusNum = Number(num) - 1;
+   
+   								 if(minusNum <= 0) {
+    							$(".numBox").val(num);
+   								} else {
+   								 $(".numBox").val(minusNum);          
+   								}
+ 								 });
+ 							</script>
 						</div>
 					</td>
 				</tr>
@@ -319,10 +339,35 @@
 						alt=""></a></li>
 			</ul>
 		</div>
+			<input type="hidden" class="goodsCode" name="goodsCode" value="${view.goodsCode}">
 		<div class="btns">
-			<a href="#a" class="btn1">장바구니</a> <a href="#a" class="btn2">구매하기</a>
+			<a href="#a" class="addCart_btn btn1">장바구니</a> <a href="#a" class="btn2">구매하기</a>
 		</div>
 	</div>
+	<script>
+	  $(".addCart_btn").click(function(){
+	   var goodsCode = $(".goodsCode").val();
+	   var cartStock = $(".numBox").val();
+	      
+	   var data = {
+	     goodsCode : goodsCode,
+	     cartStock : cartStock
+	     };
+	   
+	   $.ajax({
+	    url : "/shop/view/addCart",
+	    type : "post",
+	    data : data,
+	    success : function(result){
+	     alert("카트 담기 성공");
+	     $(".numBox").val("1");
+	    },
+	    error : function(){
+	     alert("카트 담기 실패");
+	    }
+	   });
+	  });
+	</script>
 
 	<div id="reply" style="margin-bottom: 350px;">
 
@@ -400,26 +445,32 @@
 									</ul>
 								</div>
 							</td>
-							<td>${reply.replyData}
-							</td>
+							<td>${reply.replyData}</td>
 							<td>
-								<div style="float: right; display:block;">
+								<div style="float: right; display: block;">
 									<c:if test="${member != null}">
 										<form role="form" method="post">
 											<button class="btn btn-warning" id="${reply.replyNumber}del">삭제</button>
 										</form>
-											<button class="btn btn-danger"  id="${reply.replyNumber}modify" data-toggle="modal" data-target="#exampleModalCenter" >수정</button>
+										<a class="btn btn-danger"
+											href="javascript:popup${reply.replyNumber}()">수정</a>
 									</c:if>
-							</div>
+								</div>
 							</td>
 						</tr>
 
 						<script>
-						
+					      function popup${reply.replyNumber}(){
+					            var url = "/shop/modify?n=${reply.replyNumber}";
+					            var name = "popup test";
+					            var option = "width = 470, height = 400, top = 200, left = 200, toolbar=no, location=no, status=no, memubar=no, scrollbars=no, resizable=no"
+					            window.open(url, name, option);
+					        }
+					       
 							var formObj = $("form[role='form']");
 							var member = "${member == null}";
-
-								
+					
+							
 							$("#" + "${reply.replyNumber}del").click(function(){  
 		  						var con = confirm("정말로 삭제하시겠습니까?");
 		  						if (con) {
@@ -464,28 +515,7 @@
 		</section>
 	</div>
 	<script>
-								$(".plus").click(function(){
-   								var num = $(".numBox").val();
-  								var plusNum = Number(num) + 1;
-   
-   								if(plusNum >= ${view.goodsStock}) {
-   								 $(".numBox").val(num);
-  								 } else {
-   								 $(".numBox").val(plusNum);          
-   									}
- 									 });
-  
- 								 $(".minus").click(function(){
-   								 var num = $(".numBox").val();
-   								 var minusNum = Number(num) - 1;
-   
-   								 if(minusNum <= 0) {
-    							$(".numBox").val(num);
-   								} else {
-   								 $(".numBox").val(minusNum);          
-   								}
- 								 });
- 								 //stars-modal
+								
  								
  								  $(document).ready(function(){
  									  
@@ -532,46 +562,10 @@
  									  });
  									  
  									});
+ 								  }
 
  	</script>
- 	
-<%--  					<!-- 		https://getbootstrap.com/docs/4.0/components/modal/ -->
-					<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <form role="form" method="post" autocomplete="off">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">리뷰 수정${reply.replyNumber}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-				<input type="hidden" name="goodsCode" value="${view.goodsCode}">
-				<input type="hidden" name="goodsName" value="${view.goodsName}">
-        <div>
-			<textarea name="replyData" id="${reply.replyNumber}replyData" class="form-control"
-							rows="4" cols="50" maxlength="100">${reply.replyData}</textarea>
-		</div>
-			<div class='rating-stars-modal' style="margin-left:100px;">
-				<ul id='stars-modal'>
-					<li class='star selected' data-value='1'><i class='fa fa-star fa-fw'></i></li>
-					<li class='star' data-value='2'><i class='fa fa-star fa-fw'></i></li>
-					<li class='star' data-value='3'><i class='fa fa-star fa-fw'></i></li>
-					<li class='star' data-value='4'><i class='fa fa-star fa-fw'></i></li>
-			 		<li class='star' data-value='5'><i class='fa fa-star fa-fw'></i></li>
-				</ul>
-		</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="${reply.replyNumber}modify-confirm">수정하기</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-      </div>
-    </div>
-  </div>
-      </form>
-</div> --%>
+
 </body>
 </html>
 

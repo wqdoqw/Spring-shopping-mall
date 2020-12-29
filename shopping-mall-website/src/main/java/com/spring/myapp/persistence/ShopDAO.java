@@ -2,6 +2,7 @@ package com.spring.myapp.persistence;
 
 import java.util.List;
 
+import com.spring.myapp.domain.CartVO;
 import com.spring.myapp.domain.GoodsReplyListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
@@ -31,4 +32,7 @@ public interface ShopDAO {
 	
 	// 댓글 수정
 	public void replyModify(GoodsReplyVO vo) throws Exception;
+	
+	// 카트 담기
+	public void addCart(CartVO cart) throws Exception;
 }
