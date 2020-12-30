@@ -217,4 +217,18 @@ public class ShopController {
 		}
 		return result;
 	}
+	
+	// 카트 목록
+	@RequestMapping(value = "/orderCart", method = RequestMethod.GET)
+	public void getOrderCart(HttpSession session, Model model) throws Exception {
+		logger.info("get order cart");
+
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		String userId = member.getEmail();
+
+		List<CartListVO> cartList = service.cartList(userId);
+
+		model.addAttribute("cartList", cartList);
+	}
+	
 }

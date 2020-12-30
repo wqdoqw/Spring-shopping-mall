@@ -17,6 +17,7 @@
 <script src="/resources/js/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
 <script src="/resources/js/bootstrap.min.js"></script>
+<!-- 다음주소 API 추가하기 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <body>

@@ -261,6 +261,7 @@ li {
  				<div class="orderOpne">
   					<button type="button" class="orderOpne_bnt">주문 정보 입력</button>
  				</div>
+ 				<a href="/shop/orderCart" class="btn btn-default" style="color:red;">주문 하기</a>
 		</div>
 	</c:if>
 		
