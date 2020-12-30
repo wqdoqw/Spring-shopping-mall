@@ -118,7 +118,7 @@
 		INSERT INTO cart (userid, goodsCode, goodsName, cartStock) VALUES (#{userid}, #{goodsCode}, #{goodsName}, #{cartStock})
 	]]>
 	</insert>
-	
+
 	<!-- 특정 상품의 댓글 갯수랑 좋아요 평균 찾기 -->
 	<select id="replyCount"
 		resultType="com.spring.myapp.domain.GoodsReplyRatingVO">
@@ -160,5 +160,31 @@ WHERE firstClassification = #{firstClassification}
 GROUP BY goodsCode
 	]]>
 	</select>
-	
+	<!-- 카트 리스트 -->
+	<select id="cartList"
+		resultType="com.spring.myapp.domain.CartListVO">
+		<![CDATA[
+	SELECT c.cartNumber,
+		 c.userid,
+		 c.goodsCode,
+		 c.goodsName,
+		 c.cartStock,
+		 c.cartAddedDate,
+		 g.firstClassification,
+		 g.secondClassification,
+		 g.brand,
+		 g.goodsPrice,
+		 g.goodsDiscountRate,
+		 g.goodsDescription,
+		 g.goodsImage,
+		 g.goodsThumbnailImage
+FROM cart c INNER JOIN member m INNER JOIN goods g
+WHERE c.userid = m.email AND c.goodsName = g.goodsName AND c.userid = #{userid}
+		]]>
+	</select>
+
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+		DELETE FROM cart WHERE cartNumber = #{cartNumber} AND userid = #{userid}
+	</delete>
 </mapper>

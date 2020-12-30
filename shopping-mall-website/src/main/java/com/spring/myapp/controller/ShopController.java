@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.myapp.domain.CartListVO;
 import com.spring.myapp.domain.CartVO;
 import com.spring.myapp.domain.GoodsReplyListVO;
 import com.spring.myapp.domain.GoodsReplyRatingVO;
@@ -42,10 +43,10 @@ public class ShopController {
 		logger.info("get list");
 
 		System.out.println("classification>>" + firstClassification);
-		
+
 		List<GoodsReplyRatingVO> list = service.goodsReplyList(firstClassification);
 		System.out.println("list>>" + list.get(0));
-		
+
 		model.addAttribute("list", list);
 
 	}
@@ -96,7 +97,7 @@ public class ShopController {
 		GoodsReplyVO reply = service.selectReplyByNumber(replyNumber);
 
 		System.out.println("reply>>" + reply);
-		
+
 		service.deleteReply(reply.getReplyNumber());
 
 		return "redirect:/shop/view?n=" + reply.getGoodsName();
@@ -133,38 +134,87 @@ public class ShopController {
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String updateReply(@RequestParam("n") String replyNumber, GoodsReplyVO reply, HttpServletResponse response) throws Exception {
+	public String updateReply(@RequestParam("n") String replyNumber, GoodsReplyVO reply, HttpServletResponse response)
+			throws Exception {
 		logger.info("post update reply");
-		
+
 		System.out.println("modify replyvo>>>" + reply);
 		reply.setReplyNumber(replyNumber);
-		
-		service.replyModify(reply);
-		
-		PrintWriter out = response.getWriter();
-        out.println("<script>parent.close()window.close()self.close()</script> ");
 
+		service.replyModify(reply);
+
+		PrintWriter out = response.getWriter();
+		out.println("<script>parent.close()window.close()self.close()</script> ");
 
 		return "redirect:/shop/reload";
 	}
-	
+
 	// 수정용 페이지 리로드
 	@RequestMapping(value = "/reload", method = RequestMethod.GET)
 	public void getReload() throws Exception {
 		logger.info("get reload");
 	}
-	
+
 	// 카트 추가
 	@ResponseBody
 	@RequestMapping(value = "/view/addCart", method = RequestMethod.POST)
-	public void addCart(CartVO cart, HttpSession session) throws Exception {
+	public int addCart(CartVO cart, HttpSession session) throws Exception {
 		logger.info("post cart");
-		
+
+		int result = 0;
+
 		System.out.println("cartVO>>" + cart);
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		System.out.println("memberVO>>" + member);
-		cart.setUserid(member.getEmail());
+		if (member != null) {
+			cart.setUserid(member.getEmail());
+			service.addCart(cart);
+			result = 1;
+		}
 		System.out.println("after cartVO>>" + cart);
-		service.addCart(cart);
+
+		return result;
+	}
+
+	// 카트 목록
+	@RequestMapping(value = "/cartList", method = RequestMethod.GET)
+	public void getCartList(HttpSession session, Model model) throws Exception {
+		logger.info("get cart list");
+
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		String userId = member.getEmail();
+
+		List<CartListVO> cartList = service.cartList(userId);
+
+		model.addAttribute("cartList", cartList);
+	}
+
+	// 카트 삭제
+	@ResponseBody
+	@RequestMapping(value = "/deleteCart", method = RequestMethod.POST)
+	public int deleteCart(HttpSession session, @RequestParam(value = "chbox[]") List<String> chArr, CartVO cart)
+			throws Exception {
+		logger.info("delete cart");
+
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		String userid = member.getEmail();
+
+		int result = 0;
+		int cartNumber = 0;
+		if (chArr.isEmpty()) {
+			return result;
+		}
+		
+		if (member != null) {
+			cart.setUserid(userid);
+
+			for (String i : chArr) {
+				cartNumber = Integer.parseInt(i);
+				cart.setCartNumber(cartNumber);
+				service.deleteCart(cart);
+			}
+			result = 1;
+		}
+		return result;
 	}
 }

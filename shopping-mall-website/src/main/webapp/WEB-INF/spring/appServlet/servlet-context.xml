@@ -44,6 +44,10 @@
 			<mapping path="/member/account" />
 			<beans:ref bean="MemberInterceptor" />
 		</interceptor>
+		<interceptor>
+			<mapping path="/shop/cartList" />
+			<beans:ref bean="MemberInterceptor" />
+		</interceptor>
 	</interceptors>
 	<!-- 업로드 패스 설정 -->
 	<beans:bean class="java.lang.String" id="uploadPath">

@@ -339,10 +339,12 @@
 						alt=""></a></li>
 			</ul>
 		</div>
-			<input type="hidden" class="goodsCode" name="goodsCode" value="${view.goodsCode}">
-			<input type="hidden" class="goodsName" name="goodsName" value="${view.goodsName}">
+		<input type="hidden" class="goodsCode" name="goodsCode"
+			value="${view.goodsCode}"> <input type="hidden"
+			class="goodsName" name="goodsName" value="${view.goodsName}">
 		<div class="btns">
-			<a href="#a" class="addCart_btn btn1">장바구니</a> <a href="#a" class="btn2">구매하기</a>
+			<a href="#a" class="addCart_btn btn1">장바구니</a> <a href="#a"
+				class="btn2">구매하기</a>
 		</div>
 	</div>
 	<script>
@@ -362,8 +364,13 @@
 	    type : "post",
 	    data : data,
 	    success : function(result){
-	     alert("카트 담기 성공");
-	     $(".numBox").val("1");
+	    	if(result == 1){
+	     		alert("카트 담기 성공");
+	     		$(".numBox").val("1");
+	    	}else{
+	    		alert("회원만 사용할 수 있습니다");
+	     		$(".numBox").val("1");
+	    	}
 	    },
 	    error : function(){
 	     alert("카트 담기 실패");

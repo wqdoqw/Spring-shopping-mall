@@ -17,8 +17,5 @@ public class GoodsViewVO {
 	private String goodsDescription;
 	private String goodsImage;
 	private Date goodsDate;
-//	private String categoryCodeReference;
-//	private String categoryName;
-//	private String goodsThumbImage;
 
 }

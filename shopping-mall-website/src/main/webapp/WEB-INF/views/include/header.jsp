@@ -19,7 +19,7 @@
         <div class="right-head-nav right-last-element">
             	<li><a class="right-div-visible" href="/member/account">나의계정</a></li>
         	<%-- <c:if test="${member.verify != 9}"> --%>
-            	<li><a class="right-div-visible" href="#about">장바구니</a></li>
+            	<li><a class="right-div-visible" href="/shop/cartList">장바구니</a></li>
            <%--  </c:if> --%>
             <c:if test="${member == null}">
            		<li><a class="right-div-visible" href="/member/signin">로그인</a></li>
@@ -57,7 +57,7 @@
         <a href="/shop/list?c=women">Women</a>
         <a href="#contact">Shoes</a>
         <a href="#about">Bag</a>
-        <a href="#home">Contact</a>
+        <a href="#home">Order Tracking</a>
         <a href="#home">About Us</a>
 
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">

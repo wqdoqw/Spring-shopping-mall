@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.spring.myapp.domain.CartListVO;
 import com.spring.myapp.domain.CartVO;
 import com.spring.myapp.domain.GoodsReplyListVO;
 import com.spring.myapp.domain.GoodsReplyRatingVO;
@@ -67,18 +68,18 @@ public class ShopDAOImpl implements ShopDAO {
 		sql.insert(namespace + ".addCart", cart);
 	}
 
-//	@Override
-//	public double getAvgRating(String goodsName) throws Exception {
-//		return sql.selectOne(namespace + ".replyCount", goodsName);
-//	}
-//
-//	@Override
-//	public int getCountReply(String goodsName) throws Exception {
-//		return sql.selectOne(namespace + ".replyAvg", goodsName);
-//	}
-	
 	@Override
 	public List<GoodsReplyRatingVO> goodsReplyList(String firstClassification) throws Exception {
 		return sql.selectList(namespace + ".replyCount", firstClassification);
+	}
+	
+	@Override
+	public List<CartListVO> cartList(String userid) throws Exception {
+		return sql.selectList(namespace + ".cartList", userid);
+	}
+	
+	@Override
+	public void deleteCart(CartVO cart) throws Exception {
+		sql.delete(namespace + ".deleteCart", cart);
 	}
 }

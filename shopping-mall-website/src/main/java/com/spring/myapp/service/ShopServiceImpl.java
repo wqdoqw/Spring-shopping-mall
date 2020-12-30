@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.spring.myapp.domain.CartListVO;
 import com.spring.myapp.domain.CartVO;
 import com.spring.myapp.domain.GoodsReplyListVO;
 import com.spring.myapp.domain.GoodsReplyRatingVO;
@@ -64,18 +65,18 @@ public class ShopServiceImpl implements ShopService {
 		dao.addCart(cart);
 	}
 
-//	@Override
-//	public double getAvgRating(String goodsName) throws Exception {
-//		return dao.getAvgRating(goodsName);
-//	}
-//	
-//	@Override
-//	public int getCountReply(String goodsName) throws Exception {
-//		return dao.getCountReply(goodsName);
-//	}
-
 	@Override
 	public List<GoodsReplyRatingVO> goodsReplyList(String firstClassification) throws Exception {
 		return dao.goodsReplyList(firstClassification);
+	}
+	
+	@Override
+	public List<CartListVO> cartList(String userid) throws Exception {
+		return dao.cartList(userid);
+	}
+	
+	@Override
+	public void deleteCart(CartVO cart) throws Exception {
+		dao.deleteCart(cart);
 	}
 }
