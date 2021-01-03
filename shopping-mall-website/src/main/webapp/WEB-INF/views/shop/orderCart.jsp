@@ -186,7 +186,9 @@ li {
 			<%@ include file="../include/header.jsp"%>
 		</div>
 	</header>
-
+	
+	<section id='main_img'></section>
+	
 	<c:if test="${fn:length(cartList) == 0}">
 		<h3 class="goods-title">전체 카트 상품</h3>
 		<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
@@ -236,7 +238,7 @@ li {
 				원
 			</p>
 		</div>
-	
+
 		<section class="order_form" style="margin-top: 50px;">
 			<h3 style="font-weight: bold; text-align: center; margin-top: 30px;">주문하시는
 				분</h3>
@@ -245,8 +247,7 @@ li {
 				<label for="email">이메일<span>*</span></label> <input type="text"
 					id="userId" name="userId" required="required" placeholder="이메일"
 					style="display: block;" value="${member.email}"
-					class="form-control"> 
-				<label for="orderRecipient">수령인<span>*</span></label>
+					class="form-control"> <label for="orderRecipient">수령인<span>*</span></label>
 				<input type="text" id="orderRecipient" name="orderRecipient"
 					required="required" placeholder="수령인" style="display: block;"
 					class="form-control"> <label for="phone">연락처<span>*</span></label>
@@ -274,15 +275,15 @@ li {
 					style="display: block; margin-bottom: 10px;"
 					value="${member.address2}" class="form-control"> <input
 					type="hidden" class="goodsCode" name="goodsCode"
-					value="${view.goodsCode}"> 
-				<input type="hidden" id="amount" name="amount" value="${sum}">
+					value="${view.goodsCode}"> <input type="hidden" id="amount"
+					name="amount" value="${sum}">
 				<button type="submit" class="btn btn-secondary btn-md pay_button"
 					style="background-color: #ff6766;" onclick="alert('주문이 완료되었습니다.');">결제하기</button>
 			</form>
 		</section>
 
 		<div class="clear" style="margin-bottom: 200px;"></div>
-		
+
 	</c:if>
 
 

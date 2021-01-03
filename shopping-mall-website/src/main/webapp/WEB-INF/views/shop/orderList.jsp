@@ -156,6 +156,10 @@ li {
 			<%@ include file="../include/header.jsp"%>
 		</div>
 	</header>
+	
+	<section id='main_img'></section>
+	
+	
 	<h2 class="goods-title">주문완료</h2>
 
 	<div class="order_form">

@@ -144,7 +144,8 @@ li {
 		</div>
 	</header>
 
-
+	<section id='main_img'></section>
+	
 	<section id="content">
 		<c:if test="${fn:length(cartList) == 0}">
 			<h3 class="goods-title">전체 카트 상품</h3>

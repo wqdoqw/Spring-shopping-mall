@@ -25,7 +25,7 @@
 				<%@ include file="../include/header.jsp"%>
 			</div>
 		</header>
-
+	<section id='main_img'></section>
 
 		   <section class="register_form" style="margin-top:50px;">
         <h2 style="font-weight: bold;">로그인</h2>

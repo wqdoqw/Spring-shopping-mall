@@ -243,6 +243,24 @@ li {
     display: none;
 }
 
+/* top image section */
+#main_img {
+    background: url("../img/bg3.jpg");
+    background-position: top center;
+    background-repeat: no-repeat;
+    height: 180px;
+    text-align: center;
+    color: #f9f5db;
+}
+
+#main_img2 {
+    background: url("../img/bg6.jpg");
+    background-position: top center;
+    background-repeat: no-repeat;
+    height: 180px;
+    text-align: center;
+    color: #f9f5db;
+}
 @media screen and (max-width: 1020px) {
     .topnav {
         padding-left: 10%;

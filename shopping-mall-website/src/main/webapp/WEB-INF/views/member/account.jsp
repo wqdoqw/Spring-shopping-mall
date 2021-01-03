@@ -6,17 +6,17 @@
 <head>
 <title>가성비몰</title>
 
-    <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
-    <!-- 부트스트랩 CSS 추가하기 -->
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <!-- 커스텀 CSS 추가하기 -->
-    <link rel="stylesheet" href="/resources/css/custom.css">
-    <!-- Popper 자바스크립트 추가하기 -->
-    <script src="/resources/js/popper.min.js"></script>
-    <!-- 제이쿼리 자바스크립트 추가하기 -->
-    <script src="/resources/js/jquery-3.5.1.min.js"></script>
-    <!-- 부트스트랩 자바스크립트 추가하기 -->
-    <script src="/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+<!-- 부트스트랩 CSS 추가하기 -->
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<!-- 커스텀 CSS 추가하기 -->
+<link rel="stylesheet" href="/resources/css/custom.css">
+<!-- Popper 자바스크립트 추가하기 -->
+<script src="/resources/js/popper.min.js"></script>
+<!-- 제이쿼리 자바스크립트 추가하기 -->
+<script src="/resources/js/jquery-3.5.1.min.js"></script>
+<!-- 부트스트랩 자바스크립트 추가하기 -->
+<script src="/resources/js/bootstrap.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <body>
@@ -65,63 +65,75 @@
 			}).open();
 		}
 	</script>
-	<div id="root">
-		<header id="header">
-			<div id="header_box">
-				<%@ include file="../include/header.jsp"%>
+	<header id="header">
+		<div id="header_box">
+			<%@ include file="../include/header.jsp"%>
+		</div>
+	</header>
+	
+	<section id='main_img2'></section>
+
+	<section class="register_form" style="margin-top: 50px;">
+		<h2 style="font-weight: bold;">회원정보 수정</h2>
+		<br>
+		<form role="form" method="post">
+			<label for="email">이메일<span>*</span></label> <label for="email"
+				style="display: block; font-weight: normal">${member.email}</label>
+			<label for="password" style="display: block;">비밀번호<span>*</span></label>
+			<button type="button" class="btn btn-secondary btn-sm"
+				style="display: block;">
+				<i class="fa fa-search"></i> 비밀번호 찾기
+			</button>
+			<label for="email">닉네임<span>*</span></label> <input type="text"
+				id="username" name="username" required="required"
+				value="${member.username}" placeholder="Username"
+				style="display: block;" class="form-control"> <label
+				for="phone">연락처<span>*</span></label> <input type="text" id="phone"
+				name="phone" required="required" value="${member.phone}"
+				placeholder="Phone number" style="display: block;"
+				class="form-control">
+			<div style="display: inline;">
+				<label for="zipcode" style="display: block;">우편번호<span>*</span></label>
+				<input type="text" id="zipcode" value="${member.zipcode}"
+					style="width: 150px; display: inline;" name="zipcode"
+					required="required" placeholder="Zipcode" class="form-control">
+				<button type="button"
+					class="btn btn-secondary btn-md postcode_button"
+					style="display: inline; margin-left: 3px;"
+					onclick="execPostCode();">
+					<i class="fa fa-search"></i> 우편번호 찾기
+				</button>
 			</div>
-		</header>
-		<section class="register_form" style="margin-top:50px;">
-        <h2 style="font-weight: bold;">회원정보 수정</h2>
-        <br>
-         <form role="form" method="post">
-            <label for="email">이메일<span>*</span></label>
-              <label for="email" style="display: block; font-weight: normal">${member.email}</label>
-            <label for="password" style="display: block;">비밀번호<span>*</span></label>
-            <button type="button" class="btn btn-secondary btn-sm" style="display:block;">
-                    <i class="fa fa-search"></i> 비밀번호 찾기
-                </button>
-            <label for="email">닉네임<span>*</span></label>
-            <input type="text" id="username" name="username" required="required" value="${member.username}"placeholder="Username"
-                style="display: block;" class="form-control">
-            <label for="phone">연락처<span>*</span></label>
-            <input type="text" id="phone" name="phone" required="required" value="${member.phone}" placeholder="Phone number"
-                style="display: block;" class="form-control">
-            <div style="display: inline;">
-                <label for="zipcode" style="display: block;">우편번호<span>*</span></label>
-                <input type="text" id="zipcode"  value="${member.zipcode}" style="width: 150px; display: inline;" name="zipcode"
-                    required="required" placeholder="Zipcode" class="form-control">
-                <button type="button" class="btn btn-secondary btn-md postcode_button" style="display: inline; margin-left:3px;"
-                    onclick="execPostCode();">
-                    <i class="fa fa-search"></i> 우편번호 찾기
-                </button>
-            </div>
-            <label for="address1"  style="display: block;">주소1<span>*</span></label>
-            <input type="text" id="address1" value="${member.address1}" name="address1" required="required" placeholder="Address1"
-                style="display: block;" class="form-control">
-            <label for="address2">주소2<span>*</span></label>
-            <input type="text"  value="${member.address2}" id="address2" name="address2" required="required" placeholder="Address2"
-                style="display: block; margin-bottom: 10px;" class="form-control">
-            <button type="submit" onclick="javascript:btn();" class="btn btn-secondary btn-md" style="margin-bottom: 100px;background-color: #ff6766; margin-top:20px;">회원정보 수정</button>
-   		<script> 
-   		function btn(){ 
-   			alert('다시 로그인 해주세요.'); 
-   			} 
-   		</script>
+			<label for="address1" style="display: block;">주소1<span>*</span></label>
+			<input type="text" id="address1" value="${member.address1}"
+				name="address1" required="required" placeholder="Address1"
+				style="display: block;" class="form-control"> <label
+				for="address2">주소2<span>*</span></label> <input type="text"
+				value="${member.address2}" id="address2" name="address2"
+				required="required" placeholder="Address2"
+				style="display: block; margin-bottom: 10px;" class="form-control">
+			<button type="submit" onclick="javascript:btn();"
+				class="btn btn-secondary btn-md"
+				style="margin-bottom: 100px; background-color: #ff6766; margin-top: 20px;">회원정보
+				수정</button>
+			<script>
+				function btn() {
+					alert('다시 로그인 해주세요.');
+				}
+			</script>
 
-   		</form>
-    </section>
-    
-    
-
-		<footer class="foot_design">
-			<div id="footer_box">
-				<%@ include file="../include/footer.jsp"%>
-			</div>
-		</footer>
+		</form>
+	</section>
 
 
-	</div>
+
+	<footer class="foot_design">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp"%>
+		</div>
+	</footer>
+
+
 
 
 
