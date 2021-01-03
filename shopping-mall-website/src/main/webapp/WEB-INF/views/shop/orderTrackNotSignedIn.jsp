@@ -141,26 +141,14 @@ li {
 			<%@ include file="../include/header.jsp"%>
 		</div>
 	</header>
-	<c:if test="${member == null}">
-		<section class="register_form" style="margin-top: 50px;">
-			<h2 style="font-weight: bold;">주문번호로 검색</h2>
-			<form role="form" method="post">
-				<label for="email" style="margin-top: 20px;">주문번호<span>*</span></label>
-				<input type="text" id="orderId" name="orderId" required="required"
-					placeholder="주문번호" class="form-control">
-				<button type="submit" class="btn btn-secondary btn-md"
-					style="background-color: #ff6766; margin-top: 20px;">검색하기</button>
-			</form>
-		</section>
-	</c:if>
 
-	<c:if test="${fn:length(ordered) == 0 && member != null}">
-		<h2 class="goods-title">주문내역</h2>
+	<h2 class="goods-title">주문내역</h2>
+	<c:if test="${fn:length(ordered) == 0}">
 		<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
 			주문내역이 없습니다.</p>
 	</c:if>
 	<c:if test="${fn:length(ordered) > 0}">
-		<h2 class="goods-title">주문내역</h2>
+
 		<div class="clear"></div>
 
 		<section class="table-view">

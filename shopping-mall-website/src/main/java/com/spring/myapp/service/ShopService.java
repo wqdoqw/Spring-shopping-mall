@@ -60,4 +60,7 @@ public interface ShopService {
 
 	// 상품번호로 상품 주문한거 가져오기
 	public List<OrderedGoodsVO> getOrderedGoods(String orderId) throws Exception;
+
+	// 이메일로 상품 주문한거 가져오기
+	public List<OrderedGoodsVO> getOrderedGoodsByEmail(String userId) throws Exception;
 }

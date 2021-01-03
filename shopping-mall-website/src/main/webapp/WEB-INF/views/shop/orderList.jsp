@@ -19,6 +19,8 @@
 <script src="/resources/js/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
 <script src="/resources/js/bootstrap.min.js"></script>
+<!-- 다음주소 API 추가하기 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style>
 * {
@@ -101,6 +103,20 @@ li {
 	color: red;
 }
 
+.order_form p {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.confirm_p2 {
+	background-color: #e1f8fc;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-left: 33%;
+	margin-right: 33%;
+}
+
 @media screen and (max-width: 1500px) {
 	.order_form label {
 		margin-left: 10%;
@@ -133,7 +149,6 @@ li {
 	}
 }
 </style>
-
 </head>
 <body>
 	<header id="header">
@@ -141,33 +156,25 @@ li {
 			<%@ include file="../include/header.jsp"%>
 		</div>
 	</header>
-	<c:if test="${member == null}">
-		<section class="register_form" style="margin-top: 50px;">
-			<h2 style="font-weight: bold;">주문번호로 검색</h2>
-			<form role="form" method="post">
-				<label for="email" style="margin-top: 20px;">주문번호<span>*</span></label>
-				<input type="text" id="orderId" name="orderId" required="required"
-					placeholder="주문번호" class="form-control">
-				<button type="submit" class="btn btn-secondary btn-md"
-					style="background-color: #ff6766; margin-top: 20px;">검색하기</button>
-			</form>
-		</section>
-	</c:if>
+	<h2 class="goods-title">주문완료</h2>
 
-	<c:if test="${fn:length(ordered) == 0 && member != null}">
-		<h2 class="goods-title">주문내역</h2>
-		<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
-			주문내역이 없습니다.</p>
-	</c:if>
+	<div class="order_form">
+		<p style="margin-top:40px;">가성비<span>몰</span>을 이용해 주셔서 감사합니다</p>
+		<p class="confirm_p2">
+			고객님, <span style="color: red;">주문이 완료</span>되었습니다
+		</p>
+		<p>고객님의 주문번호는</p>
+		<p style="margin-bottom:40px;"><span>${orderId}</span>입니다.</p>
+	</div>
 	<c:if test="${fn:length(ordered) > 0}">
 		<h2 class="goods-title">주문내역</h2>
+
 		<div class="clear"></div>
 
 		<section class="table-view">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th style="width: 10%;">주문번호</th>
 						<th style="width: 10%;">사진</th>
 						<th style="width: 10%;">상품이름</th>
 						<th style="width: 10%;">가격</th>
@@ -180,7 +187,6 @@ li {
 					<c:set var="sum" value="0" />
 					<c:forEach items="${ordered}" var="ordered">
 						<tr>
-							<td>${ordered.orderId}</td>
 							<td><img src="${ordered.goodsThumbnailImage}"
 								style="max-width: 50px;" /></td>
 							<td><a href="/shop/view?n=${ordered.goodsName}">${ordered.goodsName}</a></td>
@@ -206,10 +212,11 @@ li {
 				원
 			</p>
 		</div>
-
+		
 		<div class="clear" style="margin-bottom: 200px;"></div>
 
 	</c:if>
+
 
 
 	<footer class="foot_design">

@@ -43,9 +43,6 @@ public class AdminController {
 	public void getGoodsRegister(Model model) throws Exception {
 		logger.info("get goods register");
 
-//		List<CategoryVO> category = null;  // CatagoryVO 형태의 List형 변수 category 선언
-//		category = adminService.category();  // DB에 저장된 카테고리를 가져와서 category에 저장
-//		model.addAttribute("category", JSONArray.fromObject(category));  // 변수 category를 제이슨(json)타입으로 변환하여 category 세션에 부여
 	}
 
 	// 상품 등록

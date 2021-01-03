@@ -297,6 +297,50 @@ public class ShopController {
 	public void getOrderTrack(HttpSession session, Model model) throws Exception {
 		logger.info("get order track");
 
+		// 비회원 주문도 허용해야 함
+		MemberVO member = null;
+		String userId = null;
+		try {
+			member = (MemberVO) session.getAttribute("member");
+
+			userId = member.getEmail();
+			System.out.println("MEMBERVO>>" + member);
+		} catch (Exception e) {
+		}
+		if (member == null) {
+//			userId = "not signed";
+		}
+		// orderid로 리스트 출력
+		List<OrderedGoodsVO> ordered = service.getOrderedGoodsByEmail(userId);
+
+		model.addAttribute("ordered", ordered);
+//		model.addAttribute("orderId", orderId);
+		System.out.println(ordered);
+	}
+
+	// 주문 보기
+	@RequestMapping(value = "/orderTrackNotSignedIn", method = RequestMethod.GET)
+	public void getOrderTrackNotSignedIn(@RequestParam("o") String orderId, HttpSession session, Model model)
+			throws Exception {
+		logger.info("get order track not signed in");
+
+		List<OrderedGoodsVO> ordered = service.getOrderedGoods(orderId);
+		
+		for (OrderedGoodsVO orderedGoodsVO : ordered) {
+			orderedGoodsVO.setOrderId(orderId);
+		}
+		
+		model.addAttribute("ordered", ordered);
+//		model.addAttribute("orderId", orderId);
+		System.out.println(ordered);
+	}
+
+	// 주문 보기 비회원
+	@RequestMapping(value = "/orderTrack", method = RequestMethod.POST)
+	public String postOrderTrack(String orderId, HttpSession session, Model model) throws Exception {
+		logger.info("post order track");
+		
+		return "redirect:/shop/orderTrackNotSignedIn?o=" + orderId;
 	}
 
 	// 비회원 주문
@@ -314,14 +358,14 @@ public class ShopController {
 	public String postOrderGood(@RequestParam("n") String goodsName, OrderVO order, HttpSession session, Model model)
 			throws Exception {
 		logger.info("post order good");
-		
+
 		// 비회원 주문도 허용해야 함
 		MemberVO member = null;
 		String userId = null;
 		try {
 			member = (MemberVO) session.getAttribute("member");
 			userId = member.getEmail();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		if (member == null) {
@@ -353,22 +397,102 @@ public class ShopController {
 		ordered.setOrderId(buf.toString());
 		ordered.setCartStock(1);
 		service.orderCartGoods(ordered);
-		
+
 		return "redirect:/shop/confirmOrderNotSigned?o=" + buf.toString();
 	}
-	
+
 	// 비회원 주문 확인
 	@RequestMapping(value = "/confirmOrderNotSigned", method = RequestMethod.GET)
-	public void getConfirmOrderNotsigned(@RequestParam("o") String orderId, HttpSession session, Model model) throws Exception {
-		logger.info("get order cart");
+	public void getConfirmOrderNotsigned(@RequestParam("o") String orderId, HttpSession session, Model model)
+			throws Exception {
+		logger.info("get order cart not signed");
 
 		List<OrderedGoodsVO> ordered = service.getOrderedGoods(orderId);
 
 		model.addAttribute("ordered", ordered);
 		model.addAttribute("orderId", orderId);
 		System.out.println(ordered);
-		
-		
+
 	}
 
+	// 주문목록
+	@RequestMapping(value = "/orderList", method = RequestMethod.GET)
+	public void getOrderList(HttpSession session, Model model) throws Exception {
+		logger.info("get order list");
+
+		// 비회원 주문도 허용해야 함
+		MemberVO member = null;
+		String userId = null;
+		try {
+			member = (MemberVO) session.getAttribute("member");
+			userId = member.getEmail();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		if (member == null) {
+			userId = "not signed";
+		}
+		// orderid로 리스트 출력
+
+//		List<OrderedGoodsVO> ordered = service.getOrderedGoods(orderId);
+
+//		model.addAttribute("ordered", ordered);
+//		model.addAttribute("orderId", orderId);
+//		System.out.println(ordered);
+
+	}
+
+	// 주문목록
+	@RequestMapping(value = "/orderList", method = RequestMethod.POST)
+	public void postOrderList(@RequestParam("o") String orderId, HttpSession session, Model model) throws Exception {
+		logger.info("get order list");
+
+		// 비회원 주문도 허용해야 함
+		MemberVO member = null;
+		String userId = null;
+		try {
+			member = (MemberVO) session.getAttribute("member");
+			userId = member.getEmail();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		if (member == null) {
+			userId = "not signed";
+		}
+		// orderid로 리스트 출력
+
+		List<OrderedGoodsVO> ordered = service.getOrderedGoods(orderId);
+
+		model.addAttribute("ordered", ordered);
+		model.addAttribute("orderId", orderId);
+		System.out.println(ordered);
+
+	}
+
+	// 주문목록
+	@RequestMapping(value = "/orderListNotSigned", method = RequestMethod.POST)
+	public void getOrderListNotSigned(@RequestParam("o") String orderId, HttpSession session, Model model)
+			throws Exception {
+		logger.info("get order list");
+
+		// 비회원 주문도 허용해야 함
+		MemberVO member = null;
+		String userId = null;
+		try {
+			member = (MemberVO) session.getAttribute("member");
+			userId = member.getEmail();
+		} catch (Exception e) {
+		}
+		if (member == null) {
+			userId = "not signed";
+		}
+		// orderid로 리스트 출력
+
+		List<OrderedGoodsVO> ordered = service.getOrderedGoods(orderId);
+
+		model.addAttribute("ordered", ordered);
+		model.addAttribute("orderId", orderId);
+		System.out.println(ordered);
+
+	}
 }

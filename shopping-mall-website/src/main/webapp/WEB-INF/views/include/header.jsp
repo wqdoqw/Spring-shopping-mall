@@ -17,7 +17,9 @@
                 070-3322-3212</a></li>
 
         <div class="right-head-nav right-last-element">
+        	<c:if test="${member != null}">
             	<li><a class="right-div-visible" href="/member/account">나의계정</a></li>
+            </c:if>
         	<%-- <c:if test="${member.verify != 9}"> --%>
             	<li><a class="right-div-visible" href="/shop/cartList">장바구니</a></li>
            <%--  </c:if> --%>
@@ -26,8 +28,9 @@
            		<li><a class="right-div-visible" href="/member/signup">회원가입</a></li>
            	</c:if>
            	<c:if test="${member != null}">
+           			<li><a class="right-div-visible" href="/shop/orderTrack">주문목록</a></li>
            		<c:if test="${member.verify == 9}">
-           			<li><a class="right-div-visible" href="/admin/index">관리자 화면</a></li>
+           			<li><a class="right-div" href="/admin/index">관리자 화면</a></li>
            		</c:if>
            		<li><a class="right-div" href="">${member.username}님환영합니다.</a></li>
            		<li><a class="right-div-visible" href="/member/signout">로그아웃</a></li>

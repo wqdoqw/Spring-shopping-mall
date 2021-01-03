@@ -96,9 +96,14 @@ public class ShopServiceImpl implements ShopService {
 	public void orderCartGoods(OrderedGoodsVO vo) throws Exception {
 		dao.orderCartGoods(vo);
 	}
-	
+
 	@Override
 	public List<OrderedGoodsVO> getOrderedGoods(String orderId) throws Exception {
 		return dao.getOrderedGoods(orderId);
+	}
+
+	@Override
+	public List<OrderedGoodsVO> getOrderedGoodsByEmail(String userId) throws Exception {
+		return dao.getOrderedGoodsByEmail(userId);
 	}
 }
