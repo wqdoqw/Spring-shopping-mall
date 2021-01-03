@@ -1,13 +1,11 @@
 package com.spring.myapp.persistence;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.spring.myapp.domain.MemberVO;
-import com.sun.org.apache.xml.internal.utils.NameSpace;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {

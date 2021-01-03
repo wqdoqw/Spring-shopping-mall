@@ -1,6 +1,5 @@
 package com.spring.myapp.persistence;
 
-import javax.servlet.http.HttpSession;
 
 import com.spring.myapp.domain.MemberVO;
 

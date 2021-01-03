@@ -7,24 +7,16 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.spring.myapp.domain.CategoryVO;
 import com.spring.myapp.domain.GoodsVO;
-import com.spring.myapp.domain.GoodsViewVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
 
 	@Inject
 	private SqlSession sql;
-	
-	// 매퍼 
-	private static String namespace = "adminMapper";
 
-	// 카테고리
-	@Override
-	public List<CategoryVO> category() throws Exception {
-		return sql.selectList(namespace + ".category");
-	}
+	// 매퍼
+	private static String namespace = "adminMapper";
 
 	// 상품등록
 	@Override
@@ -55,6 +47,5 @@ public class AdminDAOImpl implements AdminDAO {
 	public void goodsDelete(String goodsCode) throws Exception {
 		sql.delete(namespace + ".goodsDelete", goodsCode);
 	}
-	
-	
+
 }

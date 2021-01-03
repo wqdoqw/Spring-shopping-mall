@@ -1,17 +1,10 @@
 package com.spring.myapp.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.myapp.domain.GoodsVO;
-import com.spring.myapp.domain.GoodsViewVO;
-import com.spring.myapp.domain.MemberVO;
 import com.spring.myapp.service.AdminService;
 import com.spring.myapp.utils.UploadFile;
 

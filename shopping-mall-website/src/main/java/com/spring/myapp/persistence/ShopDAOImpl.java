@@ -13,6 +13,9 @@ import com.spring.myapp.domain.GoodsReplyListVO;
 import com.spring.myapp.domain.GoodsReplyRatingVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
+import com.spring.myapp.domain.OrderVO;
+import com.spring.myapp.domain.OrderedGoodsVO;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 @Repository
 public class ShopDAOImpl implements ShopDAO {
@@ -72,14 +75,35 @@ public class ShopDAOImpl implements ShopDAO {
 	public List<GoodsReplyRatingVO> goodsReplyList(String firstClassification) throws Exception {
 		return sql.selectList(namespace + ".replyCount", firstClassification);
 	}
-	
+
 	@Override
 	public List<CartListVO> cartList(String userid) throws Exception {
 		return sql.selectList(namespace + ".cartList", userid);
 	}
-	
+
 	@Override
 	public void deleteCart(CartVO cart) throws Exception {
 		sql.delete(namespace + ".deleteCart", cart);
 	}
+
+	@Override
+	public void deleteAllCart(String userId) throws Exception {
+		sql.delete(namespace + ".deleteAllCart", userId);
+	}
+
+	@Override
+	public void orderCart(OrderVO vo) throws Exception {
+		sql.insert(namespace + ".addOrder", vo);
+	}
+
+	@Override
+	public void orderCartGoods(OrderedGoodsVO vo) throws Exception {
+		sql.insert(namespace + ".addOrderGoods", vo);
+	}
+
+	@Override
+	public List<OrderedGoodsVO> getOrderedGoods(String orderId) throws Exception {
+		return sql.selectList(namespace + ".getOrderItems", orderId);
+	}
+
 }

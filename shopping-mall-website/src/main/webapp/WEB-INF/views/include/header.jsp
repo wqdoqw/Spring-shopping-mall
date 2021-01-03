@@ -57,7 +57,7 @@
         <a href="/shop/list?c=women">Women</a>
         <a href="#contact">Shoes</a>
         <a href="#about">Bag</a>
-        <a href="#home">Order Tracking</a>
+        <a href="/shop/orderTrack">Order Tracking</a>
         <a href="#home">About Us</a>
 
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">

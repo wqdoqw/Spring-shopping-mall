@@ -8,6 +8,8 @@ import com.spring.myapp.domain.GoodsReplyListVO;
 import com.spring.myapp.domain.GoodsReplyRatingVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
+import com.spring.myapp.domain.OrderVO;
+import com.spring.myapp.domain.OrderedGoodsVO;
 
 public interface ShopService {
 
@@ -43,7 +45,19 @@ public interface ShopService {
 
 	// 카트 리스트
 	public List<CartListVO> cartList(String userid) throws Exception;
-	
-	// 카트 삭제 
+
+	// 카트 삭제
 	public void deleteCart(CartVO cart) throws Exception;
+
+	// 카트 전부 삭제
+	public void deleteAllCart(String userId) throws Exception;
+
+	// 주문
+	public void orderCart(OrderVO vo) throws Exception;
+
+	// 상품 주문
+	public void orderCartGoods(OrderedGoodsVO vo) throws Exception;
+
+	// 상품번호로 상품 주문한거 가져오기
+	public List<OrderedGoodsVO> getOrderedGoods(String orderId) throws Exception;
 }

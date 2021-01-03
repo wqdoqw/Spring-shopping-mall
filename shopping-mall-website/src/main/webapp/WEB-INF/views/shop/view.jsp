@@ -283,6 +283,7 @@
 					<th>구매수량</th>
 					<td>
 						<div class="length">
+						<c:set var="num" value="1" />
 							<input type="number" class="numBox" min="1"
 								max="${view.goodsStock}" value="1" readonly="readonly" /> <a
 								href="#a" class="plus">증가</a> <a href="#a" class="minus">감소</a>
@@ -290,7 +291,7 @@
 							$(".plus").click(function(){
    								var num = $(".numBox").val();
   								var plusNum = Number(num) + 1;
-   
+  								
    								if(plusNum >= ${view.goodsStock}) {
    								 $(".numBox").val(num);
   								 } else {
@@ -301,7 +302,7 @@
  								 $(".minus").click(function(){
    								 var num = $(".numBox").val();
    								 var minusNum = Number(num) - 1;
-   
+   								 
    								 if(minusNum <= 0) {
     							$(".numBox").val(num);
    								} else {
@@ -340,11 +341,11 @@
 			</ul>
 		</div>
 		<input type="hidden" class="goodsCode" name="goodsCode"
-			value="${view.goodsCode}"> <input type="hidden"
-			class="goodsName" name="goodsName" value="${view.goodsName}">
+			value="${view.goodsCode}"> 
+			<input type="hidden" class="goodsName" name="goodsName" value="${view.goodsName}">
 		<div class="btns">
-			<a href="#a" class="addCart_btn btn1">장바구니</a> <a href="#a"
-				class="btn2">구매하기</a>
+			<a class="addCart_btn btn1">장바구니</a> 
+			<a href="/shop/orderGood?n=${view.goodsName}" class="btn2">구매하기</a>
 		</div>
 	</div>
 	<script>
@@ -460,9 +461,9 @@
 								<div style="float: right; display: block;">
 									<c:if test="${member != null}">
 										<form role="form" method="post">
-											<button class="btn btn-warning" id="${reply.replyNumber}del">삭제</button>
+											<button class="btn btn-danger" id="${reply.replyNumber}del">삭제</button>
 										</form>
-										<a class="btn btn-danger"
+										<a class="btn btn-warning"
 											href="javascript:popup${reply.replyNumber}()">수정</a>
 									</c:if>
 								</div>

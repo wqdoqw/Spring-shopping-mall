@@ -25,6 +25,8 @@ import com.spring.myapp.domain.GoodsReplyRatingVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
 import com.spring.myapp.domain.MemberVO;
+import com.spring.myapp.domain.OrderVO;
+import com.spring.myapp.domain.OrderedGoodsVO;
 import com.spring.myapp.service.ShopService;
 import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
@@ -166,6 +168,7 @@ public class ShopController {
 		System.out.println("cartVO>>" + cart);
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		System.out.println("memberVO>>" + member);
+
 		if (member != null) {
 			cart.setUserid(member.getEmail());
 			service.addCart(cart);
@@ -204,7 +207,7 @@ public class ShopController {
 		if (chArr.isEmpty()) {
 			return result;
 		}
-		
+
 		if (member != null) {
 			cart.setUserid(userid);
 
@@ -217,7 +220,7 @@ public class ShopController {
 		}
 		return result;
 	}
-	
+
 	// 카트 목록
 	@RequestMapping(value = "/orderCart", method = RequestMethod.GET)
 	public void getOrderCart(HttpSession session, Model model) throws Exception {
@@ -230,5 +233,142 @@ public class ShopController {
 
 		model.addAttribute("cartList", cartList);
 	}
+
+	// 카트 목록
+	@RequestMapping(value = "/orderCart", method = RequestMethod.POST)
+	public String postOrderCart(OrderVO order, HttpSession session, Model model) throws Exception {
+		logger.info("post order cart");
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		String userId = member.getEmail();
+		List<CartListVO> cartList = service.cartList(userId);
+
+		// orderId 생성
+		Random rnd = new Random();
+		StringBuffer buf = new StringBuffer();
+		for (int i = 0; i < 8; i++) {
+			if (rnd.nextBoolean()) {
+				buf.append((char) ((int) (rnd.nextInt(26)) + 97));
+			} else {
+				buf.append((rnd.nextInt(10)));
+			}
+		}
+		order.setOrderId(buf.toString());
+		order.setUserId(userId);
+		System.out.println("ORDERVO>>>" + order);
+		service.orderCart(order);
+
+		OrderedGoodsVO ordered = new OrderedGoodsVO();
+		ordered.setOrderId(buf.toString());
+		for (CartListVO cartListVO : cartList) {
+			ordered.setGoodsName(cartListVO.getGoodsName());
+			ordered.setGoodsCode(cartListVO.getGoodsCode());
+			ordered.setCartStock(cartListVO.getCartStock());
+			ordered.setGoodsPrice(cartListVO.getGoodsPrice());
+			System.out.println("GOODS PRICE>>" + cartListVO.getGoodsPrice());
+			ordered.setGoodsThumbnailImage(cartListVO.getGoodsThumbnailImage());
+			service.orderCartGoods(ordered);
+		}
+		service.deleteAllCart(userId);
+
+		return "redirect:/shop/confirmOrder?o=" + buf.toString();
+	}
+
+	// 주문 확인
+	@RequestMapping(value = "/confirmOrder", method = RequestMethod.GET)
+	public void getConfirmOrder(@RequestParam("o") String orderId, HttpSession session, Model model) throws Exception {
+		logger.info("get order cart");
+
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		String userId = member.getEmail();
+
+		List<CartListVO> cartList = service.cartList(userId);
+
+		model.addAttribute("cartList", cartList);
+
+		List<OrderedGoodsVO> ordered = service.getOrderedGoods(orderId);
+
+		model.addAttribute("ordered", ordered);
+		model.addAttribute("orderId", orderId);
+		System.out.println(ordered);
+	}
+
+	// 주문 보기
+	@RequestMapping(value = "/orderTrack", method = RequestMethod.GET)
+	public void getOrderTrack(HttpSession session, Model model) throws Exception {
+		logger.info("get order track");
+
+	}
+
+	// 비회원 주문
+	@RequestMapping(value = "/orderGood", method = RequestMethod.GET)
+	public void getOrderGood(@RequestParam("n") String goodsName, HttpSession session, Model model) throws Exception {
+		logger.info("get order good");
+		GoodsVO view = service.goodsView(goodsName);
+		view.setGoodsName(goodsName);
+		model.addAttribute("view", view);
+
+	}
+
+	// 비회원 주문
+	@RequestMapping(value = "/orderGood", method = RequestMethod.POST)
+	public String postOrderGood(@RequestParam("n") String goodsName, OrderVO order, HttpSession session, Model model)
+			throws Exception {
+		logger.info("post order good");
+		
+		// 비회원 주문도 허용해야 함
+		MemberVO member = null;
+		String userId = null;
+		try {
+			member = (MemberVO) session.getAttribute("member");
+			userId = member.getEmail();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		if (member == null) {
+			userId = "not signed";
+		}
+		GoodsVO view = service.goodsView(goodsName);
+		System.out.println("OrderVO>>" + order);
+
+		// orderId 생성
+		Random rnd = new Random();
+		StringBuffer buf = new StringBuffer();
+		for (int i = 0; i < 8; i++) {
+			if (rnd.nextBoolean()) {
+				buf.append((char) ((int) (rnd.nextInt(26)) + 97));
+			} else {
+				buf.append((rnd.nextInt(10)));
+			}
+		}
+		order.setOrderId(buf.toString());
+		order.setUserId(userId);
+		System.out.println("ORDERVO>>>" + order);
+		service.orderCart(order);
+
+		OrderedGoodsVO ordered = new OrderedGoodsVO();
+		ordered.setGoodsName(goodsName);
+		ordered.setGoodsCode(view.getGoodsCode());
+		ordered.setGoodsPrice(view.getGoodsPrice());
+		ordered.setGoodsThumbnailImage(view.getGoodsThumbnailImage());
+		ordered.setOrderId(buf.toString());
+		ordered.setCartStock(1);
+		service.orderCartGoods(ordered);
+		
+		return "redirect:/shop/confirmOrderNotSigned?o=" + buf.toString();
+	}
 	
+	// 비회원 주문 확인
+	@RequestMapping(value = "/confirmOrderNotSigned", method = RequestMethod.GET)
+	public void getConfirmOrderNotsigned(@RequestParam("o") String orderId, HttpSession session, Model model) throws Exception {
+		logger.info("get order cart");
+
+		List<OrderedGoodsVO> ordered = service.getOrderedGoods(orderId);
+
+		model.addAttribute("ordered", ordered);
+		model.addAttribute("orderId", orderId);
+		System.out.println(ordered);
+		
+		
+	}
+
 }

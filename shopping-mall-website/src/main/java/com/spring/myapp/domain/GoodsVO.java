@@ -3,7 +3,6 @@ package com.spring.myapp.domain;
 import java.util.Date;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

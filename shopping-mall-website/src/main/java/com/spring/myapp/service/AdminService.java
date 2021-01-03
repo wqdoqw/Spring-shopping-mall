@@ -2,15 +2,10 @@ package com.spring.myapp.service;
 
 import java.util.List;
 
-import com.spring.myapp.domain.CategoryVO;
 import com.spring.myapp.domain.GoodsVO;
-import com.spring.myapp.domain.GoodsViewVO;
 
 public interface AdminService {
 
-	// 카테고리 
-	public List<CategoryVO> category() throws Exception;
-	
 	// 상품등록
 	public void register(GoodsVO vo) throws Exception;
 

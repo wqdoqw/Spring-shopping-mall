@@ -179,6 +179,7 @@ li {
 		}).open();
 	}
 </script>
+
 </head>
 <body>
 	<header id="header">
@@ -187,12 +188,7 @@ li {
 		</div>
 	</header>
 
-	<c:if test="${fn:length(cartList) == 0}">
-		<h3 class="goods-title">전체 카트 상품</h3>
-		<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
-			카트에 상품이 없습니다.</p>
-	</c:if>
-	<c:if test="${fn:length(cartList) > 0}">
+
 		<h2 class="goods-title">주문서 작성</h2>
 
 		<div class="clear"></div>
@@ -210,19 +206,17 @@ li {
 				</thead>
 				<tbody>
 					<c:set var="sum" value="0" />
-					<c:forEach items="${cartList}" var="cartList">
 						<tr>
-							<td><img src="${cartList.goodsThumbnailImage}"
+							<td><img src="${view.goodsThumbnailImage}"
 								style="max-width: 50px;" /></td>
-							<td><a href="/shop/view?n=${cartList.goodsName}">${cartList.goodsName}</a></td>
-							<td>${cartList.goodsPrice}</td>
-							<td>${cartList.cartStock}</td>
+							<td><a href="/shop/view?n=${view.goodsName}">${view.goodsName}</a></td>
+							<td>${view.goodsPrice}</td>
+							<td>1</td>
 							<td><fmt:formatNumber pattern="###,###,###"
-									value="${cartList.goodsPrice * cartList.cartStock}" /></td>
+									value="${view.goodsPrice * 1}" /></td>
 						</tr>
 						<c:set var="sum"
-							value="${sum + (cartList.goodsPrice * cartList.cartStock)}" />
-					</c:forEach>
+							value="${sum + (view.goodsPrice * 1)}" />
 				</tbody>
 			</table>
 
@@ -236,7 +230,7 @@ li {
 				원
 			</p>
 		</div>
-	
+
 		<section class="order_form" style="margin-top: 50px;">
 			<h3 style="font-weight: bold; text-align: center; margin-top: 30px;">주문하시는
 				분</h3>
@@ -283,7 +277,6 @@ li {
 
 		<div class="clear" style="margin-bottom: 200px;"></div>
 		
-	</c:if>
 
 
 

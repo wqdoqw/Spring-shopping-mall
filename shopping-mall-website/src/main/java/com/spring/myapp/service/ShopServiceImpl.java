@@ -12,6 +12,8 @@ import com.spring.myapp.domain.GoodsReplyListVO;
 import com.spring.myapp.domain.GoodsReplyRatingVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
+import com.spring.myapp.domain.OrderVO;
+import com.spring.myapp.domain.OrderedGoodsVO;
 import com.spring.myapp.persistence.ShopDAO;
 
 @Service
@@ -69,14 +71,34 @@ public class ShopServiceImpl implements ShopService {
 	public List<GoodsReplyRatingVO> goodsReplyList(String firstClassification) throws Exception {
 		return dao.goodsReplyList(firstClassification);
 	}
-	
+
 	@Override
 	public List<CartListVO> cartList(String userid) throws Exception {
 		return dao.cartList(userid);
 	}
-	
+
 	@Override
 	public void deleteCart(CartVO cart) throws Exception {
 		dao.deleteCart(cart);
+	}
+
+	@Override
+	public void deleteAllCart(String userId) throws Exception {
+		dao.deleteAllCart(userId);
+	}
+
+	@Override
+	public void orderCart(OrderVO vo) throws Exception {
+		dao.orderCart(vo);
+	}
+
+	@Override
+	public void orderCartGoods(OrderedGoodsVO vo) throws Exception {
+		dao.orderCartGoods(vo);
+	}
+	
+	@Override
+	public List<OrderedGoodsVO> getOrderedGoods(String orderId) throws Exception {
+		return dao.getOrderedGoods(orderId);
 	}
 }

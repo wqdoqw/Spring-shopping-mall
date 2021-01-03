@@ -185,6 +185,40 @@ WHERE c.userid = m.email AND c.goodsName = g.goodsName AND c.userid = #{userid}
 
 	<!-- 카트 삭제 -->
 	<delete id="deleteCart">
-		DELETE FROM cart WHERE cartNumber = #{cartNumber} AND userid = #{userid}
+		DELETE FROM cart WHERE cartNumber = #{cartNumber} AND
+		userid = #{userid}
 	</delete>
+
+	<!-- 카트 전부 삭제 -->
+	<delete id="deleteAllCart">
+		DELETE FROM cart WHERE userid = #{userid}
+	</delete>
+
+	<!-- 주문 정보 -->
+	<insert id="addOrder">
+	<![CDATA[
+		INSERT INTO `mydb`.`order` (`orderId`, `userId`, `orderRecipient`, `phone`, `zipcode`, `address1`, `address2`, `amount`)
+VALUES (#{orderId}, #{userId}, #{orderRecipient}, #{phone}, #{zipcode}, #{address1}, #{address2}, #{amount})
+	]]>
+	</insert>
+
+	<!-- 상품 주문 정보 -->
+	<insert id="addOrderGoods">
+	<![CDATA[
+		INSERT INTO ordered_goods (orderId, goodsName, goodsCode, cartStock, goodsPrice, goodsThumbnailImage) 
+		VALUES (#{orderId}, #{goodsName}, #{goodsCode}, #{cartStock}, #{goodsPrice}, #{goodsThumbnailImage})
+	]]>
+	</insert>
+
+
+	<!-- 주문번호로 상품 가져오기 -->
+	<select id="getOrderItems"
+		resultType="com.spring.myapp.domain.OrderedGoodsVO">
+	<![CDATA[
+	SELECT goodsName, goodsCode, cartStock, goodsPrice, goodsThumbnailImage
+	FROM ordered_goods
+	WHERE orderId = #{orderId}
+	]]>
+	</select>
+
 </mapper>
