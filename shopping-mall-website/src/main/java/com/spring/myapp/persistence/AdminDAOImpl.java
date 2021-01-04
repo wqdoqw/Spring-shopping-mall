@@ -7,8 +7,10 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.spring.myapp.domain.GoodsOrderListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
+import com.spring.myapp.domain.MemberVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -53,4 +55,15 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<GoodsReplyVO> goodsReplylist() throws Exception {
 		return sql.selectList(namespace + ".goodsReply");
 	}
+
+	@Override
+	public List<GoodsOrderListVO> goodsOrderList() throws Exception {
+		return sql.selectList(namespace + ".goodsOrderList");
+	}
+
+	@Override
+	public void goodsOrderModify(String orderId) throws Exception {
+		sql.update(namespace + ".goodsOrderModify", orderId);
+	}
+	
 }

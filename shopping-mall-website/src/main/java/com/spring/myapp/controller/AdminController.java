@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.myapp.domain.CartVO;
+import com.spring.myapp.domain.GoodsOrderListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
+import com.spring.myapp.domain.MemberVO;
 import com.spring.myapp.service.AdminService;
 import com.spring.myapp.utils.UploadFile;
 
@@ -167,5 +172,27 @@ public class AdminController {
 		List<GoodsReplyVO> list = adminService.goodsReplylist();
 
 		model.addAttribute("list", list);
+	}
+	
+	// 배송관리 목록
+	@RequestMapping(value = "/goods/orderList", method = RequestMethod.GET)
+	public void getOrderList(Model model) throws Exception {
+		logger.info("get order list");
+		
+		List<GoodsOrderListVO> list = adminService.goodsOrderList();
+
+		model.addAttribute("list", list);
+	}
+	
+	// 카트 추가
+	@ResponseBody
+	@RequestMapping(value = "/goods/orderList", method = RequestMethod.POST)
+	public String changeOrderStatus(String orderId, Model model, HttpSession session) throws Exception {
+		logger.info("post cart");
+		
+		System.out.println("Orderid>>" + orderId);
+		adminService.goodsOrderModify(orderId);
+
+		return "redirect:/admin/goods/orderList";
 	}
 }

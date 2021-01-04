@@ -2,8 +2,10 @@ package com.spring.myapp.service;
 
 import java.util.List;
 
+import com.spring.myapp.domain.GoodsOrderListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
+import com.spring.myapp.domain.MemberVO;
 
 public interface AdminService {
 
@@ -25,4 +27,10 @@ public interface AdminService {
 	// 댓글목록
 	public List<GoodsReplyVO> goodsReplylist() throws Exception;
 
+	// 상품 주문 목록
+	public List<GoodsOrderListVO> goodsOrderList() throws Exception;
+	
+	// 상품 주문상태 변경
+	public void goodsOrderModify(String orderId) throws Exception;
+	
 }

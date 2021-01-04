@@ -6,8 +6,10 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.spring.myapp.domain.GoodsOrderListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
+import com.spring.myapp.domain.MemberVO;
 import com.spring.myapp.persistence.AdminDAO;
 
 @Service
@@ -45,9 +47,19 @@ public class AdminServiceImpl implements AdminService {
 	public void goodsDelete(String goodsCode) throws Exception {
 		dao.goodsDelete(goodsCode);
 	}
-	
+
 	@Override
 	public List<GoodsReplyVO> goodsReplylist() throws Exception {
 		return dao.goodsReplylist();
+	}
+
+	@Override
+	public List<GoodsOrderListVO> goodsOrderList() throws Exception {
+		return dao.goodsOrderList();
+	}
+
+	@Override
+	public void goodsOrderModify(String orderId) throws Exception {
+		dao.goodsOrderModify(orderId);
 	}
 }

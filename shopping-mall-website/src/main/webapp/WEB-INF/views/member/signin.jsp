@@ -34,10 +34,7 @@
             <label for="password">비밀번호<span>*</span></label>
             <input type="password" id="password" name="password" required="required" placeholder="Password" class="form-control">
             <button type="submit" class="btn btn-secondary btn-md" style="background-color: #ff6766; margin-top:20px;">Login</button>
-            <p style="margin-top: 15px;">
-                <a href="#">Lost your password?</a>
-            </p>
-            <p style="margin-bottom: 300px;">
+            <p style="margin-bottom: 300px; margin-top:10px;">
                 <a href="/member/signup">회원가입</a>
             </p>
         </form>

@@ -129,7 +129,6 @@ li {
 	<section id="content_box">
 		<div class="box">
 			<h3 class="goods-title">전체 상품</h3>
-			<p class="category">판매자추천순 | 인기도순 | 평점높은순 | 최신등록순</p>
 			<div class="clear"></div>
 
 			<c:forEach items="${list}" var="list">

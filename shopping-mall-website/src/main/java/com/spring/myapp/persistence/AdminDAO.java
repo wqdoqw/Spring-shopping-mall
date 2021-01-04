@@ -2,8 +2,10 @@ package com.spring.myapp.persistence;
 
 import java.util.List;
 
+import com.spring.myapp.domain.GoodsOrderListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
+import com.spring.myapp.domain.MemberVO;
 
 public interface AdminDAO {
 
@@ -21,7 +23,14 @@ public interface AdminDAO {
 
 	// 상품 삭제
 	public void goodsDelete(String goodsCode) throws Exception;
-	
-	// 댓글목록
+
+	// 댓글 목록
 	public List<GoodsReplyVO> goodsReplylist() throws Exception;
+
+	// 상품 주문 목록
+	public List<GoodsOrderListVO> goodsOrderList() throws Exception;
+
+	// 상품 주문상태 변경
+	public void goodsOrderModify(String orderId) throws Exception;
+
 }
