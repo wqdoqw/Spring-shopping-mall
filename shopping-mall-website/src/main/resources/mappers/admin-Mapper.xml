@@ -96,4 +96,21 @@
 		WHERE goodsCode = #{goodsCode}
 	]]>
 	</delete>
+	
+	<!-- 모든 댓글 가져오기 -->
+	<select id="goodsReply" resultType="com.spring.myapp.domain.GoodsReplyVO">
+	<![CDATA[
+	SELECT * FROM goods_reply
+	]]>
+	</select>
+	
+	
+	<!-- 총 수익 -->
+	<select id="goodsSum" resultType="int">
+	<![CDATA[
+	SELECT SUM(goodsPrice) FROM ordered_goods
+	]]>
+	</select>
+	
+	
 </mapper>

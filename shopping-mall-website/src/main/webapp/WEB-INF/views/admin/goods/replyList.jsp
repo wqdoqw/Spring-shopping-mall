@@ -83,33 +83,24 @@
 		<table class="table table-striped" id="myTable">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">썸네일</th>
-					<th scope="col">상품번호</th>
-					<th scope="col">이름</th>
-					<th scope="col">1차 분류</th>
-					<th scope="col">2차 분류</th>
-					<th scope="col">브랜드</th>
-					<th scope="col">가격</th>
-					<th scope="col">수량</th>
-					<th scope="col">등록날짜</th>
+					<th style="width: 10%;">댓글번호</th>
+					<th style="width: 10%;">상품번호</th>
+					<th style="width: 20%;">상품이름</th>
+					<th style="width: 10%;">유저이메일</th>
+					<th style="width: 40%;">댓글</th>
+					<th style="width: 10%;">선호도</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${list}" var="list">
 					<tr>
-						<td><img src="${list.goodsThumbnailImage}"
-							style="max-width: 50px;" /></td>
+						<td>${list.replyNumber}</td>
 						<td>${list.goodsCode}</td>
 						<td><a href="/admin/goods/view?n=${list.goodsCode}">${list.goodsName}</a>
 						</td>
-						<td>${list.firstClassification}</td>
-						<td>${list.secondClassification}</td>
-						<td>${list.brand}</td>
-						<td><span><fmt:formatNumber value="${list.goodsPrice}"
-									pattern="###,###,###" /></span></td>
-						<td>${list.goodsStock}</td>
-						<td><fmt:formatDate value="${list.goodsAddedTime}"
-								pattern="yyyy-MM-dd" /></td>
+						<td>${list.userid}</td>
+						<td>${list.replyData}</td>
+						<td>${list.replyRating}/5</td>
 					</tr>
 				</c:forEach>
 			</tbody>

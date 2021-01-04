@@ -10,4 +10,5 @@ public class OrderedGoodsVO {
 	private int cartStock;
 	private int goodsPrice;
 	private String goodsThumbnailImage;
+	private int orderStatus;
 }

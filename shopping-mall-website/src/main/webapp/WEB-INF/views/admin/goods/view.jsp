@@ -29,7 +29,7 @@
 	</header>
 	
 	<section class="register_form goods_view">
-        <h2 style="font-weight: bold; margin-top: 40px;">상품조회</h2>
+        <h2 style="font-weight: bold; margin-top: 40px; margin-bottom:40px;">상품조회</h2>
                     <form role="form" method="post" autocomplete="off">
                     <input type="hidden" name="n" value="${goods.goodsCode}"/>
 
@@ -78,7 +78,7 @@
 			</form>		
     </section>
 
-		<footer class="foot_design">
+	<footer>
 		<div id="footer_box">
 			<%@ include file="../include/footer.jsp" %>
 		</div>		

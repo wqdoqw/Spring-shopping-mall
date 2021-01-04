@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
 import com.spring.myapp.service.AdminService;
 import com.spring.myapp.utils.UploadFile;
@@ -158,4 +159,13 @@ public class AdminController {
 		return "redirect:/admin/goods/list";
 	}
 
+	// 상품 소감 목록
+	@RequestMapping(value = "/goods/replyList", method = RequestMethod.GET)
+	public void getReplyList(Model model) throws Exception {
+		logger.info("get reply list");
+		
+		List<GoodsReplyVO> list = adminService.goodsReplylist();
+
+		model.addAttribute("list", list);
+	}
 }

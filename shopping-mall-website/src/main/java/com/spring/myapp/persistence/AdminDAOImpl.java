@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
 
 @Repository
@@ -48,4 +49,8 @@ public class AdminDAOImpl implements AdminDAO {
 		sql.delete(namespace + ".goodsDelete", goodsCode);
 	}
 
+	@Override
+	public List<GoodsReplyVO> goodsReplylist() throws Exception {
+		return sql.selectList(namespace + ".goodsReply");
+	}
 }

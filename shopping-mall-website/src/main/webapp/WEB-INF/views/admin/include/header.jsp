@@ -14,7 +14,7 @@
 	
     <ul class="ul-top-nav">
         <li class="left-head-nav"><a style="text-decoration: none;" class="left-div"><span class="fa fa-phone"></span>
-                070-3322-3212</a></li>
+                1588-1588</a></li>
 
         <div class="right-head-nav right-last-element">
             <li><a class="right-div-visible">관리자 ${member.username}님</a></li>
@@ -38,11 +38,12 @@
     	<a href="/admin/index">초기화면</a>
         <a href="/admin/goods/register">상품 등록</a>
         <a href="/admin/goods/list">상품 목록</a>
-        <a href="#contact">상품 소감</a>
+        <a href="/admin/goods/replyList">상품 소감</a>
+        <a href="#about">배송관리</a>
         <a href="#about">유저 목록</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+   <!--      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
-        </a>
+        </a> -->
     </div>
 	 <script>
         function myFunction() {

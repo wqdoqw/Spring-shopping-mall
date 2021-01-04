@@ -226,7 +226,7 @@ VALUES (#{orderId}, #{userId}, #{orderRecipient}, #{phone}, #{zipcode}, #{addres
 	<select id="getOrderItemsByEmail"
 		resultType="com.spring.myapp.domain.OrderedGoodsVO">
 	<![CDATA[
-	SELECT g.orderId, g.goodsName, g.goodsCode, g.cartStock, g.goodsPrice, g.goodsThumbnailImage
+	SELECT g.orderId, g.goodsName, g.goodsCode, g.cartStock, g.goodsPrice, g.goodsThumbnailImage, g.orderStatus
 	FROM ordered_goods g INNER JOIN `order` o
 	ON g.orderId = o.orderId
 	WHERE userId = #{userId}

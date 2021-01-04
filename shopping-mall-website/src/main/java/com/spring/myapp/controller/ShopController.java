@@ -314,8 +314,7 @@ public class ShopController {
 		List<OrderedGoodsVO> ordered = service.getOrderedGoodsByEmail(userId);
 
 		model.addAttribute("ordered", ordered);
-//		model.addAttribute("orderId", orderId);
-		System.out.println(ordered);
+		
 	}
 
 	// 주문 보기
@@ -454,7 +453,6 @@ public class ShopController {
 			member = (MemberVO) session.getAttribute("member");
 			userId = member.getEmail();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		if (member == null) {
 			userId = "not signed";
