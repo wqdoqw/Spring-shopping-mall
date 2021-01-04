@@ -19,7 +19,6 @@
 </head>
 <body>
 
-	<div id="root">
 		<header id="header">
 			<div id="header_box">
 				<%@ include file="../include/header.jsp"%>
@@ -48,14 +47,12 @@
             </script>
         </c:if>
     </section>
-		<footer class="foot_design">
+    
+		<footer>
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp"%>
 			</div>
 		</footer>
-
-
-	</div>
 
 </body>
 </html>

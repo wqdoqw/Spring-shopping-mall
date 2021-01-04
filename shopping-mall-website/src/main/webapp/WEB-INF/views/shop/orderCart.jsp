@@ -190,9 +190,11 @@ li {
 	<section id='main_img'></section>
 	
 	<c:if test="${fn:length(cartList) == 0}">
-		<h3 class="goods-title">전체 카트 상품</h3>
-		<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
+		<div style="margin-bottom:300px;">
+			<h3 class="goods-title">전체 카트 상품</h3>
+			<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
 			카트에 상품이 없습니다.</p>
+		</div>
 	</c:if>
 	<c:if test="${fn:length(cartList) > 0}">
 		<h2 class="goods-title">주문서 작성</h2>

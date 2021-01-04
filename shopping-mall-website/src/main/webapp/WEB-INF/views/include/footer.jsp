@@ -8,12 +8,32 @@
 
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<p>Copyright (c) 가성비몰</p>
+		<div class="footer-box">
+			<div class="col_m_4 col_4">
+				<h3>고객 센터</h3>
+				<h1>Tel : 1588-1588</h1>
+			</div>
+			<div class="col_m_6 col_6">
+				<ul style="padding-left:0px;">
+					<li>회사소개&nbsp;</li>
+					<li>|</li>
+					<li>&nbsp;개인정보처리방침&nbsp;</li>
+					<li>|</li>
+					<li>&nbsp;이용약관&nbsp;</li>
+					<li>|</li>
+					<li>&nbsp;제휴안내&nbsp;</li>
+				</ul>
+				<p>
+					<br>주소 : 서울시 마포구 상암동 월드컵북로 322
+					<br> email : wqdoqw@gmail.com<br>
+					COPYRIGHT ⓒ 2021 가성비몰. ALL RIGHTS RESERVED.
+				</p>
+			</div>
+			<div class="col_m_2 col_2">
+				<a href="#"><img src="../img/facebook.png"></a> <a href="#"><img
+					src="../img/blog.png"></a> <a href="#"><img
+					src="../img/instagram.png"></a>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

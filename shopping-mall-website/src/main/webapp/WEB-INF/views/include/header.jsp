@@ -13,7 +13,7 @@
 
 	<ul class="ul-top-nav">
 		<li class="left-head-nav"><a style="text-decoration: none;"
-			class="left-div"><span class="fa fa-phone"></span> 070-3322-3212</a></li>
+			class="left-div"><span class="fa fa-phone"></span> 1588-1588</a></li>
 
 		<div class="right-head-nav right-last-element">
 			<c:if test="${member != null}">

@@ -580,6 +580,12 @@
 
  	</script>
 
+	<footer class="foot_design">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp"%>
+		</div>
+	</footer>
+	
 </body>
 </html>
 

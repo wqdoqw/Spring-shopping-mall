@@ -71,7 +71,7 @@
 		</div>
 	</header>
 	
-	<section id='main_img2'></section>
+	<section id='main_img'></section>
 
 	<section class="register_form" style="margin-top: 50px;">
 		<h2 style="font-weight: bold;">회원정보 수정</h2>
@@ -132,9 +132,6 @@
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 	</footer>
-
-
-
 
 
 </body>

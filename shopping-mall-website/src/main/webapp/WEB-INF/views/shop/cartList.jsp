@@ -148,9 +148,11 @@ li {
 	
 	<section id="content">
 		<c:if test="${fn:length(cartList) == 0}">
+		<div style="margin-bottom:300px; margin-top:50px;">
 			<h3 class="goods-title">전체 카트 상품</h3>
 			<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
 				카트에 상품이 없습니다.</p>
+		</div>
 		</c:if>
 		<c:if test="${fn:length(cartList) > 0}">
 			<div class="box">
