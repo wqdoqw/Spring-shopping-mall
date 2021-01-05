@@ -105,10 +105,14 @@ public class ShopDAOImpl implements ShopDAO {
 	public List<OrderedGoodsVO> getOrderedGoods(String orderId) throws Exception {
 		return sql.selectList(namespace + ".getOrderItems", orderId);
 	}
-	
+
 	@Override
 	public List<OrderedGoodsVO> getOrderedGoodsByEmail(String userId) throws Exception {
 		return sql.selectList(namespace + ".getOrderItemsByEmail", userId);
 	}
 
+	@Override
+	public void decreaseStock(GoodsVO vo) throws Exception {
+		sql.update(namespace + ".goodsStockDecrease", vo);
+	}
 }

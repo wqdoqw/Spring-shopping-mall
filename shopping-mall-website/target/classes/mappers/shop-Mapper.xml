@@ -233,4 +233,12 @@ VALUES (#{orderId}, #{userId}, #{orderRecipient}, #{phone}, #{zipcode}, #{addres
 
 	]]>
 	</select>
+	
+	<!-- 주문시 상품 수량 감소 -->
+	<update id="goodsStockDecrease">
+	<![CDATA[
+	UPDATE goods SET goodsStock = #{goodsStock} WHERE goodsCode = #{goodsCode}
+	]]>
+	</update>
+	
 </mapper>

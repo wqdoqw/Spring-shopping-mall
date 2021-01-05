@@ -63,4 +63,8 @@ public interface ShopService {
 
 	// 이메일로 상품 주문한거 가져오기
 	public List<OrderedGoodsVO> getOrderedGoodsByEmail(String userId) throws Exception;
+
+	// 주문시 상품 수량 감소
+	public void decreaseStock(GoodsVO vo) throws Exception;
+
 }

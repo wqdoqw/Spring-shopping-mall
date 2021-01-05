@@ -85,12 +85,12 @@ public class AdminDAOImpl implements AdminDAO {
 	public int getTotalUser() throws Exception {
 		return sql.selectOne(namespace + ".memberSum");
 	}
-	
+
 	@Override
 	public int getGoodsTotalByClassification(String firstClassification) throws Exception {
-		return sql.selectOne(namespace + ".goodsTotalByClassification",firstClassification);
+		return sql.selectOne(namespace + ".goodsTotalByClassification", firstClassification);
 	}
-	
+
 	@Override
 	public int getGoodsTotalIncomeByMonth() throws Exception {
 		return sql.selectOne(namespace + ".goodsTotalIncomeByMonth");

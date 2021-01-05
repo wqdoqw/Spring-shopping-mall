@@ -106,4 +106,9 @@ public class ShopServiceImpl implements ShopService {
 	public List<OrderedGoodsVO> getOrderedGoodsByEmail(String userId) throws Exception {
 		return dao.getOrderedGoodsByEmail(userId);
 	}
+	
+	@Override
+	public void decreaseStock(GoodsVO vo) throws Exception {
+		dao.decreaseStock(vo);
+	}
 }

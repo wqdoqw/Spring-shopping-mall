@@ -5,7 +5,6 @@ import java.util.List;
 import com.spring.myapp.domain.GoodsOrderListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
-import com.spring.myapp.domain.MemberVO;
 
 public interface AdminService {
 
