@@ -25,27 +25,12 @@
 	margin: 0 auto;
 }
 
-.slider {
-	/* margin-left:100px;
-margin-right:100px; */
-	
-}
 
-.four-menu {
-	margin: 200px auto;
-}
 
 @media screen and (max-width: 850px) {
-	.four-menu{
-		display:none;
-	}
 	.carousel{
 		width:auto;
 		height:auto;
-	}
-	
-	.foot_design{
-		margin-top:0px;
 	}
 	
 }
@@ -59,8 +44,7 @@ margin-right:100px; */
 	</header>
 
 
-	<section id="container">
-		<div id="container_box">
+	<section style="margin-bottom:96px;">
 
 			<div>
 				<div id="carouselExampleIndicators" class="carousel slide"
@@ -96,36 +80,6 @@ margin-right:100px; */
 					</a>
 				</div>
 			</div>
-
-		</div>
-		<div class="four-menu" >
-			<div class="row" style="padding-left: 370px; margin:0 auto;">
-				<div class="col-md-4 col-xs-12">
-					<a href="/shop/list?c=men"><img class="d-block w-100"
-						src="/resources/img/index/men.jpg" alt="Third slide"></a>
-				</div>
-				<div class="col-md-4 col-xs-12">
-					<a href="/shop/list?c=women"><img class="d-block w-100"
-						src="/resources/img/index/women.jpg" alt="Third slide"></a>
-					<!-- <div class="logo-div-div">
-						<p class="logo-div-p">
-							가성비<strong class="logo-div-p-strong">몰</strong> <span
-								class="logo-div-p-subtitle">최고의 가성비를 보장합니다</span>
-						</p>
-					</div> -->
-				</div>
-			</div>
-			<div class="row" style="padding-top: 50px; padding-left: 370px; margin:0 auto;">
-				<div class="col-md-4 col-xs-12">
-					<img class="d-block w-100" src="/resources/img/index/shoes.jpg"
-						alt="Third slide">
-				</div>
-				<div class="col-md-4 col-xs-12">
-					<img class="d-block w-100" src="/resources/img/index/bag.jpg"
-						alt="Third slide">
-				</div>
-			</div>
-		</div>
 	</section>
 	<br>
 	<footer class="foot_design">
