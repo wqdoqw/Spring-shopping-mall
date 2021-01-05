@@ -122,19 +122,6 @@ li {
 	margin-bottom: 20px;
 }
 
-@media screen and (max-width: 600px) {
-	.items {
-		margin-right: 450px;
-		margin-left: 80px;
-		/* margin-bottom:30px; */
-	}
-	.category {
-		display: none;
-	}
-	#content_box h3 {
-		margin-left: 120px;
-	}
-}
 </style>
 </head>
 <body>
@@ -145,14 +132,14 @@ li {
 	</header>
 
 	<section id='main_img'></section>
-	
+
 	<section id="content">
 		<c:if test="${fn:length(cartList) == 0}">
-		<div style="margin-bottom:300px; margin-top:50px;">
-			<h3 class="goods-title">전체 카트 상품</h3>
-			<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
-				카트에 상품이 없습니다.</p>
-		</div>
+			<div style="margin-bottom: 300px; margin-top: 50px;">
+				<h3 class="goods-title">전체 카트 상품</h3>
+				<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
+					카트에 상품이 없습니다.</p>
+			</div>
 		</c:if>
 		<c:if test="${fn:length(cartList) > 0}">
 			<div class="box">
@@ -218,8 +205,24 @@ li {
 
 				<div class="clear"></div>
 				<c:set var="sum" value="0" />
-				<c:forEach items="${cartList}" var="cartList">
-					<ul class="items">
+				<c:set var="listSize" value="${fn:length(cartList)}" />
+				<c:forEach items="${cartList}" var="cartList" varStatus="status">
+					<ul class="items"
+						style="
+						<c:if test="${listSize == 1}">
+						margin-left:42%;
+						</c:if>
+						<c:if test="${listSize == 2 && status.index == 0}">
+						margin-left:32%;
+						
+						</c:if>
+						<c:if test="${listSize == 3 && status.index == 0}">
+						margin-left:22%;
+						</c:if>
+						<c:if test="${listSize == 4 && status.index == 0}">
+						margin-left:12%;
+						</c:if>
+						">
 						<div class="checkBox">
 							<input type="checkbox" name="chBox" class="chBox"
 								data-cartNum="${cartList.cartNumber}" />

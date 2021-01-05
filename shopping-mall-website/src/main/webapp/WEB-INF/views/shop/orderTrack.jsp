@@ -195,8 +195,8 @@ li {
 							<c:if test="${ordered.orderStatus == 1}">
 								주문완료
 							</c:if>
-								<c:if test="${ordered.orderStatus != 1}">
-								주문확인중
+								<c:if test="${ordered.orderStatus == 2}">
+								배송중
 							</c:if>
 							</td>
 						</tr>

@@ -79,11 +79,6 @@
 		<form role="form" method="post">
 			<label for="email">이메일<span>*</span></label> <label for="email"
 				style="display: block; font-weight: normal">${member.email}</label>
-			<label for="password" style="display: block;">비밀번호<span>*</span></label>
-			<button type="button" class="btn btn-secondary btn-sm"
-				style="display: block;">
-				<i class="fa fa-search"></i> 비밀번호 찾기
-			</button>
 			<label for="email">닉네임<span>*</span></label> <input type="text"
 				id="username" name="username" required="required"
 				value="${member.username}" placeholder="Username"
