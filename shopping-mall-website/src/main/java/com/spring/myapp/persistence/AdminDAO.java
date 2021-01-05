@@ -33,4 +33,21 @@ public interface AdminDAO {
 	// 상품 주문상태 변경
 	public void goodsOrderModify(String orderId) throws Exception;
 
+	// 총 수익
+	public int getTotalIncome() throws Exception;
+
+	// 총 댓글 수
+	public int getTotalReply() throws Exception;
+
+	// 총 상품 갯수
+	public int getGoodsTotal() throws Exception;
+
+	// 총 회원 수
+	public int getTotalUser() throws Exception;
+
+	// 그래프용 카테고리별 상품 갯수
+	public int getGoodsTotalByClassification(String firstClassification) throws Exception;
+
+	// 그래프용 월별 총 수익
+	public int getGoodsTotalIncomeByMonth() throws Exception;
 }

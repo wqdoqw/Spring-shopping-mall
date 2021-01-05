@@ -145,7 +145,7 @@ li {
 	<section id='main_img2'></section>
 
 	<c:if test="${member == null}">
-		<section class="register_form" style="margin-top: 150px; margin-bottom:300px;">
+		<section class="register_form" style="margin-top: 100px; margin-bottom:300px;">
 			<h2 style="font-weight: bold;">주문번호로 검색</h2>
 			<form role="form" method="post">
 				<label for="email" style="margin-top: 20px;">주문번호<span>*</span></label>

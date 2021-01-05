@@ -36,7 +36,7 @@ function popupSubmit() {
 <style>
 /* Rating Star Widgets Style */
 .rating-stars {
-	margin-left: 90px;
+	margin-left: 100px;
 	display: block;
 }
 
@@ -68,7 +68,7 @@ function popupSubmit() {
 }
 
 .popup-btn {
-	padding-left: 130px;
+	padding-left: 160px;
 	padding-top: 80px;
 }
 </style>
@@ -80,7 +80,7 @@ function popupSubmit() {
 		<form role="form" method="post" autocomplete="off">
 			<h2
 				style="text-align: center; font-weight: bold; margin-bottom: 20px; margin-top: 20px;">
-				리뷰 남기기</h2>
+				리뷰 수정하기</h2>
 			<div class="review-textarea">
 				<textarea name="replyData" id="replyData" class="form-control"
 					rows="4" cols="50" maxlength="100"></textarea>

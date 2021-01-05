@@ -1,6 +1,7 @@
 package com.spring.myapp.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -25,7 +26,6 @@ import com.spring.myapp.domain.MemberVO;
 import com.spring.myapp.service.AdminService;
 import com.spring.myapp.utils.UploadFile;
 
-
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
@@ -40,8 +40,32 @@ public class AdminController {
 
 	// 관리자화면
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public void getIndex() throws Exception {
-		logger.info("get index");
+	public void getIndex(Model model) throws Exception {
+		logger.info("get admin index");
+
+		int totalIncome = adminService.getTotalIncome();
+		int userTotal = adminService.getTotalUser();
+		int goodsTotal = adminService.getGoodsTotal();
+		int replyTotal = adminService.getTotalReply();
+
+		// 그래프용 데이터
+		int men = adminService.getGoodsTotalByClassification("Men");
+		int women = adminService.getGoodsTotalByClassification("Women");
+		int shoes = adminService.getGoodsTotalByClassification("Shoes");
+		int bag = adminService.getGoodsTotalByClassification("Bag");
+		int goodsTotalIncomeByMonth = adminService.getGoodsTotalIncomeByMonth();
+
+		model.addAttribute("totalIncome", totalIncome);
+		model.addAttribute("userTotal", userTotal);
+		model.addAttribute("goodsTotal", goodsTotal);
+		model.addAttribute("replyTotal", replyTotal);
+		
+		// 그래프용 데이터
+		model.addAttribute("men", men);
+		model.addAttribute("women", women);
+		model.addAttribute("shoes", shoes);
+		model.addAttribute("bag", bag);
+		model.addAttribute("goodsTotalIncomeByMonth", goodsTotalIncomeByMonth);
 	}
 
 	// 상품 등록
@@ -117,35 +141,37 @@ public class AdminController {
 
 	// 상품 수정
 	@RequestMapping(value = "/goods/modify", method = RequestMethod.POST)
-	public String postGoodsModify(@RequestParam("n") String goodsCode, GoodsVO vo, Model model, MultipartFile file) throws Exception {
+	public String postGoodsModify(@RequestParam("n") String goodsCode, GoodsVO vo, Model model, MultipartFile file)
+			throws Exception {
 		logger.info("post goods modify");
 
 		System.out.println("code>>" + goodsCode);
 		vo.setGoodsCode(goodsCode);
 		GoodsVO goods = adminService.goodsView(goodsCode);
-		
+
 		model.addAttribute("goods", goods);
 
-		
 		// 새로운 파일이 등록되었는지 확인
-		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+		if (file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 			// 기존 파일을 삭제
 			new File(uploadPath + goods.getGoodsImage()).delete();
 			new File(uploadPath + goods.getGoodsThumbnailImage()).delete();
-			
+
 			// 새로 첨부한 파일을 등록
 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
 			String ymdPath = UploadFile.calcPath(imgUploadPath);
-			String fileName = UploadFile.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-			
+			String fileName = UploadFile.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(),
+					ymdPath);
+
 			vo.setGoodsImage(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-			vo.setGoodsThumbnailImage(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-			
-		} else {  // 새로운 파일이 등록되지 않았다면
+			vo.setGoodsThumbnailImage(
+					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+
+		} else { // 새로운 파일이 등록되지 않았다면
 			// 기존 이미지를 그대로 사용
 			vo.setGoodsImage(goods.getGoodsImage());
 			vo.setGoodsThumbnailImage(goods.getGoodsThumbnailImage());
-			
+
 		}
 		System.out.println("modify VO 전에 출력>>" + vo);
 		adminService.goodsModify(vo);
@@ -153,7 +179,7 @@ public class AdminController {
 
 		return "redirect:/admin/goods/list";
 	}
-	
+
 	// 상품 삭제
 	@RequestMapping(value = "/goods/delete", method = RequestMethod.POST)
 	public String postGoodsDelete(@RequestParam("n") String goodsCode) throws Exception {
@@ -168,28 +194,28 @@ public class AdminController {
 	@RequestMapping(value = "/goods/replyList", method = RequestMethod.GET)
 	public void getReplyList(Model model) throws Exception {
 		logger.info("get reply list");
-		
+
 		List<GoodsReplyVO> list = adminService.goodsReplylist();
 
 		model.addAttribute("list", list);
 	}
-	
+
 	// 배송관리 목록
 	@RequestMapping(value = "/goods/orderList", method = RequestMethod.GET)
 	public void getOrderList(Model model) throws Exception {
 		logger.info("get order list");
-		
+
 		List<GoodsOrderListVO> list = adminService.goodsOrderList();
 
 		model.addAttribute("list", list);
 	}
-	
+
 	// 카트 추가
 	@ResponseBody
 	@RequestMapping(value = "/goods/orderList", method = RequestMethod.POST)
 	public String changeOrderStatus(String orderId, Model model, HttpSession session) throws Exception {
 		logger.info("post cart");
-		
+
 		System.out.println("Orderid>>" + orderId);
 		adminService.goodsOrderModify(orderId);
 

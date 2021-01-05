@@ -62,4 +62,35 @@ public class AdminServiceImpl implements AdminService {
 	public void goodsOrderModify(String orderId) throws Exception {
 		dao.goodsOrderModify(orderId);
 	}
+
+	@Override
+	public int getGoodsTotal() throws Exception {
+		return dao.getGoodsTotal();
+	}
+
+	@Override
+	public int getTotalIncome() throws Exception {
+		return dao.getTotalIncome();
+	}
+
+	@Override
+	public int getTotalReply() throws Exception {
+		return dao.getTotalReply();
+	}
+
+	@Override
+	public int getTotalUser() throws Exception {
+		return dao.getTotalUser();
+	}
+
+	@Override
+	public int getGoodsTotalByClassification(String firstClassification) throws Exception {
+		return dao.getGoodsTotalByClassification(firstClassification);
+	}
+
+	@Override
+	public int getGoodsTotalIncomeByMonth() throws Exception {
+		return dao.getGoodsTotalIncomeByMonth();
+	}
+
 }

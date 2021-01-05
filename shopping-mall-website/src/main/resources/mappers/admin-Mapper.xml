@@ -105,14 +105,6 @@
 	]]>
 	</select>
 
-
-	<!-- 총 수익 -->
-	<select id="goodsSum" resultType="int">
-	<![CDATA[
-	SELECT SUM(goodsPrice) FROM ordered_goods
-	]]>
-	</select>
-
 	<!-- 상품 주문 목록 -->
 	<select id="goodsOrderList"
 		resultType="com.spring.myapp.domain.GoodsOrderListVO">
@@ -131,11 +123,57 @@
 	WHERE orderId = #{orderId}
 	]]>
 	</update>
-	
-	<!-- 유저  목록-->
-	<select id="userList" resultType="com.spring.myapp.domain.MemberVO">
+
+	<!-- 유저 목록 -->
+	<select id="userList"
+		resultType="com.spring.myapp.domain.MemberVO">
 	<![CDATA[
 		SELECT * FROM member
 	]]>
-</select>
+	</select>
+
+	<!-- 총 수익 -->
+	<select id="totalIncome" resultType="_int">
+	<![CDATA[
+	SELECT SUM(goodsPrice) FROM ordered_goods
+	]]>
+	</select>
+
+
+	<!-- 회원 수 -->
+	<select id="memberSum" resultType="_int">
+	<![CDATA[
+	SELECT COUNT(*) FROM member
+	]]>
+	</select>
+
+	<!-- 상품 갯수 -->
+	<select id="goodsSum" resultType="_int">
+	<![CDATA[
+	SELECT COUNT(*) FROM goods
+	]]>
+	</select>
+
+	<!-- 댓글 갯수 -->
+	<select id="goodsReplySum" resultType="_int">
+	<![CDATA[
+	SELECT COUNT(*) FROM goods_reply
+	]]>
+	</select>
+
+	<!-- 그래프용 카테고리별 상품 갯수 -->
+	<select id="goodsTotalByClassification" resultType="_int">
+	<![CDATA[
+	SELECT COUNT(*) FROM goods WHERE firstClassification = #{firstClassification}
+	]]>
+	</select>
+	
+	
+	<!-- 그래프용 월별 총 수익 -->
+	<select id="goodsTotalIncomeByMonth" resultType="_int">
+	<![CDATA[
+	SELECT SUM(amount) FROM `order` WHERE `orderDate` BETWEEN '2020-12-01 00:00:01' AND '2021-01-31 23:59:59'
+	]]>
+	</select>
+	
 </mapper>

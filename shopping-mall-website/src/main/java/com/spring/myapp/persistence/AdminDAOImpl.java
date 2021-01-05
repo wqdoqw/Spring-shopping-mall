@@ -65,5 +65,35 @@ public class AdminDAOImpl implements AdminDAO {
 	public void goodsOrderModify(String orderId) throws Exception {
 		sql.update(namespace + ".goodsOrderModify", orderId);
 	}
+
+	@Override
+	public int getTotalIncome() throws Exception {
+		return sql.selectOne(namespace + ".totalIncome");
+	}
+
+	@Override
+	public int getGoodsTotal() throws Exception {
+		return sql.selectOne(namespace + ".goodsSum");
+	}
+
+	@Override
+	public int getTotalReply() throws Exception {
+		return sql.selectOne(namespace + ".goodsReplySum");
+	}
+
+	@Override
+	public int getTotalUser() throws Exception {
+		return sql.selectOne(namespace + ".memberSum");
+	}
 	
+	@Override
+	public int getGoodsTotalByClassification(String firstClassification) throws Exception {
+		return sql.selectOne(namespace + ".goodsTotalByClassification",firstClassification);
+	}
+	
+	@Override
+	public int getGoodsTotalIncomeByMonth() throws Exception {
+		return sql.selectOne(namespace + ".goodsTotalIncomeByMonth");
+	}
+
 }

@@ -176,7 +176,13 @@ li {
 							<td>${ordered.cartStock}</td>
 							<td><fmt:formatNumber pattern="###,###,###"
 									value="${ordered.goodsPrice * ordered.cartStock}" /></td>
-							<td>주문완료</td>
+							<td>	
+							<c:if test="${ordered.orderStatus == 1}">
+								주문완료
+							</c:if>
+								<c:if test="${ordered.orderStatus == 2}">
+								배송중
+							</c:if></td>
 						</tr>
 						<c:set var="sum"
 							value="${sum + (ordered.goodsPrice * ordered.cartStock)}" />

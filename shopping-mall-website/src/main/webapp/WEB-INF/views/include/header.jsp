@@ -51,8 +51,7 @@
 	<div class="topnav" id="myTopnav">
 		<a href="/">Home</a> <a href="/shop/list?c=men">Men</a> <a
 			href="/shop/list?c=women">Women</a> <a href="#contact">Shoes</a> <a
-			href="#about">Bag</a> <a href="/shop/orderTrack">Order Tracking</a> <a
-			href="#home">About Us</a> 
+			href="#about">Bag</a> <a href="/shop/orderTrack">Order Tracking</a> 
 		<!-- 	<a href="javascript:void(0);" class="icon"
 			onclick="myFunction()"> <i class="fa fa-bars"></i>
 		</a> -->

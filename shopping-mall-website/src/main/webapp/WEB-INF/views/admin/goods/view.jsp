@@ -30,7 +30,7 @@
 	
 	<section class="register_form goods_view">
         <h2 style="font-weight: bold; margin-top: 40px; margin-bottom:40px;">상품조회</h2>
-                    <form role="form" method="post" autocomplete="off">
+                    <form role="form" method="post" autocomplete="off" style="margin-right:800px;">
                     <input type="hidden" name="n" value="${goods.goodsCode}"/>
 
                     <label for="text" style="display:block;">1차 세분화 상품 종류<span>*</span></label>
