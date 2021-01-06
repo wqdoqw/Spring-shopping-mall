@@ -207,7 +207,7 @@ li {
 	</c:if>
 
 
-	<footer class="foot_design">
+	<footer style="margin-top:450px;">
 		<div id="footer_box">
 			<%@ include file="../include/footer.jsp"%>
 		</div>
