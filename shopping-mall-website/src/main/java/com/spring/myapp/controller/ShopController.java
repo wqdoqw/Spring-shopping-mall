@@ -1,6 +1,7 @@
 package com.spring.myapp.controller;
 
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Random;
 
@@ -86,7 +87,10 @@ public class ShopController {
 		System.out.println(reply);
 		service.registerReply(reply);
 
-		return "redirect:/shop/view?n=" + reply.getGoodsName();
+		// 한글꺠짐 처리
+		String output = URLEncoder.encode(reply.getGoodsName(), "UTF-8");
+
+		return "redirect:/shop/view?n=" + output;
 	}
 
 	// 댓글 삭제
@@ -99,7 +103,10 @@ public class ShopController {
 
 		service.deleteReply(reply.getReplyNumber());
 
-		return "redirect:/shop/view?n=" + reply.getGoodsName();
+		// 한글꺠짐 처리
+		String output = URLEncoder.encode(reply.getGoodsName(), "UTF-8");
+
+		return "redirect:/shop/view?n=" + output;
 	}
 
 	// 댓글 삭제 리다이렉트
@@ -107,7 +114,10 @@ public class ShopController {
 	public String postGoBack(@RequestParam("n") String goodsName, Model model) throws Exception {
 		logger.info("post go back");
 
-		return "redirect:/shop/view?n=" + goodsName;
+		// 한글꺠짐 처리
+		String output = URLEncoder.encode(goodsName, "UTF-8");
+
+		return "redirect:/shop/view?n=" + output;
 	}
 
 	// 댓글 수정
@@ -122,7 +132,10 @@ public class ShopController {
 		System.out.println("reply data VO>>" + replyVO);
 //		service.replyModify(replyNumber);
 
-		return "redirect:/shop/view?n=" + reply.getGoodsName();
+		// 한글꺠짐 처리
+		String output = URLEncoder.encode(reply.getGoodsName(), "UTF-8");
+
+		return "redirect:/shop/view?n=" + output;
 	}
 
 	// 댓글 수정
@@ -252,9 +265,9 @@ public class ShopController {
 		order.setOrderId(buf.toString());
 		order.setUserId(userId);
 		System.out.println("ORDERVO>>>" + order);
-		
+
 		service.orderCart(order);
-		
+
 		OrderedGoodsVO ordered = new OrderedGoodsVO();
 		ordered.setOrderId(buf.toString());
 		for (CartListVO cartListVO : cartList) {
@@ -262,14 +275,14 @@ public class ShopController {
 			ordered.setGoodsCode(cartListVO.getGoodsCode());
 			ordered.setCartStock(cartListVO.getCartStock());
 			ordered.setGoodsPrice(cartListVO.getGoodsPrice());
-			
-			//상품 주문시 수량 감소
+
+			// 상품 주문시 수량 감소
 			GoodsVO view = service.goodsView(cartListVO.getGoodsName());
 			int num = view.getGoodsStock() - cartListVO.getCartStock();
 
 			view.setGoodsStock(num);
 			service.decreaseStock(view);
-			
+
 			System.out.println("GOODS PRICE>>" + cartListVO.getGoodsPrice());
 			ordered.setGoodsThumbnailImage(cartListVO.getGoodsThumbnailImage());
 			service.orderCartGoods(ordered);
@@ -391,13 +404,13 @@ public class ShopController {
 		order.setOrderId(buf.toString());
 		order.setUserId(userId);
 		System.out.println("ORDERVO>>>" + order);
-		
+
 		service.orderCart(order);
-		
+
 		// 주문시 상품 갯수 감소
 		view.setGoodsStock(view.getGoodsStock() - 1);
 		service.decreaseStock(view);
-		
+
 		OrderedGoodsVO ordered = new OrderedGoodsVO();
 		ordered.setGoodsName(goodsName);
 		ordered.setGoodsCode(view.getGoodsCode());
