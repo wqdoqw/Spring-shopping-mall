@@ -27,14 +27,10 @@
 * GitHub
 # :clipboard: 사용 기술
 ## 백엔드
-#### Spring Framework
-* Open JDK 1.8
-* Spring MVC
-* Spring Security
-* Spring JDBC
-* Spring Context
-* Spring Mybatis
-* Spring Beans
+* Spring Framework (Spring Security, Spring Mybatis)
+* JAVA (Open JDK 1.8)
+* JSP
+* JSTL
 
 ### Build tool
 * Gradle
