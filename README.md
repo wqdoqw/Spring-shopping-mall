@@ -34,7 +34,7 @@
 * Spring JDBC
 * Spring Context
 * Spring Mybatis
-* spring Beans
+* pring Beans
 
 ### Build tool
 * Gradle
