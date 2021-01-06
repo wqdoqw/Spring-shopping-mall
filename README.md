@@ -47,6 +47,7 @@
 
 ## 프론트엔드
 * HTML5
+* CSS
 * Javascript
 * jQuery 3.5.1
 * AJAX
