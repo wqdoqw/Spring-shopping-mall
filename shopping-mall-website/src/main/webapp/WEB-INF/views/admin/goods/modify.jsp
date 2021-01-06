@@ -63,8 +63,6 @@
                     <div class="select_img img_upload" id ="image_preview" style="margin-top:50px; margin-bottom:20px;">
                     	<img src="${goods.goodsImage}" class="img_upload" />
                     </div>
-                    <label for="saveDirectory">저장위치:</label> 
-                    	<%=request.getRealPath("/")%>
                 </div>
                 <div class="inputArea" style="margin-bottom:250px; margin-top:20px;">
  					<button type="submit" id="update_Btn" class="btn btn-primary">완료</button>

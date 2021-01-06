@@ -72,8 +72,6 @@
 					style="margin-top: 50px; margin-bottom: 20px;">
 					<img src="" class="img_upload" />
 				</div>
-				<label for="saveDirectory">저장위치:</label>
-				<%=request.getRealPath("/")%>
 			</div>
 			<button type="submit" class="btn btn-secondary btn-md"
 				style="margin-bottom: 100px; S margin-top: 20px;">상품추가</button>
