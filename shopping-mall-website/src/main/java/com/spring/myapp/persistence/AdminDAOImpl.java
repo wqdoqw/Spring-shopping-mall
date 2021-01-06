@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.spring.myapp.domain.GoodsOrderListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
-import com.spring.myapp.domain.MemberVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {

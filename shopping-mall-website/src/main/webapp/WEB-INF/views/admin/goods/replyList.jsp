@@ -7,17 +7,18 @@
 <head>
 <title>가성비몰</title>
 
-<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+<!-- font awesome 추가하기 -->
+<link rel="stylesheet" href="/css/font-awesome.min.css">
 <!-- 부트스트랩 CSS 추가하기 -->
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- 커스텀 CSS 추가하기 -->
-<link rel="stylesheet" href="/resources/css/custom.css">
+<link rel="stylesheet" href="/css/custom.css">
 <!-- Popper 자바스크립트 추가하기 -->
-<script src="/resources/js/popper.min.js"></script>
+<script src="/js/popper.min.js"></script>
 <!-- 제이쿼리 자바스크립트 추가하기 -->
-<script src="/resources/js/jquery-3.5.1.min.js"></script>
+<script src="/js/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
-<script src="/resources/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <style>
 .table-view {
 	margin-left: 200px;

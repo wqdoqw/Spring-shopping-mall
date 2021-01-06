@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.spring.myapp.domain.GoodsOrderListVO;
 import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
-import com.spring.myapp.domain.MemberVO;
 import com.spring.myapp.persistence.AdminDAO;
 
 @Service

@@ -3,7 +3,6 @@ package com.spring.myapp.controller;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +27,6 @@ import com.spring.myapp.domain.MemberVO;
 import com.spring.myapp.domain.OrderVO;
 import com.spring.myapp.domain.OrderedGoodsVO;
 import com.spring.myapp.service.ShopService;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 @Controller
 @RequestMapping("/shop/*")
@@ -47,7 +45,6 @@ public class ShopController {
 		System.out.println("classification>>" + firstClassification);
 
 		List<GoodsReplyRatingVO> list = service.goodsReplyList(firstClassification);
-		System.out.println("list>>" + list.get(0));
 
 		model.addAttribute("list", list);
 

@@ -15,7 +15,6 @@ import com.spring.myapp.domain.GoodsReplyVO;
 import com.spring.myapp.domain.GoodsVO;
 import com.spring.myapp.domain.OrderVO;
 import com.spring.myapp.domain.OrderedGoodsVO;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 @Repository
 public class ShopDAOImpl implements ShopDAO {

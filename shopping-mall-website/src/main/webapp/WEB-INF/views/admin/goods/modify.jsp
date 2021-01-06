@@ -6,17 +6,18 @@
 <head>
 <title>가성비몰</title>
 
-    <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
-    <!-- 부트스트랩 CSS 추가하기 -->
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <!-- 커스텀 CSS 추가하기 -->
-    <link rel="stylesheet" href="/resources/css/custom.css">
-    <!-- Popper 자바스크립트 추가하기 -->
-    <script src="/resources/js/popper.min.js"></script>
-    <!-- 제이쿼리 자바스크립트 추가하기 -->
-    <script src="/resources/js/jquery-3.5.1.min.js"></script>
-    <!-- 부트스트랩 자바스크립트 추가하기 -->
-    <script src="/resources/js/bootstrap.min.js"></script>
+<!-- font awesome 추가하기 -->
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<!-- 부트스트랩 CSS 추가하기 -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<!-- 커스텀 CSS 추가하기 -->
+<link rel="stylesheet" href="/css/custom.css">
+<!-- Popper 자바스크립트 추가하기 -->
+<script src="/js/popper.min.js"></script>
+<!-- 제이쿼리 자바스크립트 추가하기 -->
+<script src="/js/jquery-3.5.1.min.js"></script>
+<!-- 부트스트랩 자바스크립트 추가하기 -->
+<script src="/js/bootstrap.min.js"></script>
 	<script>
 	</script>
 </head>
@@ -48,6 +49,9 @@
                     <input type="text" id="goodsPrice" class="form-control" name="goodsPrice"  placeholder="상품가격" value="${goods.goodsPrice}" required="required">
                     <label for="goodsStock">상품재고<span>*</span></label>
                     <input type="text" id="goodsStock" class="form-control" name="goodsStock" placeholder="상품재고" value="${goods.goodsStock}" required="required">
+                    <label for="goodsStock">상품 할인율<span>*</span></label> 
+                    <input type="text" id="goodsDiscountRate" class="form-control" name="goodsDiscountRate"
+					required="required" placeholder="상품 할인율" value="${goods.goodsDiscountRate}"> 
                     <label for="goodsDescription" style="display:block;">상품소개<span>*</span></label>
                     <textarea class="form-control" rows="5" cols="50" id="goodsDescription" name="goodsDescription" required="required">${goods.goodsDescription}</textarea>
                  <div class="inputArea">

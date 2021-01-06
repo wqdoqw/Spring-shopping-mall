@@ -185,19 +185,23 @@ WHERE c.userid = m.email AND c.goodsName = g.goodsName AND c.userid = #{userid}
 
 	<!-- 카트 삭제 -->
 	<delete id="deleteCart">
+	<![CDATA[
 		DELETE FROM cart WHERE cartNumber = #{cartNumber} AND
 		userid = #{userid}
+	]]>
 	</delete>
 
 	<!-- 카트 전부 삭제 -->
 	<delete id="deleteAllCart">
+	<![CDATA[
 		DELETE FROM cart WHERE userid = #{userid}
+	]]>	
 	</delete>
 
 	<!-- 주문 정보 -->
 	<insert id="addOrder">
 	<![CDATA[
-		INSERT INTO `mydb`.`order` (`orderId`, `userId`, `orderRecipient`, `phone`, `zipcode`, `address1`, `address2`, `amount`)
+		INSERT INTO `order` (`orderId`, `userId`, `orderRecipient`, `phone`, `zipcode`, `address1`, `address2`, `amount`)
 VALUES (#{orderId}, #{userId}, #{orderRecipient}, #{phone}, #{zipcode}, #{address1}, #{address2}, #{amount})
 	]]>
 	</insert>

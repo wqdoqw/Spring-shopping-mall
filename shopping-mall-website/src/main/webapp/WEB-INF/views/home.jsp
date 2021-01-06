@@ -5,18 +5,18 @@
 <html>
 <head>
 <title>가성비몰</title>
-
-<link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+<!-- font awesome 추가하기 -->
+<link rel="stylesheet" href="../css/font-awesome.min.css">
 <!-- 부트스트랩 CSS 추가하기 -->
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 <!-- 커스텀 CSS 추가하기 -->
-<link rel="stylesheet" href="/resources/css/custom.css">
+<link rel="stylesheet" href="../css/custom.css">
 <!-- Popper 자바스크립트 추가하기 -->
-<script src="/resources/js/popper.min.js"></script>
+<script src="../js/popper.min.js"></script>
 <!-- 제이쿼리 자바스크립트 추가하기 -->
-<script src="/resources/js/jquery-3.5.1.min.js"></script>
+<script src="../js/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
-<script src="/resources/js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 <style>
 .carousel {
@@ -25,14 +25,11 @@
 	margin: 0 auto;
 }
 
-
-
 @media screen and (max-width: 850px) {
-	.carousel{
-		width:auto;
-		height:auto;
+	.carousel {
+		width: auto;
+		height: auto;
 	}
-	
 }
 </style>
 </head>
@@ -44,42 +41,42 @@
 	</header>
 
 
-	<section style="margin-bottom:96px;">
+	<section style="margin-bottom: 96px;">
 
-			<div>
-				<div id="carouselExampleIndicators" class="carousel slide"
-					data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#carouselExampleIndicators" data-slide-to="0"
-							class="active"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<img class="d-block w-100"
-								src="/resources/img/index/index_img1.jpg" alt="First slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100"
-								src="/resources/img/index/index_img2.jpg" alt="Second slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100"
-								src="/resources/img/index/index_img3.jpg" alt="Third slide">
-						</div>
+		<div>
+			<div id="carouselIndicators" class="carousel slide"
+				data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselIndicators" data-slide-to="0"
+						class="active"></li>
+					<li data-target="#carouselIndicators" data-slide-to="1"></li>
+					<li data-target="#carouselIndicators" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100"
+							src="../img/index/index_img1.jpg" alt="First slide">
 					</div>
-					<a class="carousel-control-prev" href="#carouselExampleIndicators"
-						role="button" data-slide="prev"> <span
-						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-						class="sr-only">Previous</span>
-					</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-						role="button" data-slide="next"> <span
-						class="carousel-control-next-icon" aria-hidden="true"></span> <span
-						class="sr-only">Next</span>
-					</a>
+					<div class="carousel-item">
+						<img class="d-block w-100"
+							src="../img/index/index_img2.jpg" alt="Second slide">
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100"
+							src="../img/index/index_img3.jpg" alt="Third slide">
+					</div>
 				</div>
+				<a class="carousel-control-prev" href="#carouselIndicators"
+					role="button" data-slide="prev"> <span
+					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+					class="sr-only">Previous</span>
+				</a> <a class="carousel-control-next" href="#carouselIndicators"
+					role="button" data-slide="next"> <span
+					class="carousel-control-next-icon" aria-hidden="true"></span> <span
+					class="sr-only">Next</span>
+				</a>
 			</div>
+		</div>
 	</section>
 	<br>
 	<footer class="foot_design">
