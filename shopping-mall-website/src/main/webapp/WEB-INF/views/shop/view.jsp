@@ -222,7 +222,7 @@
 	<div class="responsive_view">
 		<h2 style="font-weight: bold; margin-bottom: 20px;">${view.goodsName}</h2>
 		<img src="${view.goodsImage}" alt=""
-			style="width: 300px; height: auto;"> <label
+			style="width: 270px; height: auto;"> <label
 			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">판매가</label>
 		<label class="price" style="font-size: 20px; color: red;">${view.goodsPrice}
 			<span>원</span>
