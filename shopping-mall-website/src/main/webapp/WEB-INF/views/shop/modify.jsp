@@ -18,8 +18,6 @@
 <script src="../js/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
 <script src="../js/bootstrap.min.js"></script>
-<!-- 부트스트랩 자바스크립트 추가하기 -->
-<script src="/resources/js/bootstrap.min.js"></script>
 <script>
 function frameclose() { 
 	parent.close() 
@@ -90,12 +88,31 @@ function popupSubmit() {
 			</div>
 			<div class='rating-stars text-center'>
 				<ul id='stars'>
-					<li class='star selected' data-value='1'><i
+					<li class='star 
+						<c:if test="${reply.replyRating >= 1}">
+						selected
+						</c:if>' data-value='1'><i
 						class='fa fa-star fa-fw'></i></li>
-					<li class='star' data-value='2'><i class='fa fa-star fa-fw'></i></li>
-					<li class='star' data-value='3'><i class='fa fa-star fa-fw'></i></li>
-					<li class='star' data-value='4'><i class='fa fa-star fa-fw'></i></li>
-					<li class='star' data-value='5'><i class='fa fa-star fa-fw'></i></li>
+					<li class='star 
+					<c:if test="${reply.replyRating >= 2}">
+						selected
+					</c:if>'
+					data-value='2'><i class='fa fa-star fa-fw'></i></li>
+					<li class='star
+					<c:if test="${reply.replyRating >= 3}">
+						selected
+					</c:if>'
+					data-value='3'><i class='fa fa-star fa-fw'></i></li>
+					<li class='star
+						<c:if test="${reply.replyRating >= 4}">
+						selected
+					</c:if>'
+					 data-value='4'><i class='fa fa-star fa-fw'></i></li>
+					<li class='star
+						<c:if test="${reply.replyRating >= 5}">
+						selected
+					</c:if>'
+					data-value='5'><i class='fa fa-star fa-fw'></i></li>
 				</ul>
 			</div>
 			<input type="hidden" name="replyRating" id="replyRating" value="1">
