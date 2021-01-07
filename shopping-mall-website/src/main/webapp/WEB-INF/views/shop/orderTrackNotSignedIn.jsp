@@ -143,10 +143,11 @@ li {
 		</div>
 	</header>
 
+	<section id='main_img2'></section>
+
 	<h2 class="goods-title">주문내역</h2>
 	<c:if test="${fn:length(ordered) == 0}">
-		<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
-			주문내역이 없습니다.</p>
+		<p style="text-align: center; font-weight: bold; font-size: 16px;">해당 주문번호의 주문내역이 없습니다.</p>
 	</c:if>
 	<c:if test="${fn:length(ordered) > 0}">
 
@@ -177,11 +178,9 @@ li {
 							<td>${ordered.cartStock}</td>
 							<td><fmt:formatNumber pattern="###,###,###"
 									value="${ordered.goodsPrice * ordered.cartStock}" /></td>
-							<td>	
-							<c:if test="${ordered.orderStatus == 1}">
+							<td><c:if test="${ordered.orderStatus == 1}">
 								주문완료
-							</c:if>
-								<c:if test="${ordered.orderStatus == 2}">
+							</c:if> <c:if test="${ordered.orderStatus == 2}">
 								배송중
 							</c:if></td>
 						</tr>
@@ -207,7 +206,7 @@ li {
 	</c:if>
 
 
-	<footer style="margin-top:450px;">
+	<footer style="margin-top: 450px;">
 		<div id="footer_box">
 			<%@ include file="../include/footer.jsp"%>
 		</div>
