@@ -134,7 +134,7 @@ li {
 
 			<c:forEach items="${list}" var="list">
 				<ul class="items">
-					<li><img src="${list.goodsThumbnailImage}"></li>
+					<li><img src="${list.goodsImage}" style="width: 203px; height: 300px"></li>
 					<li class="a"><a href="/shop/view?n=${list.goodsName}">${list.goodsName}</a></li>
 					<li class="b">${list.goodsPrice}<span> ${list.goodsDiscountRate}%</span></li>
 					<c:set var="string1" value="${list.goodsDescription}" />

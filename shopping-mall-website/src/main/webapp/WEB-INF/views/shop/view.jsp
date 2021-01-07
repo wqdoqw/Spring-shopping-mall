@@ -284,7 +284,7 @@
 					<th>구매수량</th>
 					<td>
 						<div class="length">
-						<c:set var="num" value="1" />
+							<c:set var="num" value="1" />
 							<input type="number" class="numBox" min="1"
 								max="${view.goodsStock}" value="1" readonly="readonly" /> <a
 								href="#a" class="plus">증가</a> <a href="#a" class="minus">감소</a>
@@ -335,18 +335,15 @@
 			</tbody>
 		</table>
 		<div class="img">
-			<img src="${view.goodsImage}" alt="">
-			<ul>
-				<li class="on"><a href="#a"><img src="${view.goodsImage}"
-						alt=""></a></li>
-			</ul>
+			<img src="${view.goodsImage}" alt=""> 
+			<a class="on"><img src="${view.goodsImage}" alt="" class="product-view-img-thumb"></a>
 		</div>
 		<input type="hidden" class="goodsCode" name="goodsCode"
-			value="${view.goodsCode}"> 
-			<input type="hidden" class="goodsName" name="goodsName" value="${view.goodsName}">
+			value="${view.goodsCode}"> <input type="hidden"
+			class="goodsName" name="goodsName" value="${view.goodsName}">
 		<div class="btns">
-			<a class="addCart_btn btn1">장바구니</a> 
-			<a href="/shop/orderGood?n=${view.goodsName}" class="btn2">구매하기</a>
+			<a class="addCart_btn btn1">장바구니</a> <a
+				href="/shop/orderGood?n=${view.goodsName}" class="btn2">구매하기</a>
 		</div>
 	</div>
 	<script>
@@ -397,7 +394,7 @@
 					<h2 class="review-header">리뷰 남기기</h2>
 					<div class="review-textarea">
 						<textarea name="replyData" id="replyData" class="form-control"
-							rows="4" cols="50" maxlength="100"></textarea>
+							rows="4" cols="50" maxlength="100" required="required"></textarea>
 					</div>
 					<div class='rating-stars text-center'>
 						<ul id='stars'>
@@ -586,7 +583,7 @@
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 	</footer>
-	
+
 </body>
 </html>
 
