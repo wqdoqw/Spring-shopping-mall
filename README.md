@@ -47,6 +47,7 @@
 * Javascript
 * jQuery 3.5.1
 * AJAX
+* Chart.js
 * Bootstrap 4.0
 * Font Awesome
 
