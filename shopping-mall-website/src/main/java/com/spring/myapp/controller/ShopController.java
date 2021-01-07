@@ -128,7 +128,7 @@ public class ShopController {
 
 		GoodsReplyVO reply = service.selectReplyByNumber(replyNumber);
 
-		System.out.println("modify 요기>>" + reply);
+		System.out.println("modify>>" + reply);
 		System.out.println("reply data VO>>" + replyVO);
 //		service.replyModify(replyNumber);
 
@@ -140,23 +140,23 @@ public class ShopController {
 
 	// 댓글 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void getUpdateReply(@RequestParam("n") String replyNumber) throws Exception {
+	public void getUpdateReply(@RequestParam("n") String replyNumber, Model model) throws Exception {
 		logger.info("get update reply");
+		
+		GoodsReplyVO reply = service.selectReplyByNumber(replyNumber);
+		model.addAttribute("reply", reply);
 
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String updateReply(@RequestParam("n") String replyNumber, GoodsReplyVO reply, HttpServletResponse response)
+	public String updateReply(@RequestParam("n") String replyNumber, GoodsReplyVO reply)
 			throws Exception {
 		logger.info("post update reply");
 
 		System.out.println("modify replyvo>>>" + reply);
 		reply.setReplyNumber(replyNumber);
-
+		
 		service.replyModify(reply);
-
-		PrintWriter out = response.getWriter();
-		out.println("<script>parent.close()window.close()self.close()</script> ");
 
 		return "redirect:/shop/reload";
 	}
@@ -449,7 +449,6 @@ public class ShopController {
 			member = (MemberVO) session.getAttribute("member");
 			userId = member.getEmail();
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		if (member == null) {
 			userId = "not signed";

@@ -86,7 +86,7 @@ function popupSubmit() {
 				리뷰 수정하기</h2>
 			<div class="review-textarea">
 				<textarea name="replyData" id="replyData" class="form-control"
-					rows="4" cols="50" maxlength="100"></textarea>
+					rows="4" cols="50" maxlength="100" required="required">${reply.replyData}</textarea>
 			</div>
 			<div class='rating-stars text-center'>
 				<ul id='stars'>

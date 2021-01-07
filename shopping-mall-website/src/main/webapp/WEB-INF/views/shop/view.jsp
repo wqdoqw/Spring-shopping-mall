@@ -321,7 +321,7 @@
 				<tr>
 					<th>옵션선택</th>
 					<td><select>
-							<option>기본(+0)</option>
+							<option>기본</option>
 					</select></td>
 				</tr>
 				<tr>
