@@ -135,7 +135,7 @@
 	<!-- 총 수익 -->
 	<select id="totalIncome" resultType="_int">
 	<![CDATA[
-	SELECT SUM(goodsPrice) FROM ordered_goods
+	SELECT SUM(amount) FROM `order`
 	]]>
 	</select>
 
