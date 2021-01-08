@@ -207,7 +207,7 @@ public class ShopController {
 			if (map.get(cart.getGoodsCode()) != null) {
 				if (cart.getCartStock() != map.get(cart.getGoodsCode())) {
 					
-					// 해당 상품번호로 현재 들어있는 중복된 카드 전부 삭제후 다시 삽입
+					// 해당 상품번호로 현재 들어있는 중복된 상품을 전부 삭제후 카트 수량을 더한 후 다시 삽입
 					service.deleteAllCartByGoodsCode(cart.getGoodsCode());
 					cart.setCartStock(cart.getCartStock() + map.get(cart.getGoodsCode()));
 					
