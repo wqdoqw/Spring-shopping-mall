@@ -234,7 +234,7 @@
 		<label>${view.brand}</label>
 		<label style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px; margin-bottom:15px;">구매수량</label>
 		<div class="length">
-			<input type="number" class="numBox2" style="width:25%;" min="1" value="1"> 
+			<input type="number" class="numBox2" style="width:25%;" min="1" value="1" /> 
 			<a href="#a" class="plus_small"></a> <a href="#a" class="minus_small"></a>
 						<script>
 						$(".numBox2").on("keyup keydown change",function(event){

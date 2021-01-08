@@ -80,6 +80,14 @@ li {
 	margin-bottom: 100px;
 }
 
+.table-view thead{
+	text-align: center;
+}
+
+.table-view tbody{
+	text-align: center;
+}
+
 @media screen and (max-width: 1500px) {
 	.box{
 		margin-left: 10%;
@@ -171,11 +179,11 @@ li {
 						<tr>
 							<th style="width: 3%;"></th>
 							<th style="width: 5%;">사진</th>
-							<th style="width: 10%;">상품이름</th>
+							<th style="width: 20%;">상품이름</th>
 							<th style="width: 10%;">할인된 가격</th>
 							<th style="width: 10%;">주문수량</th>
 							<th style="width: 10%;">최종가격</th>
-							<th style="width: 10%;"></th>
+							<th style="width: 5%;"></th>
 						</tr>
 					</thead>
 					<tbody>

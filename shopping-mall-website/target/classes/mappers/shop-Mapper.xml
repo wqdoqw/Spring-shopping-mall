@@ -245,7 +245,7 @@ VALUES (#{orderId}, #{userId}, #{orderRecipient}, #{phone}, #{zipcode}, #{addres
 	<select id="getOrderItems"
 		resultType="com.spring.myapp.domain.OrderedGoodsVO">
 	<![CDATA[
-	SELECT goodsName, goodsCode, cartStock, goodsPrice, goodsThumbnailImage
+	SELECT *
 	FROM ordered_goods
 	WHERE orderId = #{orderId}
 	]]>
