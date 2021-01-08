@@ -134,14 +134,7 @@
 	    type : "post",
 	    data : data,
 	    success : function(result){
-	    /* 	if(result == 1){
-	     		alert("카트 담기 성공");
-	     		$(".numBox").val("1");
-	    	}else{
-	    		alert("회원만 사용할 수 있습니다");
-	     		$(".numBox").val("1");
-	    	} */
-	    	alert("성공");
+	    	alert("주문상태를 배송중으로 바꿉니다.");
 	    },
 	    error : function(){
 	     alert("카트 담기 실패");

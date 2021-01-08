@@ -21,72 +21,6 @@
 <!-- 부트스트랩 자바스크립트 추가하기 -->
 <script src="../js/bootstrap.min.js"></script>
 <style>
-.box {
-	width: 1320px;
-	margin: 0 auto;
-	/* border: solid 1px blue; */
-}
-
-#content_box {
-	padding-top: 50px;
-}
-
-#content_box h3 {
-	float: left;
-	margin-left: 610px;
-}
-
-#content_box p {
-	float: right;
-	margin-right: 20px;
-}
-
-.items {
-	width: 232px;
-	/* border: solid 1px blue; */
-	margin: 30px 0 0 25px;
-	float: left;
-}
-
-.items li {
-	font-family: "돋움";
-	color: #666666;
-}
-
-.items .a {
-	font-weight: bold;
-	color: black;
-	margin-top: 20px;
-	padding-right: 45px;
-	/* font-size: 14px; */
-}
-
-.items .b {
-	font-weight: bold;
-	color: black;
-	margin-top: 5px;
-	font-size: 14px;
-	padding-right: 20px;
-}
-
-.items .b span {
-	color: #a26f59;
-}
-
-.items .c {
-	font-size: 12px;
-	margin-top: 20px;
-	/* padding-bottom:20px; */
-}
-
-.items .d {
-	font-size: 12px;
-	margin-top: 25px;
-}
-
-.items .d span {
-	color: #a26f59;
-}
 
 * {
 	margin: 0;
@@ -123,205 +57,223 @@ li {
 	margin-bottom: 20px;
 }
 
+.box{
+	margin-left: 300px;
+    margin-right: 300px;
+}
+
+.top_del_btn{
+	margin-bottom: 10px;
+}
+
+.order-amount-box {
+	background: #ffca94;
+	margin-left: 300px;
+	margin-right: 300px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 24px;
+	padding-top: 30px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 100px;
+}
+
+@media screen and (max-width: 1500px) {
+	.box{
+		margin-left: 10%;
+    	margin-right: 10%;
+	}
+	.order-amount-box {
+		margin-left: 10%;
+    	margin-right: 10%;
+	}
+}
+
 </style>
 </head>
 <body>
-	<header id="header">
-		<div id="header_box">
+	<header>
+		<div>
 			<%@ include file="../include/header.jsp"%>
 		</div>
 	</header>
 
 	<section id='main_img'></section>
 
-	<section id="content">
-		<c:if test="${fn:length(cartList) == 0}">
-			<div style="margin-bottom: 300px; margin-top: 50px;">
-				<h3 class="goods-title">전체 카트 상품</h3>
-				<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
-					카트에 상품이 없습니다.</p>
+	<c:if test="${fn:length(cartList) == 0}">
+		<div style="margin-bottom: 300px; margin-top: 50px;">
+			<h3 class="goods-title">전체 카트 상품</h3>
+			<p style="text-align: center; font-weight: bold; font-size: 16px;">현재
+				카트에 상품이 없습니다.</p>
+		</div>
+	</c:if>
+	<c:if test="${fn:length(cartList) > 0}">
+		<div class="box">
+			<h3 class="goods-title">전체 카트 상품</h3>
+		<div class="top_del_btn">
+			<div class="allCheck">
+				<input type="checkbox" name="allCheck" id="allCheck" /><label
+					for="allCheck">모두 선택</label>
+				<script>
+					$("#allCheck").click(function() {
+						var chk = $("#allCheck").prop("checked");
+						if (chk) {
+							$(".chBox").prop("checked", true);
+						} else {
+							$(".chBox").prop("checked", false);
+						}
+					});
+				</script>
 			</div>
-		</c:if>
-		<c:if test="${fn:length(cartList) > 0}">
-			<div class="box">
-				<h3 class="goods-title">전체 카트 상품</h3>
-				<div class="allCheck">
-					<input type="checkbox" name="allCheck" id="allCheck" /><label
-						for="allCheck">모두 선택</label>
-					<script>
-						$("#allCheck").click(function() {
-							var chk = $("#allCheck").prop("checked");
-							if (chk) {
-								$(".chBox").prop("checked", true);
-							} else {
-								$(".chBox").prop("checked", false);
-							}
-						});
-					</script>
-				</div>
-				<div class="delBtn">
-					<button type="button" class="selectDelete_btn btn btn-default"
-						style="background-color: #ff6766; color: white;">선택 삭제</button>
+			<div class="delBtn">
+				<button type="button" class="selectDelete_btn btn btn-default"
+					style="background-color: #ff6766; color: white;">선택 삭제</button>
 
-					<script>
-						$(".selectDelete_btn")
-								.click(
+				<script>
+					$(".selectDelete_btn").click(function() {
+						var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+						if (confirm_val) {
+							var checkArr = new Array();
+
+							$("input[class='chBox']:checked").each(function() {
+								checkArr.push($(this).attr("data-cartNum"));
+							});
+
+							$.ajax({
+								url : "/shop/deleteCart",
+								type : "post",
+								data : {
+									chbox : checkArr
+								},
+								success : function(result) {
+									if (result == 1) {
+										location.href = "/shop/cartList";
+									} else {
+										alert("삭제 실패");
+									}
+								}
+							});
+						}
+					});
+				</script>
+			</div>
+		</div>
+			<div class="clear"></div>
+			<c:set var="sum" value="0" />
+			<c:set var="listSize" value="${fn:length(cartList)}" />
+			
+			<section class="table-view">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th style="width: 3%;"></th>
+							<th style="width: 5%;">사진</th>
+							<th style="width: 10%;">상품이름</th>
+							<th style="width: 10%;">할인된 가격</th>
+							<th style="width: 10%;">주문수량</th>
+							<th style="width: 10%;">최종가격</th>
+							<th style="width: 10%;"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:set var="sum" value="0" />
+						<c:forEach items="${cartList}" var="cartList">
+							<tr>
+								<td>
+									<div class="checkBox">
+										<input type="checkbox" name="chBox" class="chBox"
+											data-cartNum="${cartList.cartNumber}" />
+										<script>
+											$(".chBox").click(function() {
+												$("#allCheck").prop("checked", false);
+											});
+										</script>
+									</div>
+
+								</td>
+								<td><img src="${cartList.goodsThumbnailImage}"
+									style="max-width: 50px;" /></td>
+								<td style="padding-top:35px;"><a href="/shop/view?n=${cartList.goodsName}">${cartList.goodsName}</a></td>
+								<td style="padding-top:35px;">${cartList.goodsPrice}</td>
+								<td style="padding-top:35px;">${cartList.cartStock}</td>
+								<td style="padding-top:35px;"><fmt:formatNumber pattern="###,###,###"
+										value="${cartList.goodsPrice * cartList.cartStock}" /></td>
+								<td>
+									<div class="delete">
+										<button type="button"
+											class="delete_${cartList.cartNumber}_btn btn btn-default"
+											data-cartNumber="${cartList.cartNumber}"
+											style="margin-top: 17px; background-color: #ff6766; color: white;">삭제</button>
+
+										<script>
+									$(".delete_${cartList.cartNumber}_btn").click(
 										function() {
-											var confirm_val = confirm("정말 삭제하시겠습니까?");
-
-											if (confirm_val) {
-												var checkArr = new Array();
-
-												$(
-														"input[class='chBox']:checked")
-														.each(
-																function() {
-																	checkArr
-																			.push($(
-																					this)
-																					.attr(
-																							"data-cartNum"));
-																});
-
-												$
-														.ajax({
-															url : "/shop/deleteCart",
-															type : "post",
-															data : {
-																chbox : checkArr
-															},
-															success : function(
-																	result) {
-																if (result == 1) {
-																	location.href = "/shop/cartList";
-																} else {
-																	alert("삭제 실패");
-																}
-															}
-														});
+										var confirm_val = confirm("정말 삭제하시겠습니까?");
+										if (confirm_val) {
+										var checkArr = new Array();
+										checkArr.push($(this).attr("data-cartNumber"));
+											$.ajax({
+												url : "/shop/deleteCart",
+												type : "post",
+												data : {chbox : checkArr},
+													    success : function(result) {
+														if (result == 1) {
+															location.href = "/shop/cartList";
+														} else {
+															alert("삭제 실패");
+															   }
+																				}
+												});
 											}
 										});
-					</script>
-				</div>
+									</script>
+									</div>
+								</td>
+							</tr>
+								<c:set var="sum" value="${sum + (cartList.goodsPrice * cartList.cartStock)}" />
+						</c:forEach>
+					</tbody>
+				</table>
+			</section>
 
-				<div class="clear"></div>
-				<c:set var="sum" value="0" />
-				<c:set var="listSize" value="${fn:length(cartList)}" />
-				<c:forEach items="${cartList}" var="cartList" varStatus="status">
-					<ul class="items"
-						style="
-						<c:if test="${listSize == 1}">
-						margin-left:42%;
-						</c:if>
-						<c:if test="${listSize == 2 && status.index == 0}">
-						margin-left:32%;
-						
-						</c:if>
-						<c:if test="${listSize == 3 && status.index == 0}">
-						margin-left:22%;
-						</c:if>
-						<c:if test="${listSize == 4 && status.index == 0}">
-						margin-left:12%;
-						</c:if>
-						">
-						<div class="checkBox">
-							<input type="checkbox" name="chBox" class="chBox"
-								data-cartNum="${cartList.cartNumber}" />
-							<script>
-								$(".chBox").click(function() {
-									$("#allCheck").prop("checked", false);
-								});
-							</script>
-						</div>
-						<li><img src="${cartList.goodsThumbnailImage}"></li>
-						<li class="a">상품명: <a
-							href="/shop/view?n=${cartList.goodsName}">${cartList.goodsName}</a></li>
-						<li class="b">가격: ${cartList.goodsPrice}<span> 할인율:
-								${cartList.goodsDiscountRate}%</span></li>
-						<li class="b">구입 수량 : ${cartList.cartStock}</li>
-						<li class="b">최종 가격 : <fmt:formatNumber pattern="###,###,###"
-								value="${cartList.goodsPrice * cartList.cartStock}" /></li>
-						<c:set var="string1" value="${cartList.goodsDescription}" />
-						<c:set var="string2" value="..." />
-						<li class="c">&quot; <c:choose>
-								<c:when test="${fn:length(string1) gt 40}">
-									<c:out value="${fn:substring(string1, 0, 39)}${string2}">
-									</c:out>
-								</c:when>
-								<c:otherwise>
-									<c:out value="${string1}">
-									</c:out>
-								</c:otherwise>
-							</c:choose>&quot;
-							<div class="delete">
-								<button type="button"
-									class="delete_${cartList.cartNumber}_btn btn btn-default"
-									data-cartNumber="${cartList.cartNumber}"
-									style="margin-top: 20px; background-color: #ff6766; color: white;">삭제</button>
 
-								<script>
-									$(".delete_${cartList.cartNumber}_btn")
-											.click(
-													function() {
-														var confirm_val = confirm("정말 삭제하시겠습니까?");
+		</div>
 
-														if (confirm_val) {
-															var checkArr = new Array();
+		<div class="clear" style="margin-bottom: 100px;"></div>
 
-															checkArr
-																	.push($(
-																			this)
-																			.attr(
-																					"data-cartNumber"));
-
-															$
-																	.ajax({
-																		url : "/shop/deleteCart",
-																		type : "post",
-																		data : {
-																			chbox : checkArr
-																		},
-																		success : function(
-																				result) {
-																			if (result == 1) {
-																				location.href = "/shop/cartList";
-																			} else {
-																				alert("삭제 실패");
-																			}
-																		}
-																	});
-														}
-													});
-								</script>
-							</div>
-						</li>
-
-					</ul>
-					<c:set var="sum"
-						value="${sum + (cartList.goodsPrice * cartList.cartStock)}" />
-				</c:forEach>
+	<%-- 	<div class="final_sum" style="margin-bottom: 200px;">
+			<h3>총 상품 가격</h3>
+			<div class="sum">
+				총 합계 :
+				<fmt:formatNumber pattern="###,###,###" value="${sum}" />
+				원
 			</div>
-
-			<div class="clear" style="margin-bottom: 100px;"></div>
-
-			<div class="final_sum" style="margin-bottom: 200px;">
-				<h3>총 상품 가격</h3>
-				<div class="sum">
-					총 합계 :
-					<fmt:formatNumber pattern="###,###,###" value="${sum}" />
-					원
-				</div>
+			<a href="/shop/orderCart" class="btn
+					btn-default"
+				style="background-color: #ff6766; color: white;">주문 하기</a>
+		</div> --%>
+		
+			<div class="order-amount-box">
+			<p style="display: inline; margin-right: 30px; ">
+				총 주문금액:
+				<fmt:formatNumber pattern="###,###,###" value="${sum}" />
+				원 + 0 원 (배송비) =
+				<fmt:formatNumber pattern="###,###,###" value="${sum}" />
+				원
+			</p>
 				<a href="/shop/orderCart" class="btn
 					btn-default"
-					style="background-color: #ff6766; color: white;">주문 하기</a>
-			</div>
-		</c:if>
-
-	</section>
+				style="background-color: #ff6766; color: white;">주문 하기</a>
+		</div>
+	</c:if>
 
 
-	<footer class="foot_design">
-		<div id="footer_box">
+
+	<footer>
+		<div>
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 	</footer>

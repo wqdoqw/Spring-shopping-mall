@@ -23,8 +23,8 @@
 </head>
 
 <body>
-	<header id="header">
-		<div id="header_box">
+	<header>
+		<div>
 			<%@ include file="../include/header.jsp"%>
 		</div>
 	</header>
@@ -80,7 +80,7 @@
     </section>
 
 	<footer>
-		<div id="footer_box">
+		<div>
 			<%@ include file="../include/footer.jsp" %>
 		</div>		
 	</footer>

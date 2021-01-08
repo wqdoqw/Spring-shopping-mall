@@ -333,6 +333,10 @@ li {
 	color: red;
 }
 
+td{
+	font-size: 17px;
+}
+
 @media screen and (max-width: 1680px) {
 	.register_form {
 		margin-left: 34%;

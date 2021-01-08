@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <!-- 커스텀 CSS 추가하기 -->
 <link rel="stylesheet" href="../css/custom.css">
+<link rel="stylesheet" href="../css/order.css">
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="../js/popper.min.js"></script>
 <!-- 제이쿼리 자바스크립트 추가하기 -->
@@ -23,119 +24,6 @@
 <!-- 다음주소 API 추가하기 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
-<style>
-* {
-	margin: 0;
-	padding: 0;
-}
-
-li {
-	list-style: none;
-}
-
-.clear {
-	clear: both;
-}
-
-.goods-title {
-	font-weight: bold;
-	margin-bottom: 50px;
-	text-align: center;
-	margin-top: 50px;
-}
-
-.table-view {
-	margin-left: 300px;
-	margin-right: 300px;
-	margin-top: 50px;
-	text-align: center;
-}
-
-.order-amount-box {
-	background: #ffca94;
-	margin-left: 300px;
-	margin-right: 300px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 10px;
-	padding-top: 30px;
-	text-align: center;
-	font-size: 16px;
-	font-weight: bold
-}
-
-.order_form {
-	margin-top: 50px;
-	border: 5px solid lightgrey;
-	margin-left: 300px;
-	margin-right: 300px;
-}
-
-.order_form label {
-	margin-top: 15px;
-	font-weight: bold;
-	font-size: 16px;
-	margin-left: 100px;
-}
-
-.order_form input {
-	width: 450px;
-	height: 32px;
-	margin-left: 100px;
-}
-
-.order_form form {
-	margin-left: 25%;
-	margin-right: 25%;
-}
-
-.pay_button {
-	margin-top: 20px;
-	margin-left: 100px;
-	margin-bottom: 50px;
-}
-
-.postcode_button {
-	display: inline;
-	margin-left: 3px;
-}
-
-.order_form span {
-	color: red;
-}
-
-@media screen and (max-width: 1500px) {
-	.order_form label {
-		margin-left: 10%;
-	}
-	.order_form input {
-		width: 80%;
-		margin-left: 10%;
-	}
-	.order_form {
-		margin-left: 10%;
-		margin-right: 10%;
-	}
-	.pay_button {
-		margin-left: 10%;
-	}
-	.order-amount-box {
-		margin-left: 10%;
-		margin-right: 10%;
-	}
-	.table-view {
-		margin-left: 10%;
-		margin-right: 10%;
-	}
-}
-
-@media screen and (max-width: 880px) {
-	.postcode_button {
-		margin-top: 10px;
-		margin-left: 30px;
-	}
-}
-</style>
 <script>
 	function execPostCode() {
 		new daum.Postcode({
@@ -173,17 +61,14 @@ li {
 				$("[name=zipcode]").val(data.zonecode);
 				$("[name=address1]").val(fullRoadAddr);
 
-				/* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
-				document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
-				document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
 			}
 		}).open();
 	}
 </script>
 </head>
 <body>
-	<header id="header">
-		<div id="header_box">
+	<header>
+		<div>
 			<%@ include file="../include/header.jsp"%>
 		</div>
 	</header>
@@ -208,7 +93,7 @@ li {
 					<tr>
 						<th style="width: 10%;">사진</th>
 						<th style="width: 10%;">상품이름</th>
-						<th style="width: 10%;">가격</th>
+						<th style="width: 10%;">할인된 가격</th>
 						<th style="width: 10%;">주문수량</th>
 						<th style="width: 10%;">최종가격</th>
 					</tr>
@@ -219,10 +104,10 @@ li {
 						<tr>
 							<td><img src="${cartList.goodsThumbnailImage}"
 								style="max-width: 50px;" /></td>
-							<td><a href="/shop/view?n=${cartList.goodsName}">${cartList.goodsName}</a></td>
-							<td>${cartList.goodsPrice}</td>
-							<td>${cartList.cartStock}</td>
-							<td><fmt:formatNumber pattern="###,###,###"
+							<td style="padding-top:35px;"><a href="/shop/view?n=${cartList.goodsName}">${cartList.goodsName}</a></td>
+							<td style="padding-top:35px;">${cartList.goodsPrice}</td>
+							<td style="padding-top:35px;">${cartList.cartStock}</td>
+							<td style="padding-top:35px;"><fmt:formatNumber pattern="###,###,###"
 									value="${cartList.goodsPrice * cartList.cartStock}" /></td>
 						</tr>
 						<c:set var="sum"
@@ -232,6 +117,7 @@ li {
 			</table>
 
 		</section>
+		
 		<div class="order-amount-box">
 			<p>
 				총 주문금액:
@@ -291,8 +177,8 @@ li {
 
 
 
-	<footer class="foot_design">
-		<div id="footer_box">
+	<footer>
+		<div>
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 	</footer>

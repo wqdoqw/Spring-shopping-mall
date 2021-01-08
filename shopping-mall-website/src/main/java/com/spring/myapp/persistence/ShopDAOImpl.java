@@ -36,6 +36,11 @@ public class ShopDAOImpl implements ShopDAO {
 	}
 
 	@Override
+	public GoodsVO goodsViewByGoodsCode(String goodsCode) throws Exception {
+		return sql.selectOne(namespace + ".goodsViewByGoodsCode", goodsCode);
+	}
+
+	@Override
 	public void registerReply(GoodsReplyVO reply) throws Exception {
 		sql.insert(namespace + ".registerReply", reply);
 	}
@@ -88,6 +93,11 @@ public class ShopDAOImpl implements ShopDAO {
 	@Override
 	public void deleteAllCart(String userId) throws Exception {
 		sql.delete(namespace + ".deleteAllCart", userId);
+	}
+	
+	@Override
+	public void deleteAllCartByGoodsCode(String goodsCode) throws Exception {
+		sql.delete(namespace + ".deleteCartByGoodsCode", goodsCode);
 	}
 
 	@Override

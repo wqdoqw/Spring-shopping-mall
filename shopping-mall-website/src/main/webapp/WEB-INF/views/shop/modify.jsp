@@ -115,7 +115,7 @@ function popupSubmit() {
 					data-value='5'><i class='fa fa-star fa-fw'></i></li>
 				</ul>
 			</div>
-			<input type="hidden" name="replyRating" id="replyRating" value="1">
+			<input type="hidden" name="replyRating" id="replyRating" value="${reply.replyRating}">
 			<div class="popup-btn">
 				<button type="submit" class="btn btn-primary"
 					id="${reply.replyNumber}modify-confirm">수정하기</button>

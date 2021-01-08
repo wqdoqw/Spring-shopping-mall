@@ -31,7 +31,11 @@ public class ShopServiceImpl implements ShopService {
 	public GoodsVO goodsView(String goodsName) throws Exception {
 		return dao.goodsView(goodsName);
 	}
-
+	
+	@Override
+	public GoodsVO goodsViewByGoodsCode(String goodsCode) throws Exception {
+		return dao.goodsViewByGoodsCode(goodsCode);
+	}
 	@Override
 	public void registerReply(GoodsReplyVO reply) throws Exception {
 		dao.registerReply(reply);
@@ -87,6 +91,11 @@ public class ShopServiceImpl implements ShopService {
 		dao.deleteAllCart(userId);
 	}
 
+	@Override
+	public void deleteAllCartByGoodsCode(String goodsCode) throws Exception {
+		dao.deleteAllCartByGoodsCode(goodsCode);
+	}
+	
 	@Override
 	public void orderCart(OrderVO vo) throws Exception {
 		dao.orderCart(vo);

@@ -5,7 +5,7 @@
 	<!-- 상품 목록 -->
 	<select id="goodsViewList"
 		resultType="com.spring.myapp.domain.GoodsVO">
-<![CDATA[
+	<![CDATA[
 	SELECT goodsCode, 
 	 	goodsName, 
 	 	secondClassification, 
@@ -18,12 +18,12 @@
      	goodsAddedTime
 	FROM goods
         WHERE firstClassification = #{firstClassification}
-]]>
+	]]>
 	</select>
 
 	<select id="goodsViewOne"
 		resultType="com.spring.myapp.domain.GoodsVO">
-<![CDATA[
+	<![CDATA[
 	SELECT goodsCode,
 	 	firstClassification, 
 	 	secondClassification, 
@@ -36,7 +36,26 @@
      	goodsAddedTime
 	FROM goods
 	WHERE goodsName = #{goodsName}
-]]>
+	]]>
+	</select>
+
+
+	<select id="goodsViewByGoodsCode"
+		resultType="com.spring.myapp.domain.GoodsVO">
+	<![CDATA[
+	SELECT goodsCode,
+	 	firstClassification, 
+	 	secondClassification, 
+	 	brand, 
+	 	goodsPrice,
+     	goodsStock,
+     	goodsDescription,
+     	goodsImage,
+     	goodsThumbnailImage,
+     	goodsAddedTime
+	FROM goods
+	WHERE goodsCode = #{goodsCode}
+	]]>
 	</select>
 
 	<!-- 상품 소감(댓글) 작성 -->
@@ -198,6 +217,13 @@ WHERE c.userid = m.email AND c.goodsName = g.goodsName AND c.userid = #{userid}
 	]]>	
 	</delete>
 
+	<!-- 카트 상품번호로 전부 삭제 -->
+	<delete id="deleteCartByGoodsCode">
+	<![CDATA[
+		DELETE FROM cart WHERE goodsCode = #{goodsCode}
+	]]>	
+	</delete>
+	
 	<!-- 주문 정보 -->
 	<insert id="addOrder">
 	<![CDATA[

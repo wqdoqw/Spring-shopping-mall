@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>쇼핑상세보기</title>
+<title>가성비몰</title>
 <link rel="stylesheet" href="../css/goods-view.css">
 <!-- font awesome 추가하기 -->
 <link rel="stylesheet" href="../css/font-awesome.min.css">
@@ -210,50 +210,92 @@
 .rating-stars-modal ul>li.star.selected>i.fa {
 	color: #FF912C;
 }
+
 </style>
 <body>
 
-
-	<header id="header">
-		<div id="header_box">
+	<header>
+		<div>
 			<%@ include file="../include/header.jsp"%>
 		</div>
 	</header>
+	
 	<div class="responsive_view">
 		<h2 style="font-weight: bold; margin-bottom: 20px;">${view.goodsName}</h2>
 		<img src="${view.goodsImage}" alt=""
-			style="width: 270px; height: auto;"> <label
-			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">판매가</label>
+			style="width: 270px; height: auto;"> 
+		<label style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">판매가</label>
 		<label class="price" style="font-size: 20px; color: red;">${view.goodsPrice}
 			<span>원</span>
 		</label> <label
 			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">상품코드</label>
-		<label>${view.goodsCode}</label> <label
-			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">제조사/공급사</label>
+		<label>${view.goodsCode}</label> 
+		<label style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">제조사/공급사</label>
 		<label>${view.brand}</label>
+		<label style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px; margin-bottom:15px;">구매수량</label>
 		<div class="length">
-			<input type="number" min="1" value="1"> <a href="#a"></a> <a
-				href="#a"></a>
+			<input type="number" class="numBox2" style="width:25%;" min="1" value="1"> 
+			<a href="#a" class="plus_small"></a> <a href="#a" class="minus_small"></a>
+						<script>
+						$(".numBox2").on("keyup keydown change",function(event){
+						    var boxNum = $('.numBox2').val();
+						  /*   console.log(boxNum); */
+						});
+						
+						</script>
 		</div>
 		<label
 			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">사용가능쿠폰</label>
 		<label>0개</label> <label
 			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">옵션선택</label>
 		<label><select>
-				<option>기본(+0)</option>
+				<option>기본</option>
 		</select></label> <label
 			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">배송비</label>
 		<label>무료배송</label> <label
 			style="display: block; font-weight: bold; font-size: 26px; margin-top: 10px;">결제금액</label>
 		<label style="font-size: 20px; color: red;"><b>${view.goodsPrice}</b>원</label>
 		<div class="btns" style="margin-bottom: 200px; margin-top: 40px;">
-			<button type="submit" id="update_Btn" class="btn btn-default"
-				style="background-color: grey; color: white;">장바구니</button>
-			<button type="button" id="back_Btn" class="btn btn-default"
-				style="background-color: blue; color: white;">구매하기</button>
+			<a id="update_Btn" class="addCart_btn2 btn btn-default"
+				style="background-color: grey; color: white;">장바구니</a>
+			<a href="/shop/orderGood?n=${view.goodsName}" id="back_Btn" class="btn btn-default"
+				style="background-color: blue; color: white;">구매하기</a>
 		</div>
 	</div>
-
+	
+	<script>
+	  $(".addCart_btn2").click(function(){
+	   var goodsCode = $(".goodsCode").val();
+	   var goodsName = $(".goodsName").val();
+	   var cartStock = $(".numBox2").val();
+	      
+	   var data = {
+	     goodsCode : goodsCode,
+	     goodsName : goodsName,
+	     cartStock : cartStock
+	     };
+	   
+	   $.ajax({
+	    url : "/shop/view/addCart",
+	    type : "post",
+	    data : data,
+	    success : function(result){
+	    	if(result == 1){
+	     		alert("카트에 담았습니다.");
+	     		$(".numBox").val("1");
+	    	}else{
+	    		alert("회원만 사용할 수 있습니다");
+	     		$(".numBox").val("1");
+	    	}
+	    },
+	    error : function(){
+	     alert("카트 담기 실패");
+	    }
+	   });
+	  });
+	</script>
+	
+	
 	<div class="product_view">
 		<h2>${view.goodsName}</h2>
 		<table>
@@ -288,29 +330,29 @@
 							<input type="number" class="numBox" min="1"
 								max="${view.goodsStock}" value="1" readonly="readonly" /> <a
 								href="#a" class="plus">증가</a> <a href="#a" class="minus">감소</a>
-							<script>
-							$(".plus").click(function(){
-   								var num = $(".numBox").val();
-  								var plusNum = Number(num) + 1;
-  								
-   								if(plusNum >= ${view.goodsStock}) {
-   								 $(".numBox").val(num);
-  								 } else {
-   								 $(".numBox").val(plusNum);          
-   									}
- 									 });
-  
- 								 $(".minus").click(function(){
-   								 var num = $(".numBox").val();
-   								 var minusNum = Number(num) - 1;
-   								 
-   								 if(minusNum <= 0) {
-    							$(".numBox").val(num);
-   								} else {
-   								 $(".numBox").val(minusNum);          
-   								}
- 								 });
- 							</script>
+							<script>				
+								$(".plus").click(function() {
+								var num = $(".numBox").val();
+	 							var plusNum = Number(num) + 1; 
+	 							var stock = ${view.goodsStock};
+							if (plusNum >= stock) {
+								$(".numBox").val(num);
+							} else {
+							$(".numBox").val(plusNum);
+							}
+							});
+
+							$(".minus").click(function() {
+							var num = $(".numBox").val();
+							var minusNum = Number(num) - 1;
+	
+							if (minusNum <= 0) {
+								$(".numBox").val(num);
+							} else {
+							$(".numBox").val(minusNum);
+							}
+							});
+						</script>
 						</div>
 					</td>
 				</tr>
@@ -342,8 +384,10 @@
 			value="${view.goodsCode}"> <input type="hidden"
 			class="goodsName" name="goodsName" value="${view.goodsName}">
 		<div class="btns">
-			<a class="addCart_btn btn1">장바구니</a> <a
-				href="/shop/orderGood?n=${view.goodsName}" class="btn2">구매하기</a>
+			<a class="addCart_btn btn btn-default"
+				style="background-color: grey; color: white; padding: 0px;">장바구니</a> 
+			<a href="/shop/orderGood?n=${view.goodsName}" class="btn btn-default"
+				style="background-color: blue; color: white; padding: 0px;">구매하기</a>
 		</div>
 	</div>
 	<script>
@@ -364,7 +408,7 @@
 	    data : data,
 	    success : function(result){
 	    	if(result == 1){
-	     		alert("카트 담기 성공");
+	     		alert("카트 담았습니다.");
 	     		$(".numBox").val("1");
 	    	}else{
 	    		alert("회원만 사용할 수 있습니다");
@@ -506,12 +550,6 @@
 			   							formObj.attr("action", "/shop/view/goback?n=${view.goodsName}");
 			   							formObj.submit();
 		  							}else{
-		   						/* 	formObj.attr("action", "/shop/view/delete?s=${reply.replyNumber}");
-		   							formObj.submit(); */
-		  							 	$(function() {
-		  								 /*  $("#exampleModalCenter").css("background","gold"); */
-		  							 		$("#exampleModalCenter").css("display","none");
-		  								});	 
 								} 
 		  					}
 		  					});
@@ -578,8 +616,8 @@
 
  	</script>
 
-	<footer class="foot_design">
-		<div id="footer_box">
+	<footer>
+		<div>
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 	</footer>

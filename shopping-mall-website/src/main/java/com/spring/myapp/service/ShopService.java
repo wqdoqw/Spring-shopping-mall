@@ -16,9 +16,12 @@ public interface ShopService {
 	// 상품 1차분류로 조회
 	public List<GoodsVO> goodsList(String firstClassification) throws Exception;
 
-	// 상품 상세조회
+	// 상품 이름으로 상세조회
 	public GoodsVO goodsView(String goodsName) throws Exception;
-
+	
+	// 상품 코드로 상세조회 
+	public GoodsVO goodsViewByGoodsCode(String goodsCode) throws Exception;
+		
 	// 상품소감
 	public void registerReply(GoodsReplyVO reply) throws Exception;
 
@@ -52,6 +55,9 @@ public interface ShopService {
 	// 카트 전부 삭제
 	public void deleteAllCart(String userId) throws Exception;
 
+	// 상품 코드로 상품 전체 삭제
+	public void deleteAllCartByGoodsCode(String goodsCode) throws Exception;
+	
 	// 주문
 	public void orderCart(OrderVO vo) throws Exception;
 

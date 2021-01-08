@@ -12,5 +12,4 @@ public class CartVO {
 	private String goodsName;
 	private int cartStock;
 	private Date cartAddedDate;
-	private int orderStatus;
 }

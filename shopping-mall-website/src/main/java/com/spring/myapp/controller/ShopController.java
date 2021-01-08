@@ -2,7 +2,9 @@ package com.spring.myapp.controller;
 
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -28,6 +30,7 @@ import com.spring.myapp.domain.MemberVO;
 import com.spring.myapp.domain.OrderVO;
 import com.spring.myapp.domain.OrderedGoodsVO;
 import com.spring.myapp.service.ShopService;
+import com.spring.myapp.service.AdminService;
 
 @Controller
 @RequestMapping("/shop/*")
@@ -142,20 +145,19 @@ public class ShopController {
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void getUpdateReply(@RequestParam("n") String replyNumber, Model model) throws Exception {
 		logger.info("get update reply");
-		
+
 		GoodsReplyVO reply = service.selectReplyByNumber(replyNumber);
 		model.addAttribute("reply", reply);
 
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String updateReply(@RequestParam("n") String replyNumber, GoodsReplyVO reply)
-			throws Exception {
+	public String updateReply(@RequestParam("n") String replyNumber, GoodsReplyVO reply) throws Exception {
 		logger.info("post update reply");
 
 		System.out.println("modify replyvo>>>" + reply);
 		reply.setReplyNumber(replyNumber);
-		
+
 		service.replyModify(reply);
 
 		return "redirect:/shop/reload";
@@ -174,16 +176,47 @@ public class ShopController {
 		logger.info("post cart");
 
 		int result = 0;
-
 		System.out.println("cartVO>>" + cart);
 		MemberVO member = (MemberVO) session.getAttribute("member");
-		System.out.println("memberVO>>" + member);
+
+		// 비회원 차단
+		if (member == null) {
+			return result;
+		}
+
+		List<CartListVO> cartList = service.cartList(member.getEmail());
+
+		// 중복된 상품을 넣기 위한 맵
+		Map<String, Integer> map = new HashMap<String, Integer>();
+
+		// 중복 상품 카트 수 합치기
+		for (CartListVO cartListVO : cartList) {
+			int num = cartList.stream()
+					.filter(s -> s.getGoodsCode().equals(cartListVO.getGoodsCode()))
+					.map(CartListVO::getCartStock)
+					.mapToInt(Integer::valueOf)
+					.sum();
+				
+			map.put(cartListVO.getGoodsCode(), num);
+		}
 
 		if (member != null) {
 			cart.setUserid(member.getEmail());
+
+			// 카트안에 똑같은 상품이 들었으면
+			if (map.get(cart.getGoodsCode()) != null) {
+				if (cart.getCartStock() != map.get(cart.getGoodsCode())) {
+					
+					// 해당 상품번호로 현재 들어있는 중복된 카드 전부 삭제후 다시 삽입
+					service.deleteAllCartByGoodsCode(cart.getGoodsCode());
+					cart.setCartStock(cart.getCartStock() + map.get(cart.getGoodsCode()));
+					
+				}
+			}
 			service.addCart(cart);
 			result = 1;
 		}
+		
 		System.out.println("after cartVO>>" + cart);
 
 		return result;
