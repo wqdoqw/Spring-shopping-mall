@@ -150,7 +150,7 @@ li {
 		display: none;
 	}
 	.logo-div {
-		margin-left: 20%;
+		margin-left: 12%;
 	}
 	.nav-bar-pad {
 		padding-left: 15%;
@@ -212,7 +212,7 @@ li {
 	}
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 670px) {
 	.topnav {
 		padding-left: 0px;
 	}
@@ -228,7 +228,7 @@ li {
 	}
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 670px) {
 	.topnav.responsive {
 		position: relative;
 	}

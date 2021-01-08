@@ -86,8 +86,8 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th style="width: 10%;">사진</th>
-					<th style="width: 10%;">상품이름</th>
+					<th style="width: 6%;">사진</th>
+					<th style="width: 20%;">상품이름</th>
 					<th style="width: 10%;">가격</th>
 					<th style="width: 10%;">주문수량</th>
 					<th style="width: 10%;">최종가격</th>
