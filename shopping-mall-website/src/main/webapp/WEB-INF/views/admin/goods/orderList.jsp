@@ -13,52 +13,13 @@
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <!-- 커스텀 CSS 추가하기 -->
 <link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="/css/admin-list.css">
 <!-- Popper 자바스크립트 추가하기 -->
 <script src="/js/popper.min.js"></script>
 <!-- 제이쿼리 자바스크립트 추가하기 -->
 <script src="/js/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
 <script src="/js/bootstrap.min.js"></script>
-<style>
-.table-view {
-	margin-left: 200px;
-	margin-right: 200px;
-	margin-top: 50px;
-	margin-bottom: 400px;
-}
-
-/* admin list section */
-#myInput {
-	background-position: 10px 10px;
-	background-repeat: no-repeat;
-	/*   width: 100%; */
-	font-size: 16px;
-	padding: 12px 20px 12px 40px;
-	border: 1px solid #ddd;
-	margin-bottom: 12px;
-	/* 	margin-left: 200px; */
-}
-
-.search-div {
-	margin-left: 200px;
-	margin-top: 50px;
-}
-
-.search-div select {
-	height: 50px;
-}
-
-.search-div input {
-	width: 40%;
-}
-
-@media screen and (max-width: 1100px) {
-	.table-view {
-		margin-left: 15%;
-		margin-right: 15%;
-	}
-}
-</style>
 
 
 </head>
@@ -78,7 +39,7 @@
 			<option value="2">상품이름</option>
 			<option value="3">주문자 이름</option>
 		</select> <input type="text" id="myInput" onkeyup="searchFunction()"
-			placeholder="Search for names.." title="Type in a name">
+			placeholder="Search" title="Type in a name">
 	</div>
 
 	<div class="table-view">
