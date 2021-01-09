@@ -191,12 +191,9 @@ public class ShopController {
 
 		// 중복 상품 카트 수 합치기
 		for (CartListVO cartListVO : cartList) {
-			int num = cartList.stream()
-					.filter(s -> s.getGoodsCode().equals(cartListVO.getGoodsCode()))
-					.map(CartListVO::getCartStock)
-					.mapToInt(Integer::valueOf)
-					.sum();
-				
+			int num = cartList.stream().filter(s -> s.getGoodsCode().equals(cartListVO.getGoodsCode()))
+					.map(CartListVO::getCartStock).mapToInt(Integer::valueOf).sum();
+
 			map.put(cartListVO.getGoodsCode(), num);
 		}
 
@@ -205,18 +202,16 @@ public class ShopController {
 
 			// 카트안에 똑같은 상품이 들었으면
 			if (map.get(cart.getGoodsCode()) != null) {
-				if (cart.getCartStock() != map.get(cart.getGoodsCode())) {
-					
-					// 해당 상품번호로 현재 들어있는 중복된 상품을 전부 삭제후 카트 수량을 더한 후 다시 삽입
-					service.deleteAllCartByGoodsCode(cart.getGoodsCode());
-					cart.setCartStock(cart.getCartStock() + map.get(cart.getGoodsCode()));
-					
-				}
+
+				// 해당 상품번호로 현재 들어있는 중복된 상품을 전부 삭제후 카트 수량을 더한 후 다시 삽입
+				service.deleteAllCartByGoodsCode(cart.getGoodsCode());
+				cart.setCartStock(cart.getCartStock() + map.get(cart.getGoodsCode()));
+
 			}
 			service.addCart(cart);
 			result = 1;
 		}
-		
+
 		System.out.println("after cartVO>>" + cart);
 
 		return result;

@@ -18,21 +18,6 @@
 <script src="../js/jquery-3.5.1.min.js"></script>
 <!-- 부트스트랩 자바스크립트 추가하기 -->
 <script src="../js/bootstrap.min.js"></script>
-<script>
-	function frameclose() {
-		parent.close()
-		window.close()
-		self.close()
-	}
-	function popupSubmit() {
-
-		window.opener.name = "parentPage"; // 부모창의 이름 설정
-		document.popForm.target = "parentPage"; // 타켓을 부모창으로 설정
-		document.popForm.action = "/target/parentPage2.do"; //부모창에 호출될 url 
-		document.popForm.submit();
-		self.close();
-	}
-</script>
 
 </head>
 <body>
