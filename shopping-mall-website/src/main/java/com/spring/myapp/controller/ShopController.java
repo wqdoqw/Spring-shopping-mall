@@ -184,15 +184,17 @@ public class ShopController {
 			return result;
 		}
 
+		
 		List<CartListVO> cartList = service.cartList(member.getEmail());
-
 		// 중복된 상품을 넣기 위한 맵
 		Map<String, Integer> map = new HashMap<String, Integer>();
 
 		// 중복 상품 카트 수 합치기
 		for (CartListVO cartListVO : cartList) {
 			int num = cartList.stream().filter(s -> s.getGoodsCode().equals(cartListVO.getGoodsCode()))
-					.map(CartListVO::getCartStock).mapToInt(Integer::valueOf).sum();
+					.map(CartListVO::getCartStock)
+					.mapToInt(Integer::valueOf)
+					.sum();
 
 			map.put(cartListVO.getGoodsCode(), num);
 		}

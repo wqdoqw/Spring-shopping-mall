@@ -60,22 +60,24 @@ public class MemberController {
 		logger.info("post signin");
 
 		System.out.println("vo : " + vo);
-		// vo null
+		
 		MemberVO login = service.signin(vo); // MemberVO형 변수 login에 로그인 정보를 저장
 		if (login == null) {
 			rttr.addFlashAttribute("msg", false);
 			return "redirect:/member/signin";
 		}
-		HttpSession session = req.getSession(); // 현재 세션 정보를 가져옴
+		
+		// 현재 세션 정보를 가져옴
+		HttpSession session = req.getSession();
 
-		// login null
-		System.out.println("login : " + login);
-
-		boolean passMatch = passEncoder.matches(vo.getPassword(), login.getPassword()); // DB의 비밀번호와 입력된 비밀번호를 비교
+		// DB의 비밀번호와 입력된 비밀번호를 비교
+		boolean passMatch = passEncoder.matches(vo.getPassword(), login.getPassword()); 
 		System.out.println("passMatch : " + passMatch);
 
-		if (login != null && passMatch) { // 아이디가 존재하고(!=null), 비밀번호가 맞으면(PassMatch = true)
-			session.setAttribute("member", login); // member 세션에 로그인 정보를 부여
+		// 아이디가 존재하고(!=null), 비밀번호가 맞으면(PassMatch = true)
+		if (login != null && passMatch) { 
+			// member 세션에 로그인 정보를 부여
+			session.setAttribute("member", login);
 
 		} else { // 아이디가 존재하지 않고, 비밀번호가 틀리면
 			session.setAttribute("member", null); // member 세션에 null 부여
