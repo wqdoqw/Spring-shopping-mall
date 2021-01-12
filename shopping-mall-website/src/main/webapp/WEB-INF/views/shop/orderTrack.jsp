@@ -112,7 +112,7 @@
 	</c:if>
 
 
-	<footer>
+	<footer style="margin-top: 100px;">
 		<div>
 			<%@ include file="../include/footer.jsp"%>
 		</div>
