@@ -22,6 +22,7 @@
 * **아이디:** test001@gmail.com
 * **비밀번호:** 12345
 
+### <a href="https://drive.google.com/file/d/1Rg3DPa2H8Ywh-A1ER02Z6d7z2x6EZX7V/view?usp=sharing"/>프로젝트 설명 pdf 보기</a>
 
 ## :clipboard: 개발환경
 * Eclipse
