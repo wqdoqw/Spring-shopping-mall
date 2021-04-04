@@ -8,8 +8,8 @@
 
 본 프로젝트는 혼자 개발 진행했고, Cafe24를 이용해 배포 하였습니다.
 
-## :link: 배포 URL
-### http://wqdoqw22.cafe24.com/
+## :link: 프로젝트 URL [배포종료]
+### ~~http://wqdoqw22.cafe24.com/~~
 
 
 ![website](https://user-images.githubusercontent.com/20630599/103749283-aa4d6b80-5048-11eb-8972-4eb394aa7d67.PNG)
